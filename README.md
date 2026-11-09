@@ -8,7 +8,7 @@
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![npm downloads](https://img.shields.io/npm/dm/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
-[![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
+[![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20TraeCode%20CN%20%7C%20豆包%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
 [![Modules](https://img.shields.io/badge/Modules-75-red.svg?style=flat-square)](#能力矩阵)
 
 [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md)
@@ -32,13 +32,18 @@ pm-ai-skill install
 
 > 国内如果 npm 访问慢，用下面的 Gitee 方式。
 
-### 方式二：Windows 一键脚本
+### 方式二：Windows 一键脚本（国产工具全支持）
 
 ```powershell
 irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 ```
 
-脚本自动找到 WorkBuddy 的 skills 目录，把 `pm-ai-skill` 放进去。找不到就释放到当前目录，手动拷一下。
+脚本自动检测你装了哪些工具，一次性安装到所有支持的目录：
+- WorkBuddy
+- TraeCode CN
+- 豆包（以及所有支持 `.agents/skills` 约定的工具）
+
+一个都没检测到的话，会释放到当前目录，手动拷。
 
 ### 方式三：手动下载 zip
 
