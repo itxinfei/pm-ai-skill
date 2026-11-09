@@ -6,6 +6,8 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
+[![npm version](https://img.shields.io/npm/v/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/pm-ai-skill)
+[![npm downloads](https://img.shields.io/npm/dm/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
 [![Modules](https://img.shields.io/badge/Modules-57-red.svg?style=flat-square)](#能力矩阵)
 
@@ -19,9 +21,18 @@
 
 ## 📦 安装
 
-三种方式，任选一种。国内 Gitee 直连，不需要翻墙。
+四种方式，任选一种。
 
-### 方式一：Windows 一键脚本（推荐）
+### 方式一：npm 安装
+
+```bash
+npm i -g pm-ai-skill
+pm-ai-skill install
+```
+
+> 国内如果 npm 访问慢，用下面的 Gitee 方式。
+
+### 方式二：Windows 一键脚本
 
 ```powershell
 irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
@@ -29,25 +40,16 @@ irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 
 脚本自动找到 WorkBuddy 的 skills 目录，把 `pm-ai-skill` 放进去。找不到就释放到当前目录，手动拷一下。
 
-### 方式二：手动下载 zip
+### 方式三：手动下载 zip
 
 1. 下载：<https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip>
 2. 解压
 3. 把 `skill-source/` 改名 `pm-ai-skill/`
 4. 丢进 WorkBuddy skills 目录（通常 `~/.workbuddy/skills/` 或 `%APPDATA%\WorkBuddy\skills\`）
 
-### 方式三：直接复制提示词（最简单）
+### 方式四：直接复制提示词（最简单）
 
 不想装？直接打开 [skill-source/system-prompt.md](skill-source/system-prompt.md)，把内容复制粘贴到 ChatGPT / Claude / 豆包的系统提示词里，就能用全部 57 个能力。
-
-### 方式四：npm（可选）
-
-```bash
-npm i -g pm-ai-skill
-pm-ai-skill install
-```
-
-> 国内用户推荐用方式一或方式二，npm 访问可能较慢。
 
 ---
 
