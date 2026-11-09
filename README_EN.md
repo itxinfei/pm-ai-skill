@@ -144,6 +144,7 @@ Walk me through the project initiation process for a new product
 ```
 pm-ai-skill/
 ├── install.ps1
+├── install.sh
 ├── skill-source/
 │   ├── skill.json
 │   ├── system-prompt.md

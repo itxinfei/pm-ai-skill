@@ -1,10 +1,26 @@
 {
-  "id": "pm-ai-all-in-one",
+  "id": "pm-ai-skill",
   "name": "PM-AI-Skill 产品经理全链路助手",
   "version": "1.0.0",
-  "description": "整合 10 大 PM 能力：需求、用户研究、竞品、数据分析、PRD、会议纪要、思维导图、产品架构、商业模式画布、Excalidraw 绘图",
-  "author": "itxinfei",
+  "description": "产品经理全链路 AI 助手，61 个能力模块，覆盖需求发现、用户调研、竞品分析、策略规划、方案设计、文档输出、协作沟通、数据度量、商用增长和自我迭代",
+  "author": "itxinfei（心飞为你飞）",
   "systemPromptFile": "system-prompt.md",
   "triggerReferenceFile": "triggers.md",
-  "tags": ["pm", "产品经理", "prd", "workbuddy", "itxinfei"]
+  "tags": [
+    "pm",
+    "product-manager",
+    "产品经理",
+    "prd",
+    "rice",
+    "okrs",
+    "user-research",
+    "product-strategy",
+    "workbuddy",
+    "trae",
+    "doubao",
+    "claude",
+    "codex",
+    "gemini",
+    "itxinfei"
+  ]
 }

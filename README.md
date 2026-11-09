@@ -238,6 +238,7 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 ```
 pm-ai-skill/
 ├── install.ps1
+├── install.sh
 ├── skill-source/
 │   ├── skill.json
 │   ├── system-prompt.md
