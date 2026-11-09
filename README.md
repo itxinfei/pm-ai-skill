@@ -13,6 +13,8 @@
 
 作者：itxinfei（心飞为你飞）
 
+[English](README_EN.md)
+
 </div>
 
 ---

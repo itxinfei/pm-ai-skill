@@ -1,7 +1,7 @@
 {
   "name": "@itxinfei/pm-ai-skill",
   "version": "1.0.0",
-  "description": "PM-AI-Skill｜产品经理全链路 WorkBuddy Skill All-in-One 整合包，npm 一键安装",
+  "description": "An all-in-one AI skill for product managers — 75 modules covering discovery, research, strategy, PRDs, metrics, growth, and self-improvement.",
   "main": "bin/index.js",
   "bin": {
     "pm-ai-skill": "./bin/index.js"
@@ -19,12 +19,18 @@
     "pkg:zip": "node bin/index.js export-zip"
   },
   "keywords": [
-    "workbuddy",
-    "skill",
-    "pm",
     "product-manager",
-    "prd",
+    "pm",
     "ai-skill",
+    "skill",
+    "workbuddy",
+    "trae",
+    "doubao",
+    "prd",
+    "rice",
+    "okrs",
+    "product-discovery",
+    "product-strategy",
     "itxinfei"
   ],
   "author": "itxinfei",
