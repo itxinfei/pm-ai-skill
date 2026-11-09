@@ -2,7 +2,7 @@
   "id": "pm-ai-skill",
   "name": "PM-AI-Skill 产品经理全链路助手",
   "version": "1.0.0",
-  "description": "产品经理全链路 AI 助手，61 个能力模块，覆盖需求发现、用户调研、竞品分析、策略规划、方案设计、文档输出、协作沟通、数据度量、商用增长和自我迭代",
+  "description": "产品经理全链路 AI 助手，76 个能力模块，覆盖需求发现、用户调研、竞品分析、策略规划、方案设计、文档输出、协作沟通、数据度量、商用增长和自我迭代",
   "author": "itxinfei（心飞为你飞）",
   "systemPromptFile": "system-prompt.md",
   "triggerReferenceFile": "triggers.md",
