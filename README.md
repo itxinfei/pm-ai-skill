@@ -9,7 +9,7 @@
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![npm downloads](https://img.shields.io/npm/dm/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
-[![Modules](https://img.shields.io/badge/Modules-69-red.svg?style=flat-square)](#能力矩阵)
+[![Modules](https://img.shields.io/badge/Modules-75-red.svg?style=flat-square)](#能力矩阵)
 
 [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md)
 
