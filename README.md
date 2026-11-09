@@ -2,7 +2,7 @@
 
 # 🚀 pm-ai-skill
 
-**产品经理全链路 AI 工作流 · 15 年实战经验提炼 · 一个 Skill 覆盖从想法到复盘**
+**产品经理全链路 AI 工作流 · 20 年实战经验提炼 · 从每天日常到项目全流程全覆盖**
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
