@@ -1,5 +1,5 @@
 {
-  "name": "pm-ai-skill",
+  "name": "@itxinfei/pm-ai-skill",
   "version": "1.0.0",
   "description": "PM-AI-Skill｜产品经理全链路 WorkBuddy Skill All-in-One 整合包，npm 一键安装",
   "main": "bin/index.js",

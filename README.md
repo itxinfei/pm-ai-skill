@@ -6,8 +6,8 @@
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
-[![npm version](https://img.shields.io/npm/v/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/pm-ai-skill)
-[![npm downloads](https://img.shields.io/npm/dm/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/pm-ai-skill)
+[![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
+[![npm downloads](https://img.shields.io/npm/dm/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
 [![Modules](https://img.shields.io/badge/Modules-57-red.svg?style=flat-square)](#能力矩阵)
 
@@ -26,7 +26,7 @@
 ### 方式一：npm 安装
 
 ```bash
-npm i -g pm-ai-skill
+npm i -g @itxinfei/pm-ai-skill
 pm-ai-skill install
 ```
 
