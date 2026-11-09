@@ -19,7 +19,9 @@
 
 ## 📦 安装
 
-### Windows（一键脚本）
+三种方式，任选一种。国内 Gitee 直连，不需要翻墙。
+
+### 方式一：Windows 一键脚本（推荐）
 
 ```powershell
 irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
@@ -27,19 +29,16 @@ irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 
 脚本自动找到 WorkBuddy 的 skills 目录，把 `pm-ai-skill` 放进去。找不到就释放到当前目录，手动拷一下。
 
-### 手动安装
+### 方式二：手动下载 zip
 
-1. 下载 zip：<https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip>
+1. 下载：<https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip>
 2. 解压
 3. 把 `skill-source/` 改名 `pm-ai-skill/`
 4. 丢进 WorkBuddy skills 目录（通常 `~/.workbuddy/skills/` 或 `%APPDATA%\WorkBuddy\skills\`）
 
-### npm（可选）
+### 方式三：直接复制提示词（最简单）
 
-```bash
-npm i -g pm-ai-skill
-pm-ai-skill install
-```
+不想装？直接打开 [skill-source/system-prompt.md](skill-source/system-prompt.md)，把内容复制粘贴到 ChatGPT / Claude / 豆包的系统提示词里，就能用全部 57 个能力。
 
 ---
 
@@ -259,11 +258,9 @@ pm-ai-skill install
 ```
 pm-ai-skill/
 ├── install.ps1              # Windows 一键安装脚本
-├── bin/                     # CLI（npm 方式）
-│   └── index.js
-├── skill-source/            # WorkBuddy 读的源文件
+├── skill-source/            # WorkBuddy 读的源文件（直接复制这里就能用）
 │   ├── skill.json
-│   ├── system-prompt.md     # 52 个模块的系统提示词
+│   ├── system-prompt.md     # 57 个模块的系统提示词
 │   └── triggers.md          # 触发指令清单
 ├── templates/               # 可直接复用的模板
 │   ├── prd-template.md
@@ -279,26 +276,6 @@ pm-ai-skill/
     ├── rice-priority-example.md
     ├── competitor-analysis-sample.md
     └── mindmap-sample.md
-```
-
----
-
-## ⚡ CLI 命令（npm 安装后）
-
-```bash
-pm-ai-skill install           # 装到 WorkBuddy
-pm-ai-skill export-zip        # 导出 zip 包
-pm-ai-skill template prd      # 看 PRD 模板
-pm-ai-skill template meeting  # 看会议纪要模板
-pm-ai-skill template interview
-pm-ai-skill template bmc
-pm-ai-skill doc capability     # 看能力清单
-pm-ai-skill doc prompt         # 看提示词库
-pm-ai-skill doc workflow      # 看工作流
-pm-ai-skill doc faq
-pm-ai-skill example rice      # 看 RICE 示例
-pm-ai-skill example competitor
-pm-ai-skill example mindmap
 ```
 
 ---
