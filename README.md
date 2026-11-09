@@ -277,13 +277,17 @@ pm-ai-skill/
 │   ├── prd-template.md
 │   ├── meeting-minutes-template.md
 │   ├── interview-script-sample.md
-│   └── business-model-checklist.md
+│   ├── business-model-checklist.md
+│   ├── competitor-analysis-template.md
+│   ├── roadmap-template.md
+│   └── retrospective-template.md
 ├── docs/                    # 文档
 │   ├── capability.md
 │   ├── prompt-reference.md
 │   ├── workflow-guide.md
 │   └── faq.md
 └── examples/                # 脱敏示例
+    ├── prd-example.md
     ├── rice-priority-example.md
     ├── competitor-analysis-sample.md
     └── mindmap-sample.md
