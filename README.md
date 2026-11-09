@@ -1,57 +1,62 @@
 # pm-ai-skill
 
-[![npm version](https://img.shields.io/npm/v/pm-ai-skill.svg)](https://www.npmjs.com/package/pm-ai-skill)
-[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/itxinfei/pm-ai-skill/blob/main/LICENSE)
-[![Author](https://img.shields.io/badge/Author-itxinfei-orange)](https://github.com/itxinfei)
+[![MIT License](https://img.shields.io/badge/license-MIT-blue.svg)](https://gitee.com/itxinfei/pm-ai-skill/blob/main/LICENSE)
+[![Author](https://img.shields.io/badge/Author-itxinfei-orange)](https://gitee.com/itxinfei)
 
-> PM‑AI‑Skill｜产品经理全链路 WorkBuddy Skill All‑in‑One 整合包，npm 一键安装
+> PM‑AI‑Skill｜产品经理全链路 WorkBuddy Skill 整合包，一条命令安装
 
-- GitHub：<https://github.com/itxinfei/pm-ai-skill>
-- Gitee（国内镜像）：<https://gitee.com/itxinfei/pm-ai-skill>
+- Gitee（国内主仓库）：<https://gitee.com/itxinfei/pm-ai-skill>
+- GitHub（镜像）：<https://github.com/itxinfei/pm-ai-skill>
 
 把 10 个独立 PM Skill 合并为一套 Skill，覆盖产品经理完整工作链路：
 需求发现 → 用户研究 → 竞品分析 → 数据分析 → PRD 撰写 → 会议纪要 → 思维导图 → 产品架构 → 苏格拉底商业模式画布 → Excalidraw 草图可视化。
 
 > ⚠️ 重要声明：Skill 是思考辅助工具，**不替代产品经理的业务判断**；所有 AI 输出的业务数据请务必人工核验。
 
-## 🚀 安装
+## 🚀 一键安装（推荐）
 
-全局安装（推荐）：
+### Windows PowerShell
+```powershell
+irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
+```
 
+### 手动安装（任意系统）
+1. 下载仓库 zip：<https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip>
+2. 解压
+3. 把 `skill-source/` 文件夹重命名为 `pm-ai-skill/`
+4. 拷到 WorkBuddy 的 skills 目录下（通常是 `~/.workbuddy/skills/` 或 `%APPDATA%\WorkBuddy\skills\`）
+
+### npm 方式（可选，需要 Node ≥ 18）
 ```bash
 npm install -g pm-ai-skill
+pm-ai-skill install
 ```
 
-或者作为项目本地依赖：
+## 📦 命令（npm 安装后可用）
 
 ```bash
-npm install pm-ai-skill
-npx pm-ai-skill info
-```
-
-## 📦 命令
-
-```bash
-# 安装 skill 到 WorkBuddy（自动探测目录）
+# 安装 skill 到 WorkBuddy
 pm-ai-skill install
 
-# 导出兼容旧版的 skill zip 包，手动导入 WorkBuddy
+# 导出兼容旧版的 skill zip 包
 pm-ai-skill export-zip
 
 # 查看模板
-pm-ai-skill template prd          # PRD 结构化模板
-pm-ai-skill template meeting      # 会议纪要模板
-pm-ai-skill template interview    # 用户访谈脚本样例
-pm-ai-skill template bmc          # 商业模式假设校验清单
+pm-ai-skill template prd
+pm-ai-skill template meeting
+pm-ai-skill template interview
+pm-ai-skill template bmc
 
 # 查看文档
-pm-ai-skill doc capability        # 能力清单
-pm-ai-skill doc prompt            # 提示词参考
-pm-ai-skill doc workflow          # 分阶段工作流
-pm-ai-skill doc faq               # 常见问题
+pm-ai-skill doc capability
+pm-ai-skill doc prompt
+pm-ai-skill doc workflow
+pm-ai-skill doc faq
 
-# 查看 skill 元信息
-pm-ai-skill info
+# 查看示例
+pm-ai-skill example rice
+pm-ai-skill example competitor
+pm-ai-skill example mindmap
 ```
 
 ## 🎯 能力一览
@@ -67,15 +72,38 @@ pm-ai-skill info
 - ✅ 苏格拉底追问式商业模式画布，识别待验证假设
 - ✅ 输出 Excalidraw 绘图描述：痛点场景、价值主张、用户旅程
 
+## 💬 触发指令示例
+
+```
+# 需求优先级
+使用 RICE 模型评估以下需求：xxx
+
+# 用户研究
+帮我设计一份针对【老功能使用率低】的问卷 + 深度访谈脚本
+
+# 竞品分析
+分析 XX 垂直赛道竞争格局，找出市场空白
+
+# PRD 辅助
+基于业务目标：提升新用户首单转化 15%，生成 PRD 结构化框架
+
+# 会议纪要
+把下面会议录音文本整理成结构化纪要，保留决策上下文
+
+# 商业模式画布
+用苏格拉底追问模式校验这个创新项目商业模式
+```
+
 ## 📁 目录结构
 
 ```
 pm-ai-skill/
-├── bin/                 # CLI 入口
-├── skill-source/        # WorkBuddy skill 元文件 + 系统提示词
-├── templates/           # PRD / 会议纪要 / 访谈 / 商业模式模板
-├── docs/                # 能力、提示词、工作流、FAQ
-├── examples/            # 脱敏实战示例
+├── install.ps1           # Windows 一键安装脚本
+├── bin/                  # CLI 入口（npm 方式）
+├── skill-source/         # WorkBuddy skill 源文件
+├── templates/            # PRD / 会议纪要 / 访谈 / 商业模式模板
+├── docs/                  # 能力、提示词、工作流、FAQ
+├── examples/              # 脱敏实战示例
 └── README.md
 ```
 
@@ -100,10 +128,6 @@ pm-ai-skill/
 ## 🤝 贡献
 
 欢迎提交 Issue 反馈问题，提交 PR 补充模板、案例。
-
-## 📌 来源说明
-
-本 Skill 整合自《产品经理必装的 10 个 Skills：从需求到落地的全链路 AI 武装》全部实战场景，做一体化重构。
 
 ## License
 
