@@ -7,7 +7,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
 [![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
-[![Modules](https://img.shields.io/badge/Modules-52-red.svg?style=flat-square)](#能力矩阵)
+[![Modules](https://img.shields.io/badge/Modules-57-red.svg?style=flat-square)](#能力矩阵)
 
 [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md)
 
@@ -146,6 +146,18 @@ pm-ai-skill install
 
 > 💡 AARRR 和 RARRA 互补：AARRR 从获客出发，RARRA 从留存出发，适合不同阶段的产品。
 
+### 🌱 自我迭代与成长（5 个）
+
+| 模块 | 你能干嘛 |
+|---|---|
+| 使用反馈学习 | 每次输出后主动问哪里需要调整，记录反馈，越用越懂你 |
+| 个人案例库 | 把你的项目、决策、结果沉淀成案例卡，下次类似场景自动调用 |
+| 能力成长追踪 | 记录你用得多和没用过的模块，推荐下一步学习路径 |
+| 错误复盘 | 你说"不对"时，追问根因，不只改这一次，还要下次避免 |
+| 提示词自我优化 | 根据你的反馈，建议调整 system-prompt 的侧重点 |
+
+> 💡 这不是一次性工具，是越用越懂你的工作伙伴。你反馈越多，它输出越准。
+
 ---
 
 ## 💬 直接说人话就行
@@ -232,6 +244,10 @@ pm-ai-skill install
  │                                    │                客户成功
  │                                    ▼
  │                              项目复盘六段法
+ │                                    │
+ │                                    ▼
+ │                              自我迭代与成长
+ │                              （反馈学习 / 案例库 / 成长追踪 / 错误复盘 / 提示词优化）
  │
  └──── 苏格拉底商业模式画布（贯穿始终）
 ```
@@ -296,6 +312,8 @@ pm-ai-skill example mindmap
 - 输出 TAM/SAM/SOM 必须标注假设来源和置信度，不能给精确数字。
 - 输出优先级时，如果同时适用多个框架（RICE / MoSCoW / Impact-Effort），说明各自适用场景。
 - 输出 OKR 时，Objective 定性有挑战，Key Results 可量化，不能把 KR 写成任务清单。
+- 每次输出后会主动问"哪里需要调整"，你反馈越多，它越懂你。
+- 积累案例时会脱敏，不记录敏感业务数据。
 - 模板和示例都是脱敏的，直接用。
 - 有问题提 Issue，想补模板或案例提 PR。
 
