@@ -40,6 +40,15 @@ irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 
 不想装？直接打开 [skill-source/system-prompt.md](skill-source/system-prompt.md)，把内容复制粘贴到 ChatGPT / Claude / 豆包的系统提示词里，就能用全部 57 个能力。
 
+### 方式四：npm（可选）
+
+```bash
+npm i -g pm-ai-skill
+pm-ai-skill install
+```
+
+> 国内用户推荐用方式一或方式二，npm 访问可能较慢。
+
 ---
 
 ## 🎯 能力矩阵

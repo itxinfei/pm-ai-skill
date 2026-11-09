@@ -1,0 +1,22 @@
+https://registry.npmjs.org/
+; "global" config from C:\Users\itxinfei\AppData\Local\Doubao\User Data\sandbox_runtime\bases\772984f6fd3a8ae0ae7d2422cd7c2bfa\.gnpmrc
+
+; cache = "C:\\Users\\itxinfei\\AppData\\Local\\Temp\\ai\\bp\\work\\2265ffee32950eeb\\cache\\node\\npm-cache" ; overridden by env
+; registry = "https://registry.npmmirror.com/" ; overridden by user
+
+; "user" config from C:\Users\itxinfei\AppData\Local\Doubao\User Data\sandbox_runtime\bases\772984f6fd3a8ae0ae7d2422cd7c2bfa\.npmrc
+
+registry = "https://registry.npmjs.org/"
+
+; "env" config from environment
+
+cache = "C:\\Users\\itxinfei\\AppData\\Local\\Doubao\\User Data\\sandbox_runtime\\.cache\\node\\npm-cache"
+userconfig = "C:\\Users\\itxinfei\\AppData\\Local\\Doubao\\User Data\\sandbox_runtime\\bases\\772984f6fd3a8ae0ae7d2422cd7c2bfa\\.npmrc"
+
+; node bin location = C:\Users\itxinfei\AppData\Local\Doubao\User Data\sandbox_runtime\bases\772984f6fd3a8ae0ae7d2422cd7c2bfa\node\node.exe
+; node version = v22.23.2
+; npm local prefix = D:\MyCode\pm-ai-skill
+; npm version = 10.9.8
+; cwd = D:\MyCode\pm-ai-skill
+; HOME = C:\Users\itxinfei
+; Run `npm config ls -l` to show all defaults.
