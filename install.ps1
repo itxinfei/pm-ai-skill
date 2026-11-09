@@ -1,14 +1,12 @@
 # PM-AI-Skill 一键安装脚本（Windows PowerShell）
-# 支持：WorkBuddy、TraeCode CN、豆包、以及所有支持 .agents/skills 约定的工具
-# 用法：
-#   irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
+# 支持所有主流 AI CLI 和 IDE
+# 用法：irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 
 $ErrorActionPreference = 'Stop'
 $zipUrl = 'https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip'
 $skillName = 'pm-ai-skill'
 
 Write-Host "=== PM-AI-Skill 一键安装 ===" -ForegroundColor Cyan
-Write-Host "支持：WorkBuddy / TraeCode CN / 豆包 / 其他 .agents 兼容工具"
 Write-Host ""
 
 # 1. 下载
@@ -28,34 +26,41 @@ if (-not (Test-Path $skillSource)) {
 }
 Write-Host "[2/4] 解压完成"
 
-# 3. 找所有支持的工具目录
+# 3. 所有支持的工具目录
 $home = $env:USERPROFILE
-$targets = @()
 
-# WorkBuddy
-$workbuddyPaths = @(
-    (Join-Path $env:APPDATA 'WorkBuddy\skills'),
-    (Join-Path $home '.workbuddy\skills'),
-    (Join-Path $env:LOCALAPPDATA 'WorkBuddy\skills')
+$toolPaths = @(
+    # 国产
+    @{ Tool = 'WorkBuddy';      Path = (Join-Path $env:APPDATA 'WorkBuddy\skills') },
+    @{ Tool = 'WorkBuddy';      Path = (Join-Path $home '.workbuddy\skills') },
+    @{ Tool = 'TraeCode CN';    Path = (Join-Path $home '.trae-cn\skills') },
+    @{ Tool = 'Trae';           Path = (Join-Path $home '.trae\skills') },
+    # 国外
+    @{ Tool = 'Claude Code';    Path = (Join-Path $home '.claude\skills') },
+    @{ Tool = 'Codex';          Path = (Join-Path $home '.codex\skills') },
+    @{ Tool = 'Gemini CLI';     Path = (Join-Path $home '.gemini\skills') },
+    @{ Tool = 'Cursor';         Path = (Join-Path $home '.cursor\skills') },
+    @{ Tool = 'Windsurf';       Path = (Join-Path $home '.codeium\windsurf\skills') },
+    @{ Tool = 'Kiro';           Path = (Join-Path $home '.kiro\skills') },
+    @{ Tool = 'OpenCode';       Path = (Join-Path $home '.opencode\skills') },
+    @{ Tool = 'Continue';       Path = (Join-Path $home '.continue\skills') },
+    # 通用约定（豆包、Cline、Roo Code 等）
+    @{ Tool = '通用 .agents';   Path = (Join-Path $home '.agents\skills') }
 )
-foreach ($p in $workbuddyPaths) {
-    if (Test-Path $p) { $targets += [PSCustomObject]@{ Tool = 'WorkBuddy'; Path = $p } }
+
+# 筛选存在的目录，按路径去重
+$targets = @()
+$seen = @{}
+foreach ($t in $toolPaths) {
+    if ((Test-Path $t.Path) -and -not $seen.ContainsKey($t.Path)) {
+        $seen[$t.Path] = $true
+        $targets += $t
+    }
 }
-
-# TraeCode CN
-$traePath = Join-Path $home '.trae-cn\skills'
-if (Test-Path $traePath) { $targets += [PSCustomObject]@{ Tool = 'TraeCode CN'; Path = $traePath } }
-
-# 豆包（.agents 约定）
-$agentsPath = Join-Path $home '.agents\skills'
-if (Test-Path $agentsPath) { $targets += [PSCustomObject]@{ Tool = '豆包/通用'; Path = $agentsPath } }
-
-# 去重
-$targets = $targets | Sort-Object Path -Unique
 
 Write-Host "[3/4] 检测到 $($targets.Count) 个工具"
 
-# 4. 安装到每个工具
+# 4. 安装
 if ($targets.Count -gt 0) {
     foreach ($t in $targets) {
         $dest = Join-Path $t.Path $skillName
@@ -64,18 +69,16 @@ if ($targets.Count -gt 0) {
         Write-Host "  -> $($t.Tool): $dest" -ForegroundColor Green
     }
 } else {
-    # 一个都没找到，装到 .agents/skills 并释放到当前目录
-    $defaultAgents = Join-Path $home '.agents\skills'
-    if (-not (Test-Path $defaultAgents)) { New-Item -ItemType Directory -Path $defaultAgents -Force | Out-Null }
-    $dest = Join-Path $defaultAgents $skillName
+    # 一个都没找到，装到通用目录 + 当前目录
+    $defaultDir = Join-Path $home '.agents\skills'
+    if (-not (Test-Path $defaultDir)) { New-Item -ItemType Directory -Path $defaultDir -Force | Out-Null }
+    $dest = Join-Path $defaultDir $skillName
     Copy-Item $skillSource $dest -Recurse
     Write-Host "  -> 通用目录: $dest" -ForegroundColor Yellow
 
     $localDest = Join-Path (Get-Location) $skillName
     Copy-Item $skillSource $localDest -Recurse
     Write-Host "  -> 当前目录: $localDest" -ForegroundColor Yellow
-    Write-Host ""
-    Write-Host "没检测到已安装的工具，你可以手动把 skill 文件夹拷到对应工具的 skills 目录。"
 }
 
 # 清理
@@ -85,5 +88,4 @@ Remove-Item $tmpDir -Recurse -Force -ErrorAction SilentlyContinue
 Write-Host ""
 Write-Host "[4/4] 安装完成" -ForegroundColor Cyan
 Write-Host ""
-Write-Host "重启对应工具后，直接说：用 RICE 模型评估一下这些需求"
-Write-Host "或者：帮我写个 PRD，先问我业务背景"
+Write-Host "重启工具后直接说：用 RICE 模型评估一下这些需求"

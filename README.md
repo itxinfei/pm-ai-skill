@@ -7,7 +7,7 @@
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
-[![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20TraeCode%20CN%20%7C%20豆包%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
+[![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#支持的工具)
 
 [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md)
 
@@ -38,9 +38,33 @@ pm-ai-skill install
 irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 ```
 
-脚本会自动检测你装了哪些工具，有几个装几个。支持 WorkBuddy、TraeCode CN、豆包，以及所有认 `.agents/skills` 目录的工具。
+### macOS / Linux 一键脚本
 
-什么都没检测到的话，文件会放到当前目录，自己手动拷。
+```bash
+curl -fsSL https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.sh | bash
+```
+
+脚本自动检测你装了哪些工具，有几个装几个。
+
+### 支持的工具
+
+| 类型 | 工具 | 全局 skills 目录 |
+|---|---|---|
+| 国产 | WorkBuddy | `%APPDATA%\WorkBuddy\skills` / `~/.workbuddy/skills` |
+| 国产 | TraeCode CN | `~/.trae-cn/skills` |
+| 国产 | Trae | `~/.trae/skills` |
+| 国产 | 豆包 | `~/.agents/skills` |
+| 国外 | Claude Code | `~/.claude/skills` |
+| 国外 | Codex | `~/.codex/skills` |
+| 国外 | Gemini CLI | `~/.gemini/skills` |
+| 国外 | Cursor | `~/.cursor/skills` |
+| 国外 | Windsurf | `~/.codeium/windsurf/skills` |
+| 国外 | Kiro | `~/.kiro/skills` |
+| 国外 | OpenCode | `~/.opencode/skills` |
+| 国外 | Continue | `~/.continue/skills` |
+| 通用 | Cline / Roo Code 等 | `~/.agents/skills` |
+
+什么都没检测到的话，文件会放到 `~/.agents/skills` 和当前目录，自己手动拷。
 
 ### 手动下载 zip
 

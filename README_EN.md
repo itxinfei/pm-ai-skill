@@ -7,7 +7,7 @@ An AI assistant for product managers, not a textbook.
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
-[![Platform](https://img.shields.io/badge/Platform-WorkBuddy%20%7C%20TraeCode%20CN%20%7C%20Doubao%20%7C%20ChatGPT%20%7C%20Claude-brightgreen.svg?style=flat-square)](#)
+[![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#supported-tools)
 
 [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill)
 
@@ -36,7 +36,33 @@ pm-ai-skill install
 irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
 ```
 
-The script detects which tools you have installed and sets up the skill for each one. Supports WorkBuddy, TraeCode CN, Doubao, and any tool that follows the `.agents/skills` convention.
+### macOS / Linux one-click script
+
+```bash
+curl -fsSL https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.sh | bash
+```
+
+The scripts detect which tools you have installed and set up the skill for each one.
+
+### Supported tools
+
+| Type | Tool | Global skills path |
+|---|---|---|
+| China | WorkBuddy | `~/.workbuddy/skills` |
+| China | TraeCode CN | `~/.trae-cn/skills` |
+| China | Trae | `~/.trae/skills` |
+| China | Doubao | `~/.agents/skills` |
+| Global | Claude Code | `~/.claude/skills` |
+| Global | Codex | `~/.codex/skills` |
+| Global | Gemini CLI | `~/.gemini/skills` |
+| Global | Cursor | `~/.cursor/skills` |
+| Global | Windsurf | `~/.codeium/windsurf/skills` |
+| Global | Kiro | `~/.kiro/skills` |
+| Global | OpenCode | `~/.opencode/skills` |
+| Global | Continue | `~/.continue/skills` |
+| Common | Cline / Roo Code, etc. | `~/.agents/skills` |
+
+If no tools are detected, the skill is placed in `~/.agents/skills` and the current directory.
 
 ### Manual zip download
 
