@@ -1,0 +1,47 @@
+{
+  "name": "pm-ai-skill",
+  "version": "1.0.0",
+  "description": "PM-AI-Skill｜产品经理全链路 WorkBuddy Skill All-in-One 整合包，npm 一键安装",
+  "main": "bin/index.js",
+  "bin": {
+    "pm-ai-skill": "./bin/index.js"
+  },
+  "files": [
+    "bin/",
+    "skill-source/",
+    "templates/",
+    "docs/",
+    "examples/"
+  ],
+  "scripts": {
+    "start": "node bin/index.js",
+    "test": "node bin/index.js info",
+    "pkg:zip": "node bin/index.js export-zip"
+  },
+  "keywords": [
+    "workbuddy",
+    "skill",
+    "pm",
+    "product-manager",
+    "prd",
+    "ai-skill",
+    "itxinfei"
+  ],
+  "author": "itxinfei",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/itxinfei/pm-ai-skill.git"
+  },
+  "bugs": {
+    "url": "https://github.com/itxinfei/pm-ai-skill/issues"
+  },
+  "homepage": "https://github.com/itxinfei/pm-ai-skill#readme",
+  "dependencies": {
+    "archiver": "^7.0.1",
+    "commander": "^12.1.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
