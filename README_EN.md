@@ -158,7 +158,7 @@ pm-ai-skill/
 └── examples/
 ```
 
-7 ready-to-use templates and 4 anonymized examples are included.
+13 ready-to-use templates and 4 anonymized examples are included.
 
 ---
 

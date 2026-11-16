@@ -111,9 +111,10 @@ MIT 协议，随便用、随便改、随便商用。改了欢迎提 PR，不提�
 **Q：模板和示例在哪？**
 
 ```bash
-pm-ai-skill template        # 列出 7 个模板
-pm-ai-skill example         # 列出 4 个示例
-pm-ai-skill template prd    # 导出 PRD 模板到当前目录
+pm-ai-skill template          # 列出 13 个模板
+pm-ai-skill example           # 列出 4 个示例
+pm-ai-skill template prd      # 导出 PRD 模板到当前目录
+pm-ai-skill template initiation  # 立项报告模板
 ```
 
 ---

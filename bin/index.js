@@ -109,7 +109,7 @@ program
 
 program
   .command('template [name]')
-  .description('查看模板：prd / meeting / interview / bmc / competitor / roadmap / retrospective')
+  .description('查看模板：prd / meeting / interview / bmc / competitor / roadmap / retrospective / initiation / okr / abtest / premortem / persona / metrics')
   .action((name) => {
     const map = {
       prd: 'prd-template.md',
@@ -119,6 +119,12 @@ program
       competitor: 'competitor-analysis-template.md',
       roadmap: 'roadmap-template.md',
       retrospective: 'retrospective-template.md',
+      initiation: 'initiation-template.md',
+      okr: 'okr-template.md',
+      abtest: 'ab-test-plan-template.md',
+      premortem: 'pre-mortem-checklist.md',
+      persona: 'persona-card-template.md',
+      metrics: 'metric-tree-template.md',
     };
     if (!name) {
       console.log('可用模板：' + Object.keys(map).join(', '));

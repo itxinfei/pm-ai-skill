@@ -252,7 +252,7 @@ pm-ai-skill/
 │   ├── prompt-reference.md   # 76 条可直接复制的提示词
 │   ├── workflow-guide.md     # 按项目推进的 11 个阶段怎么用
 │   └── faq.md                # 安装、工具适配、常见坑
-├── templates/            # 7 个模板（PRD、路线图、竞品、复盘等）
+├── templates/            # 13 个模板（PRD、立项、OKR、A/B 测试、Pre-mortem、画像、指标树等）
 ├── examples/             # 4 个脱敏示例
 └── bin/index.js          # CLI：install / template / example / doc / info
 ```
