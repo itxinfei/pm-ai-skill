@@ -7,11 +7,13 @@
 76 个模块，从需求澄清到项目复盘。你说人话它就能对上号，不用背命令。
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Author](https://img.shields.io/badge/Author-itxinfei%20%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
+[![Author](https://img.shields.io/badge/Author-itxinfei%20%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
+[![GitHub release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
 [![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#支持的工具)
+[![Stars](https://img.shields.io/github/stars/itxinfei/pm-ai-skill?style=flat-square&color=yellow)](https://github.com/itxinfei/pm-ai-skill/stargazers)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [能力清单](docs/capability.md) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md) · [工具速查](docs/tools.md) · [常见问题](docs/faq.md)
+[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [发行版](https://github.com/itxinfei/pm-ai-skill/releases) · [能力清单](docs/capability.md) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md) · [工具速查](docs/tools.md) · [常见问题](docs/faq.md)
 
 作者：itxinfei（心飞为你飞）
 

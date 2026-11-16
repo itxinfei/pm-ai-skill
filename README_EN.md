@@ -9,9 +9,11 @@ An AI assistant for product managers, not a textbook.
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
+[![GitHub release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
 [![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#supported-tools)
+[![Stars](https://img.shields.io/github/stars/itxinfei/pm-ai-skill?style=flat-square&color=yellow)](https://github.com/itxinfei/pm-ai-skill/stargazers)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [Capability list](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflow guide](docs/workflow-guide.md) · [Tool cheat sheet](docs/tools.md) · [FAQ](docs/faq.md)
+[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [Releases](https://github.com/itxinfei/pm-ai-skill/releases) · [Capability list](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflow guide](docs/workflow-guide.md) · [Tool cheat sheet](docs/tools.md) · [FAQ](docs/faq.md)
 
 Author: itxinfei
 

@@ -49,6 +49,35 @@ When you open a PR:
 - Keep it focused on one thing
 - Make sure existing content isn't broken
 
+## Releasing
+
+Maintainers only. Every release needs a tag, a Release page, and a zip asset.
+
+1. Bump `version` in both `package.json` and `skill-source/skill.json` — they must match
+2. Add an entry to `CHANGELOG.md`
+3. Write release notes at `.github/release-notes/v<version>.md`
+4. Run the release script:
+
+```bash
+# GitHub only (needs GITHUB_TOKEN with repo scope)
+node scripts/release.js --github
+
+# Gitee only (needs GITEE_TOKEN, projects scope)
+node scripts/release.js --gitee
+
+# Both
+node scripts/release.js --all
+```
+
+The script runs the structure check first, then tags, pushes to both remotes, builds `dist/pm-ai-skill-v<version>.zip`, and creates the Release.
+
+Token setup:
+
+- GitHub: Settings → Developer settings → Personal access tokens → `repo` scope
+- Gitee: https://gitee.com/profile/personal_access_tokens → `projects` scope
+
+If you only want the tag without a Release page, use `--tag-only`.
+
 ## Reporting bugs
 
 Open an issue and include:
