@@ -1,0 +1,31 @@
+version: 2
+
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      time: "09:00"
+      timezone: Asia/Shanghai
+    open-pull-requests-limit: 3
+    commit-message:
+      prefix: chore
+      include: scope
+    labels:
+      - dependencies
+    # 这个项目只有两个依赖，都用来打包和跑 CLI。
+    # 主版本跳变需要人工确认，避免命令行行为悄悄变了。
+    ignore:
+      - dependency-name: commander
+        update-types:
+          - version-update:semver-major
+      - dependency-name: archiver
+        update-types:
+          - version-update:semver-major
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    commit-message:
+      prefix: ci
