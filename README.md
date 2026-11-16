@@ -11,7 +11,7 @@
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#支持的工具)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [能力清单](docs/capability.md) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md) · [常见问题](docs/faq.md)
+[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [能力清单](docs/capability.md) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md) · [工具速查](docs/tools.md) · [常见问题](docs/faq.md)
 
 作者：itxinfei（心飞为你飞）
 
@@ -251,6 +251,7 @@ pm-ai-skill/
 │   ├── capability.md         # 76 个模块清单，每个说清什么时候用
 │   ├── prompt-reference.md   # 76 条可直接复制的提示词
 │   ├── workflow-guide.md     # 按项目推进的 11 个阶段怎么用
+│   ├── tools.md              # PM 常用工具速查，含价格和坑
 │   └── faq.md                # 安装、工具适配、常见坑
 ├── templates/            # 13 个模板（PRD、立项、OKR、A/B 测试、Pre-mortem、画像、指标树等）
 ├── examples/             # 4 个脱敏示例

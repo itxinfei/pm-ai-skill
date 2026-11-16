@@ -115,6 +115,7 @@ pm-ai-skill template          # 列出 13 个模板
 pm-ai-skill example           # 列出 4 个示例
 pm-ai-skill template prd      # 导出 PRD 模板到当前目录
 pm-ai-skill template initiation  # 立项报告模板
+pm-ai-skill doc tools         # 查看 PM 工具速查
 ```
 
 ---

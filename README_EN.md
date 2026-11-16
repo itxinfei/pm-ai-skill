@@ -11,7 +11,7 @@ An AI assistant for product managers, not a textbook.
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#supported-tools)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [Capability list](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflow guide](docs/workflow-guide.md) · [FAQ](docs/faq.md)
+[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [Capability list](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflow guide](docs/workflow-guide.md) · [Tool cheat sheet](docs/tools.md) · [FAQ](docs/faq.md)
 
 Author: itxinfei
 

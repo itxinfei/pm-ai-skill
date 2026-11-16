@@ -140,13 +140,14 @@ program
 
 program
   .command('doc [name]')
-  .description('查看文档：capability / prompt / workflow / faq')
+  .description('查看文档：capability / prompt / workflow / faq / tools')
   .action((name) => {
     const map = {
       capability: 'capability.md',
       prompt: 'prompt-reference.md',
       workflow: 'workflow-guide.md',
       faq: 'faq.md',
+      tools: 'tools.md',
     };
     if (!name) {
       console.log('可用文档：' + Object.keys(map).join(', '));
