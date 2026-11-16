@@ -70,12 +70,17 @@ curl -fsSL https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.sh | bash
 
 什么都没检测到的话，文件会放到 `~/.agents/skills` 和当前目录，自己手动拷。
 
-### 手动下载 zip
+### 下载发行包
 
-1. 下载：<https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip>
+npm 打不开、脚本也不敢跑？下载打包好的 zip。
+
+1. 下载：[pm-ai-skill-v1.0.1.zip](https://github.com/itxinfei/pm-ai-skill/releases/latest)
 2. 解压
-3. 把 `skill-source/` 改名 `pm-ai-skill/`
-4. 放到对应工具的 skills 目录下
+3. 进目录跑 `node bin/index.js install`
+
+包里依赖已经装好了，不用再 `npm install`，也不用联网。
+
+如果你连 Node 都没有：把 `skill-source/` 改名成 `pm-ai-skill/`，手动放到对应工具的 skills 目录下，效果一样。
 
 ### 直接复制
 
