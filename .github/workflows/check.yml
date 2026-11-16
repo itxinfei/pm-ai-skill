@@ -1,0 +1,30 @@
+name: check
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  structure:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: 安装依赖
+        run: npm install --no-audit --no-fund
+
+      - name: 结构自检
+        run: node scripts/check.js
+
+      - name: CLI 可用性
+        run: |
+          node bin/index.js info
+          node bin/index.js template
+          node bin/index.js doc
+          node bin/index.js example
