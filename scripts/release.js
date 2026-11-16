@@ -95,7 +95,10 @@ fs.mkdirSync(stage, { recursive: true });
 const include = [
   'bin', 'docs', 'examples', 'templates', 'skill-source', 'scripts',
   'README.md', 'README_EN.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md',
-  'CODE_OF_CONDUCT.md', 'SECURITY.md', 'package.json', 'install.ps1', 'install.sh',
+  'CODE_OF_CONDUCT.md', 'SECURITY.md', 'package.json', 'package-lock.json',
+  'install.ps1', 'install.sh',
+  // 依赖一起打进去，下载解压就能跑，不用再 npm install
+  'node_modules',
 ];
 for (const item of include) {
   const src = path.join(root, item);
@@ -109,8 +112,8 @@ if (process.platform === 'win32') {
   execSync(`cd "${distDir}" && zip -qr "${path.basename(zipPath)}" pm-ai-skill`, { stdio: 'pipe' });
 }
 fs.rmSync(stage, { recursive: true, force: true });
-const zipSize = (fs.statSync(zipPath).size / 1024).toFixed(1);
-console.log(`  ${path.basename(zipPath)}（${zipSize} KB）`);
+const zipSize = (fs.statSync(zipPath).size / 1024 / 1024).toFixed(1);
+console.log(`  ${path.basename(zipPath)}（${zipSize} MB）`);
 
 // 5. 建 Release
 console.log(`[5/5] 创建 Release`);
