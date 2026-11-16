@@ -4,7 +4,11 @@
 
 产品经理干活用的 AI 助手，不是教科书。
 
-76 个模块，从需求澄清到项目复盘。你说人话它就能对上号，不用背命令。
+你跟 AI 说"帮我写个 PRD"，它给你一个模板让你填空。模板谁都会写。
+
+真正卡住你的是：这个需求该不该做、竞品从哪切、留存掉了从哪儿动、上线前该防什么坑、技术说"做不了"到底什么意思。
+
+这 76 个模块，就是一个一个这些位置。你说人话，它认得出你卡在哪。
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei%20%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://github.com/itxinfei)

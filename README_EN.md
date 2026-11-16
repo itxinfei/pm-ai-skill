@@ -4,7 +4,11 @@
 
 An AI assistant for product managers, not a textbook.
 
-76 modules, from requirement clarification to post-launch retrospective. Just say what you're stuck on — no commands to memorize.
+Say "write me a PRD" to an AI and you get a template to fill in. Anyone can write a template.
+
+What actually blocks you: should this feature ship at all, where do you start on competitor research, retention dropped so what do you touch first, what breaks on launch day, what does "we can't build that" really mean.
+
+These 76 modules are those positions, one by one. Just describe what you're stuck on — it recognizes the shape of the problem.
 
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei-orange.svg?style=flat-square)](https://github.com/itxinfei)
