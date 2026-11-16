@@ -4,16 +4,20 @@
 
 An AI assistant for product managers, not a textbook.
 
+76 modules, from requirement clarification to post-launch retrospective. Just say what you're stuck on — no commands to memorize.
+
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#supported-tools)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill)
+[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [Capability list](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflow guide](docs/workflow-guide.md) · [FAQ](docs/faq.md)
 
 Author: itxinfei
 
 [中文文档](README.md)
+
+*Detailed docs are written in Chinese.*
 
 </div>
 
@@ -97,7 +101,7 @@ Product vision, project initiation (8 steps), OKRs, roadmaps, sprint planning, b
 
 ### Solution Design
 
-Product architecture, user stories, customer journey maps, mind maps, storyboards, diagramming guides.
+Product architecture, user stories, customer journey maps, mind maps, storyboards, diagramming guides, Excalidraw output.
 
 ### Documentation
 
@@ -105,7 +109,7 @@ PRDs, one-page business cases, release notes, functional specs, review prep.
 
 ### Collaboration
 
-Meeting notes, stakeholder maps, pre-mortems, risk communication, issue tracking, sales enablement, working with engineers.
+Meeting notes, stakeholder maps, pre-mortems, risk communication, issue tracking, sales enablement, growth loops, user personas, working with engineers.
 
 ### Data & Metrics
 
@@ -113,7 +117,7 @@ Data analysis, metric hierarchy, HEART framework, AI product metrics, RICE retro
 
 ### Monetization & Growth
 
-Pricing strategy, AARRR, RARRA, growth loops, unit economics, GTM, customer success, retrospectives.
+Pricing strategy, AARRR, RARRA, unit economics, GTM, customer success, retrospectives.
 
 ### Self-Improvement
 

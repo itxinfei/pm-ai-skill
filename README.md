@@ -4,12 +4,14 @@
 
 产品经理干活用的 AI 助手，不是教科书。
 
+76 个模块，从需求澄清到项目复盘。你说人话它就能对上号，不用背命令。
+
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Author](https://img.shields.io/badge/Author-itxinfei%20%E0%B8%83%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
+[![Author](https://img.shields.io/badge/Author-itxinfei%20%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://gitee.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#支持的工具)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md)
+[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [能力清单](docs/capability.md) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md) · [常见问题](docs/faq.md)
 
 作者：itxinfei（心飞为你飞）
 
@@ -136,8 +138,8 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 | 路线图 | Now / Next / Later，分季度排 |
 | Sprint 规划 | 双周迭代，Story Point、容量、依赖 |
 | 赌注评估 | 预期回报、成功概率、失败代价 |
-| 北极星指标 | 一个指标代表核心价值 |
 | 商业模式画布 | 苏格拉底追问，揪出未验证假设 |
+| 北极星指标 | 一个指标代表核心价值 |
 
 ### 方案设计
 
@@ -149,6 +151,7 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 | 思维导图 | 梳理逻辑，查冲突 |
 | 故事板 | 6 格叙事，早期概念验证 |
 | 画图实操指南 | 流程图/架构图/信息架构/数据流程图，具体怎么画 |
+| Excalidraw 输出 | 生成可直接粘贴的绘图结构描述 |
 
 ### 文档输出
 
@@ -170,6 +173,8 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 | 风险与延期沟通 | 坏消息早说，讲清楚原因和补救方案 |
 | 问题追踪与升级 | issue 表、升级邮件 |
 | 销售赋能 | 话术、竞品 FAQ、异议处理 |
+| 增长飞轮 | 循环式增长，获取→使用→产生价值→再带来用户 |
+| 用户画像 | 做 2-3 个具体的人，不是人口统计标签 |
 | 和开发对齐 | 怎么沟通不吵架，怎么找替代方案 |
 
 ### 数据与度量
@@ -191,7 +196,6 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 | 定价策略 | Freemium/订阅/按量/分层，多方案对比 |
 | AARRR | 获取→激活→留存→变现→推荐，找瓶颈 |
 | RARRA | 从留存反推优先级 |
-| 增长飞轮 | 循环式增长，比线性漏斗可持续 |
 | 单位经济模型 | LTV、CAC、回本周期、毛利率 |
 | GTM 上市策略 | 目标人群、渠道、定价、冷启动 |
 | 客户成功 | 健康分、流失预警、续费话术 |
@@ -237,18 +241,23 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 
 ```
 pm-ai-skill/
-├── install.ps1
-├── install.sh
+├── install.ps1           # Windows 一键安装
+├── install.sh            # macOS / Linux 一键安装
 ├── skill-source/
-│   ├── skill.json
-│   ├── system-prompt.md
-│   └── triggers.md
-├── templates/
+│   ├── skill.json        # 元信息（名称、描述、标签）
+│   ├── system-prompt.md  # 76 个模块正文
+│   └── triggers.md       # 触发指令对照
 ├── docs/
-└── examples/
+│   ├── capability.md         # 76 个模块清单，每个说清什么时候用
+│   ├── prompt-reference.md   # 76 条可直接复制的提示词
+│   ├── workflow-guide.md     # 按项目推进的 11 个阶段怎么用
+│   └── faq.md                # 安装、工具适配、常见坑
+├── templates/            # 7 个模板（PRD、路线图、竞品、复盘等）
+├── examples/             # 4 个脱敏示例
+└── bin/index.js          # CLI：install / template / example / doc / info
 ```
 
-templates 里有 7 个模板，examples 里有 4 个脱敏示例，都是能直接用的。
+templates 和 examples 都是能直接抄的，不是摆设。
 
 ---
 
