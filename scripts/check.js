@@ -185,7 +185,7 @@ const allMd = [];
 
 for (const f of allMd) {
   const text = read(f);
-  if (/D:\\MyCode|C:\\Users\\itxinfei/.test(text)) {
+  if (/[A-Z]:\\(?:Users|MyCode)\\/i.test(text)) {
     fail(`${f} 里写死了本机绝对路径`);
   }
   if (/localhost:\d{4}/.test(text)) {

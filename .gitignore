@@ -11,3 +11,13 @@ dist/
 .DS_Store
 Thumbs.db
 .npmrc
+
+# 本地导出物，不进仓库
+/report.html
+/review.html
+/grade.html
+/manifest.json
+*.log
+.env
+.env.*
+*.local

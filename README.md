@@ -11,6 +11,7 @@ GitHub 上做 PM skill 的，有拿 28k 星的，也有堆到 95 个的。
 [![npm](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Author](https://img.shields.io/badge/Author-itxinfei%20%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![Stars](https://img.shields.io/github/stars/itxinfei/pm-ai-skill?style=flat-square&color=yellow)](https://github.com/itxinfei/pm-ai-skill/stargazers)
 
 [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [发行版](https://github.com/itxinfei/pm-ai-skill/releases) · [能力清单](docs/capability.md) · [提示词库](docs/prompt-reference.md) · [工作流](docs/workflow-guide.md) · [FAQ](docs/faq.md)
@@ -258,6 +259,24 @@ assets/         3 个 HTML 报告     evals/      27 条回归用例
 - **不懂你的公司**。组织政治、历史包袱它不知道。方案落不了地，先想想是不是这些原因。
 - **不写生产代码**。能画原型、能给接口约定，写不了代码。
 - **不覆盖**：定价落地、投放策略、算法选型、特定行业合规、B 端复杂销售链路。
+
+---
+
+## 关于作者
+
+**心飞为你飞**（itxinfei），产品和技术都干过，现在既写 PRD 也写代码。这套 skill 是自己干活时一点点攒出来的，不是照着教程搭的。
+
+- GitHub：[github.com/itxinfei](https://github.com/itxinfei)
+- Gitee：[gitee.com/itxinfei](https://gitee.com/itxinfei)
+
+其他开源项目：
+
+| 项目 | 是什么 |
+|---|---|
+| [pm-ai-skill](https://github.com/itxinfei/pm-ai-skill) | 本项目，PM 全链路 AI skill |
+| [xinfei-tms](https://github.com/itxinfei/xinfei-tms) | 运输管理系统，四端协同，JDK 21 + Spring Boot 3.5 + Vue 3 |
+| [tanhua](https://github.com/itxinfei/tanhua) | 交友应用，Vue |
+| [hub](https://github.com/itxinfei/hub) | 仓库索引，几十个练手项目归在一处 |
 
 ---
 
