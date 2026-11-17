@@ -2,28 +2,21 @@
 
 # pm-ai-skill
 
-An AI assistant for product managers, not a textbook.
+A working AI assistant for product managers · 76 modules · 13 tools · Chinese-native
 
-Say "write me a PRD" to an AI and you get a template to fill in. Anyone can write a template.
+On GitHub there are PM skill projects with 28k stars, and ones stacked to 95 separate skills.
 
-What actually blocks you: should this feature ship at all, where do you start on competitor research, retention dropped so what do you touch first, what breaks on launch day, what does "we can't build that" really mean.
+This takes a different route: 76 modules in a single skill, one command, works in 13 AI tools. When you already have something in hand, it reads first and asks second — and it can grade whether what you wrote is ready to ship.
 
-These 76 modules are those positions, one by one. Just describe what you're stuck on — it recognizes the shape of the problem.
-
-There are two things beyond the modules. A triage rule: it decides whether you want a judgment, a deliverable, or a whole chain, before it answers. And a six-role review: product, engineering, QA, design, ops, legal each walk through your plan, so the problems surface before the meeting does.
-
-[![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
-[![Author](https://img.shields.io/badge/Author-itxinfei-orange.svg?style=flat-square)](https://github.com/itxinfei)
-[![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
-[![GitHub release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
-[![Platform](https://img.shields.io/badge/Platform-13%20%2B%20AI%20Tools-brightgreen.svg?style=flat-square)](#supported-tools)
+[![npm](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
+[![Release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
+[![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
+[![Author](https://img.shields.io/badge/Author-itxinfei%20%E5%BF%83%E9%A3%9E%E4%B8%BA%E4%BD%A0%E9%A3%9E-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![Stars](https://img.shields.io/github/stars/itxinfei/pm-ai-skill?style=flat-square&color=yellow)](https://github.com/itxinfei/pm-ai-skill/stargazers)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill) · [Releases](https://github.com/itxinfei/pm-ai-skill/releases) · [Capability list](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflow guide](docs/workflow-guide.md) · [Tool cheat sheet](docs/tools.md) · [FAQ](docs/faq.md)
+[GitHub](https://github.com/itxinfei/pm-ai-skill) · [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [Releases](https://github.com/itxinfei/pm-ai-skill/releases) · [Capabilities](docs/capability.md) · [Prompt library](docs/prompt-reference.md) · [Workflows](docs/workflow-guide.md) · [FAQ](docs/faq.md)
 
-Author: itxinfei
-
-[中文文档](README.md)
+By itxinfei (心飞为你飞) · [中文](README.md)
 
 *Detailed docs are written in Chinese.*
 
@@ -31,295 +24,269 @@ Author: itxinfei
 
 ---
 
+## How it differs from a plain AI assistant
+
+| | A plain assistant | This |
+|---|---|---|
+| You say "write me a PRD" | Hands you a template to fill | Asks whether it should be built at all, and tells you not to write it if it fails |
+| You paste interview notes | Summarizes into three conclusions | Pulls quotes, clusters by theme, names the question you never asked |
+| You ask "is this any good" | Says "looks solid, could be polished" | Scores five dimensions, and one zero means it does not ship |
+| You want a review | Gives you a list of issues | Six roles each attack it, and the places where two roles disagree get called out |
+
+---
+
+## Highlights
+
+| | | What it actually is |
+|---|---|---|
+| 1 | **76 modules, ten categories** | Discovery → research → competition → strategy → design → docs → collaboration → data → monetization → self-improvement. Every place a PM gets stuck in a year |
+| 2 | **Triage before work** | A verdict, a deliverable, or a chain. Getting the type wrong wastes the whole session |
+| 3 | **Six chains A–F** | Idea to buildable, release planning, metric drop, one research round, competitor-driven kickoff, pre-launch check |
+| 4 | **Chains stay under control** | Steps quoted up front, handoffs under 10 lines, stop anytime and nothing is half-finished |
+| 5 | **Bring what you have** | Ten common inputs triaged: interviews, competitor screenshots, requirement lists, dashboards, launch plans, nothing but a deadline |
+| 6 | **Read first, ask second** | Does not open with "what do you want to build". Opens with "here are three things I see in this" |
+| 7 | **Six-role review** | Product, engineering, QA, design, operations, legal — each takes a pass, graded blocking / important / suggestion |
+| 8 | **Only reports disagreements** | Not twelve lines of "consider improving error handling", but "order state undefined after payment timeout — what happens on retry" |
+| 9 | **Grades what you wrote** | Six document types, five dimensions each, 0–3 points |
+| 10 | **Dares to say it ships** | If the material holds up, it says so, plus at most two optional additions |
+| 11 | **Three strictness levels** | Quick screen / standard / final. Words like "launching tomorrow" push it to final automatically |
+| 12 | **HTML reports** | Three single-file templates, double-click to view, print straight to PDF |
+| 13 | **One command, 13 tools** | Four Chinese tools, eight international, plus a generic `.agents/skills` path |
+| 14 | **Install once, get everything** | One skill, not nine plugin packs to pick from |
+| 15 | **13 templates, 10 samples** | Templates say what to fill in; samples show what good looks like |
+| 16 | **27 regression cases** | Run them after a change and see whether behavior broke |
+| 17 | **Machine-readable manifest** | 76 module ids, categories and definitions, for your own scripts |
+| 18 | **Written in Chinese, for Chinese teams** | Not a translation. Biweekly sprints, review meetings, a boss who wants something by Friday |
+
+---
+
+## Compared with similar projects
+
+A survey of the popular PM skill repos lives in [docs/awesome-pm-skills.md](docs/awesome-pm-skills.md). The short version:
+
+| Dimension | This | The leaders |
+|---|---|---|
+| Modules | 76, single skill | 72–95, mostly split into plugin packs |
+| Language | Chinese-native | English-first |
+| Install | One command, scans your machine | Assemble by hand |
+| Tools | 13, four of them Chinese | Mostly Claude Code |
+| Grading | Six doc types, 0–3, zero blocks | A few have it |
+| HTML reports | 3 templates, printable | Rare |
+| Regression cases | 27 | Rare |
+| Real samples | 10 | 200+ (product-on-purpose) |
+
+Where this loses, plainly: fewer modules than the 95-skill project, far fewer samples than the 200-sample one, and nowhere near their stars — those projects have been running for two years.
+
+Where it wins, on two things the others skip: **install once and you have all of it**, no picking among nine packs; and **it judges what you already wrote** instead of rewriting it.
+
+---
+
 ## Install
 
-Pick whichever works for you.
-
-### npm
-
 ```bash
-npm i -g @itxinfei/pm-ai-skill
-pm-ai-skill install
+npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
 ```
 
-### Windows one-click script
+If that does not work, pick another route:
 
-```powershell
-irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 | iex
-```
+| Route | How |
+|---|---|
+| Windows | `irm https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.ps1 \| iex` |
+| macOS / Linux | `curl -fsSL https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.sh \| bash` |
+| Release zip | Download the [latest zip](https://github.com/itxinfei/pm-ai-skill/releases/latest), unzip, run `node bin/index.js install` |
+| Nothing at all | Paste [system-prompt.md](skill-source/system-prompt.md) into any AI's system prompt |
 
-### macOS / Linux one-click script
+The scripts detect which tools you have and install into each one found:
 
-```bash
-curl -fsSL https://gitee.com/itxinfei/pm-ai-skill/raw/main/install.sh | bash
-```
+> **Chinese** WorkBuddy · TraeCode CN · Trae · Doubao
+> **International** Claude Code · Codex · Gemini CLI · Cursor · Windsurf · Kiro · OpenCode · Continue
+> **Generic** Cline · Roo Code and others via `.agents/skills`
 
-The scripts detect which tools you have installed and set up the skill for each one.
-
-### Supported tools
-
-| Type | Tool | Global skills path |
-|---|---|---|
-| China | WorkBuddy | `~/.workbuddy/skills` |
-| China | TraeCode CN | `~/.trae-cn/skills` |
-| China | Trae | `~/.trae/skills` |
-| China | Doubao | `~/.agents/skills` |
-| Global | Claude Code | `~/.claude/skills` |
-| Global | Codex | `~/.codex/skills` |
-| Global | Gemini CLI | `~/.gemini/skills` |
-| Global | Cursor | `~/.cursor/skills` |
-| Global | Windsurf | `~/.codeium/windsurf/skills` |
-| Global | Kiro | `~/.kiro/skills` |
-| Global | OpenCode | `~/.opencode/skills` |
-| Global | Continue | `~/.continue/skills` |
-| Common | Cline / Roo Code, etc. | `~/.agents/skills` |
-
-If no tools are detected, the skill is placed in `~/.agents/skills` and the current directory.
-
-### Manual zip download
-
-1. Download: <https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip>
-2. Unzip
-3. Rename `skill-source/` to `pm-ai-skill/`
-4. Drop it into your tool's skills directory
-
-### Copy the prompt
-
-Don't want to install anything? Open [skill-source/system-prompt.md](skill-source/system-prompt.md), paste it into the system prompt of ChatGPT / Claude / Doubao, and you're good to go.
+One config, copied into each tool's directory. Change it once, not thirteen times.
 
 ---
 
-## What's inside
+## What it does
 
-### Discovery & Prioritization
+### Three kinds of request, three kinds of answer
 
-RICE, MoSCoW, Kano, Impact-Effort, JTBD, Working Backwards, requirement clarification, interview analysis.
+| You say | It gives |
+|---|---|
+| "should we build this", "is this worth it", "is this a real need" | A verdict with evidence, no document |
+| "write a PRD", "rank these", "draw a roadmap" | A deliverable from the matching module |
+| "take this from idea to buildable" | A chain: requirement check → PRD → review → instrumentation |
 
-### User Research
-
-User segmentation, surveys, in-depth interviews, usability testing, A/B testing, NPS / CSAT / CES, focus groups, diary studies, card sorting, feedback clustering, behavioral analytics.
-
-### Competitive & Market
-
-Opportunity Solution Tree, competitor analysis, market gaps, switching drivers, TAM / SAM / SOM, feature breakdown, positioning, SWOT + PESTLE + Porter's Five Forces, vendor research.
-
-### Strategy & Planning
-
-Product vision, project initiation (8 steps), OKRs, roadmaps, sprint planning, bet sizing, north star metric, business model canvas.
-
-### Solution Design
-
-Product architecture, user stories, customer journey maps, mind maps, storyboards, diagramming guides, Excalidraw output.
-
-### Documentation
-
-PRDs, one-page business cases, release notes, functional specs, review prep.
-
-### Collaboration
-
-Meeting notes, stakeholder maps, pre-mortems, risk communication, issue tracking, sales enablement, growth loops, user personas, working with engineers.
-
-### Data & Metrics
-
-Data analysis, metric hierarchy, HEART framework, AI product metrics, RICE retrospectives, PMF, cost of delay.
-
-### Monetization & Growth
-
-Pricing strategy, AARRR, RARRA, unit economics, GTM, customer success, retrospectives.
-
-### Self-Improvement
-
-Feedback learning, personal case library, growth tracking, mistake retrospectives, prompt self-optimization.
-
----
-
-## How to use
-
-You don't need to memorize commands. Just talk normally:
-
-```
-Prioritize these requirements with RICE, then cut MVP scope with MoSCoW
-```
-
-```
-Design a usability test for the checkout flow
-```
-
-```
-Walk me through the project initiation process for a new product
-```
-
----
-
-## How it takes work
-
-Modules are parts. This is how they get assembled.
-
-| Type | Looks like | Gets you |
-|---|---|---|
-| Judgment | "should we build this", "is this a real need" | A verdict and the reasoning. No document. |
-| Deliverable | "write a PRD", "rank these", "draft a roadmap" | The thing itself |
-| Chain | "take it from idea to buildable" | Step by step, with handoffs |
-
-Quick test when unsure: do they want a conclusion, or something they can hand to someone else?
+One test decides: do you want a conclusion, or something you can hand over.
 
 ### Six chains
 
 | Chain | When | Steps |
 |---|---|---|
-| A Idea to buildable | New idea needs landing | Health check → PRD → review → revise → tracking spec |
-| B Release planning | Too many requests, no order | Backlog → rank → roadmap |
-| C Metric dropped | Retention or conversion sliding | Read data → hypothesize → experiment → track → retro |
-| D Research round | Need to know what users actually think | Goal → fix questions → survey/interview → analyze → turn into requests |
-| E Competitor-driven | A competitor shipped something | Teardown → decide whether to follow → join A |
-| F Pre-launch check | Shipping tomorrow | Pre-mortem → walkthrough → tracking check → rollout plan |
+| A Idea to buildable | A new idea needs to land | Requirement check → PRD → review → fix → instrumentation |
+| B Release planning | A pile of requests, no order | Backlog → ranking → roadmap |
+| C Metric dropped | Retention or conversion sliding | Look → attribute → experiment → instrument → retro |
+| D One research round | You need to know what users think | Goal → fix the questions → survey/interviews → analysis → requirements |
+| E Competitor-driven kickoff | A competitor shipped something | Teardown → follow or not → joins chain A |
+| F Pre-launch check | Shipping tomorrow | Pre-mortem → walkthrough → instrumentation check → rollout |
 
-One rule holds every chain together: the output of each step must be a legal input to the next. If it doesn't fit, that step isn't done.
+> One hard rule: the output of a step must be a valid input to the next. If it does not connect, that step was not finished.
 
-### Four rules for running a chain
+### When you already have something
 
-1. **Quote before starting** — how many steps, what each delivers, which ones need your call. You can cut steps.
-2. **Handoff summary under 10 lines** — this step's conclusion plus what the next step needs.
-3. **Every step stands alone** — stop anytime, what you have is usable.
-4. **Never push** — one step when one step is all that's needed.
+Most people arrive holding something, and "can you take a look" rarely explains what they want.
 
-### Three strictness levels
-
-| Level | When | How |
-|---|---|---|
-| Quick screen | Still diverging | Blockers and structural issues only |
-| Standard (default) | Before the review meeting | Full pass |
-| Final gate | Shipping tomorrow | Any compliance, rollback, or acceptance-criteria issue escalates to blocker |
-
----
-
-## What you bring
-
-Most people arrive holding a document, not a question. The document is usually clearer than the sentence.
-
-| You bring | You get |
+| You have | You get |
 |---|---|
-| Interview recordings or notes | Opportunity list plus the questions you forgot to ask |
-| Competitor sites, screenshots, filings | Comparison table and a follow-or-not call |
-| "I want to build X" | A do-or-don't judgment and the next step |
-| A finished PRD | A score, not a rewrite |
-| A long backlog | Ranking, plus the names it suggests you cut |
-| Dashboards or event data | A read, a few candidate causes, how to test them |
-| A launch plan or schedule | Risk list, blockers, fallback |
-| Bad reviews or complaint screenshots | Classification, blast radius, fix-or-not |
-| A business case | Gaps and whether it belongs in the review |
+| Interview recordings or notes | Opportunity list + the questions you never asked |
+| Competitor screenshots or filings | Comparison table + a follow-or-not verdict |
+| One sentence: "I want to build X" | Build or not, plus the next step |
+| A finished PRD | A grade, not a rewrite |
+| A long requirement list | Ranking + a list to cut |
+| A metrics export | Conclusion + likely causes + how to verify |
+| A launch plan | Risk list + blockers + fallback |
+| Negative reviews | Categories + blast radius + fix or ignore |
+| A kickoff application | Gaps + whether it belongs in a steering meeting |
 | Nothing but a deadline | The minimum shippable scope |
 
-It reads before it asks. It won't open with "what do you want to build" — it opens with "here's what I see in this," and being wrong is faster to correct than answering five empty questions.
+When material is thin, it says what is missing instead of filling the gap with boilerplate.
 
----
+### Six roles take turns
 
-## Multi-role review
-
-Six perspectives, each asking only what it should.
-
-| Role | Watches for |
+| Role | Looks at |
 |---|---|
-| Product | Clear goal, scope creep, worth doing |
-| Engineering | Feasibility, interface definitions, effort |
-| QA | Acceptance criteria, exception paths, boundaries |
+| Product | Is the goal clear, is scope creeping, is it worth it |
+| Engineering | Can it be built, are interfaces defined, how long |
+| QA | How to verify, exception paths, boundaries |
 | Design | Consistency, empty states, feedback |
-| Ops | Tracking, rollout, rollback |
-| Legal | Privacy, compliance, content moderation |
+| Operations | Instrumentation, rollout, rollback |
+| Legal | Privacy, compliance, content review |
 
-Output is graded blocker / important / suggestion, closing with one verdict: ships, ships with conditions, or doesn't ship.
+Graded **blocking / important / suggestion**, verdict in three tiers: ship, ship with conditions, do not ship.
 
-The value isn't the verdict — it's the **disagreements**. Where two roles reach opposite conclusions, that gets pulled out separately. That's what the meeting is actually for.
+> The verdict is not the valuable part. The disagreement is. Where two roles reach opposite conclusions is exactly what the meeting will fight over.
 
----
+When material is too thin (one sentence, a couple of screenshots), it lists the gaps instead of pretending to review.
 
-## Grading what you have
+### Grading what you already wrote
 
-When you hand over something finished and ask "is this good enough," it scores before it edits.
-
-Different artifacts get different criteria:
-
-| Artifact | Criteria (0-3 each) |
+| Document | Five dimensions, 0–3 each |
 |---|---|
-| PRD | Problem definition, goals and acceptance, scope boundaries, dependencies and risks, tracking |
-| Competitive analysis | Conclusion first, verifiable evidence, quantified gap, recommended action |
-| Data retro | Explicit hypothesis, consistent definitions, layered attribution, concrete next step |
-| Business case | Market read, credible model, resourcing fit, risks and exit criteria |
-| Interview notes | Sample described, verbatim evidence, defensible clustering, testable opportunities |
-| Launch plan | Rollout rules, rollback conditions, named owners, metrics being watched |
+| PRD | Problem definition, goals and acceptance, scope, dependencies and risk, instrumentation |
+| Competitor analysis | Conclusion first, evidence traceable, gap quantified, action proposed |
+| Data retro | Hypothesis stated, definitions consistent, attribution layered, next step concrete |
+| Kickoff application | Market judgment, model credibility, resourcing fit, risk and exit |
+| Interview synthesis | Sample described, quotes kept, clustering grounded, opportunities testable |
+| Launch plan | Rollout rules, rollback triggers, owners named, metrics watched |
 
-One zero means it doesn't ship — the rest of the scores stop mattering. Three verdicts only: ships, fix two things first, rewrite.
+**One zero and it does not ship.** Three verdicts only: ship it, fix two things, rewrite.
 
-The other half of the rule matters as much: if it's good, say it's good. Add at most two optional bonuses. Over-critiquing teaches people to stop asking.
+And the reverse rule holds too: if it ships, say so. Over-critique once and nobody asks you again.
 
-Sample: `pm-ai-skill example grade`
+### Output beyond Markdown
 
----
+Three single-file HTML templates, inline styles, double-click to open, print straight to PDF.
 
-## HTML output
+| Template | What is on it |
+|---|---|
+| `asset report` | Status page: one-line verdict, metric cards, progress, risk table |
+| `asset review` | Review page: six-role scores, graded issues, disagreement columns |
+| `asset grade` | Scorecard: three-tier verdict, dimension scores as dots, deductions quoted from the source |
 
-Three single-file HTML report templates. Double-click to view, print straight to PDF.
-
-```
-pm-ai-skill asset report     # Status report: verdict, metrics, progress, risks
-pm-ai-skill asset review     # Review report: six-role scores, graded issues, disagreements
-pm-ai-skill asset grade      # Scorecard: verdict, dimension scores, must-fix items
-```
+Better for a weekly update to your boss or a review pack than a Markdown table.
 
 ---
 
-## Project structure
+## Commands
+
+| Command | Does |
+|---|---|
+| `pm-ai-skill install` | Install into every AI tool detected |
+| `pm-ai-skill template prd` | Fetch a template (13 available) |
+| `pm-ai-skill example grade` | Read a sample (10 available) |
+| `pm-ai-skill doc prompt` | Read docs (capability / prompt / workflow / FAQ / tools / survey) |
+| `pm-ai-skill asset report` | Export HTML (report / review / grade) |
+| `pm-ai-skill manifest` | Export the machine-readable manifest |
+| `pm-ai-skill info` | Show version and installed tools |
+
+You rarely need commands. Plain language works:
 
 ```
-pm-ai-skill/
-├── install.ps1
-├── install.sh
-├── skill-source/
-│   ├── skill.json
-│   ├── system-prompt.md   # 76 modules + triage + multi-role review + grading
-│   ├── manifest.json      # Machine-readable index: id / category / one-line definition
-│   └── triggers.md
-├── templates/             # 13 templates
-├── docs/                  # capability, prompts, workflow, tools, ecosystem, FAQ
-├── examples/              # 10 real output samples, the quality bar
-├── assets/                # 3 HTML report templates
-├── evals/                 # Behavior regression cases
-└── bin/index.js           # install / template / example / doc / asset / manifest / info
+Grade this PRD — can it go into review
+Here are my interview notes, what can you pull out
+Rank these with RICE, then cut the MVP with MoSCoW
 ```
 
-13 ready-to-use templates and 4 anonymized examples are included.
+---
+
+## 76 modules
+
+<details>
+<summary>Open the list (ten categories)</summary>
+
+| Category | Count | Modules |
+|---|---|---|
+| Discovery & prioritization | 8 | RICE · MoSCoW · Kano · Impact-Effort · JTBD · Working Backwards · Requirement 5 Questions · Interview Parsing |
+| User research | 11 | Segmentation · Survey design · Depth interview · Usability testing · A/B testing · NPS/CSAT/CES · Focus group · Diary study · Card sorting · Feedback clustering · Behavioral analytics |
+| Competitive & market | 9 | Opportunity solution tree · Competitor analysis · Market gap · Switching drivers · TAM/SAM/SOM · Feature teardown · Positioning · SWOT/PESTLE/Five Forces · Vendor research |
+| Strategy & planning | 8 | Product vision · Project initiation · OKR · Roadmap · Sprint planning · Bet assessment · Business model canvas · North star |
+| Solution design | 7 | Product architecture · User story · Journey map · Mind map · Storyboard · Diagram playbook · Excalidraw output |
+| Documentation | 5 | PRD · Business case one-pager · Release notes · Functional spec · Review prep |
+| Collaboration | 9 | Meeting minutes · Stakeholder map · Pre-mortem · Delivering bad news · Issue escalation · Sales enablement · Growth flywheel · Persona · Aligning with engineering |
+| Data & metrics | 7 | Data analysis · Metric hierarchy · HEART · AI product metrics · RICE retro · PMF · Cost of delay |
+| Monetization & growth | 7 | Pricing strategy · AARRR · RARRA · Unit economics · GTM · Customer success · Project retro |
+| Self-improvement | 5 | Feedback learning · Personal case library · Growth tracking · Error retro · Prompt self-tuning |
+
+When to use each module: [capability list](docs/capability.md). Ready-to-copy prompts: [prompt library](docs/prompt-reference.md) (92 entries).
+
+</details>
+
+---
+
+## Layout
+
+```
+skill-source/   system-prompt.md (core) + manifest.json + triggers.md
+docs/           capabilities · 92 prompts · workflows · tools · survey · FAQ
+templates/      13 templates        examples/   10 samples
+assets/         3 HTML reports      evals/      27 regression cases
+```
 
 ---
 
 ## What it can't do
 
-Better to know now.
-
-- **No numeric verdicts.** Market size, growth rates, conversion lift — you calculate or look them up. It gives you the method.
-- **Doesn't decide for you.** It gives reasoning and a risk list. You make the call.
-- **Doesn't guarantee correctness.** AI can build a very plausible answer on a wrong premise. Anything touching money, legal, or safety needs human review.
-- **Can't replace first-hand information.** How users feel, what customers actually said — it can't guess. Feed it interviews, or it marks things as assumptions.
-- **Doesn't know your company.** Org politics, legacy baggage, who dislikes whom. If a plan won't land, consider those first.
-- **Doesn't write production code.** Prototypes and interface contracts, yes. Code, no.
-- **Out of scope:** pricing model implementation, ad buying, algorithm selection, China-specific regulatory compliance, complex B2B sales cycles.
+- **No numbers handed to you.** Market size, growth rate, point gains — you compute them. It gives methods and decompositions.
+- **No decisions made for you.** Evidence and risk lists, but you sign off.
+- **No guarantee of correctness.** AI can build a very reasonable answer on a wrong premise. Anything touching money, legal or safety gets a human check.
+- **No substitute for first-hand information.** It cannot guess what users think. Feed it interviews or mark the gap as an assumption.
+- **No knowledge of your company.** Org politics, legacy baggage, who dislikes whom — none of that is visible. If a plan will not land, check there first.
+- **No production code.** Prototypes and interface contracts, yes. Code, no.
+- **Out of scope**: pricing execution, paid acquisition, model selection, specific regulatory regimes, complex B2B sales cycles.
 
 ---
 
-## Things to know
+## About the author
 
-- This is an assistant, not a replacement for your judgment. Verify numbers, competitor info, and user feedback yourself.
-- User stories always include acceptance criteria. A/B tests always include stop conditions.
-- Pricing recommendations include at least two options. TAM/SAM/SOM are given as ranges, not exact numbers.
-- All examples and templates are anonymized. No sensitive data is stored.
+**itxinfei** (心飞为你飞) has worked on both sides — product and engineering — and now writes PRDs and code. This skill is what accumulated while doing the work, not something assembled from a tutorial.
 
-Found a bug? Open an issue. Want to add something? Submit a PR.
+- GitHub: [github.com/itxinfei](https://github.com/itxinfei)
+- Gitee: [gitee.com/itxinfei](https://gitee.com/itxinfei)
+
+Other open-source work:
+
+| Project | What it is |
+|---|---|
+| [pm-ai-skill](https://github.com/itxinfei/pm-ai-skill) | This project |
+| [xinfei-tms](https://github.com/itxinfei/xinfei-tms) | Transportation management system, four clients, JDK 21 + Spring Boot 3.5 + Vue 3 |
+| [tanhua](https://github.com/itxinfei/tanhua) | Social app, Vue |
+| [hub](https://github.com/itxinfei/hub) | Repository index for the practice projects |
 
 ---
 
 <div align="center">
 
-MIT License · itxinfei
+MIT License · itxinfei (心飞为你飞)
 
-[Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [GitHub](https://github.com/itxinfei/pm-ai-skill)
+[GitHub](https://github.com/itxinfei/pm-ai-skill) · [Gitee](https://gitee.com/itxinfei/pm-ai-skill) · [Issues](https://github.com/itxinfei/pm-ai-skill/issues)
 
 </div>
