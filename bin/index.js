@@ -141,7 +141,7 @@ program
 
 program
   .command('doc [name]')
-  .description('查看文档：capability / prompt / workflow / faq / tools')
+  .description('查看文档：capability / prompt / workflow / faq / tools / awesome')
   .action((name) => {
     const map = {
       capability: 'capability.md',
@@ -149,6 +149,7 @@ program
       workflow: 'workflow-guide.md',
       faq: 'faq.md',
       tools: 'tools.md',
+      awesome: 'awesome-pm-skills.md',
     };
     if (!name) {
       console.log('可用文档：' + Object.keys(map).join(', '));
@@ -164,13 +165,19 @@ program
 
 program
   .command('example [name]')
-  .description('查看示例：prd / rice / competitor / mindmap')
+  .description('查看示例：prd / rice / competitor / mindmap / discovery / grade / launch / metrics / premortem / strategy')
   .action((name) => {
     const map = {
       prd: 'prd-example.md',
       rice: 'rice-priority-example.md',
       competitor: 'competitor-analysis-sample.md',
       mindmap: 'mindmap-sample.md',
+      discovery: 'discovery-synthesis-sample.md',
+      grade: 'grade-sample.md',
+      launch: 'launch-plan-sample.md',
+      metrics: 'metric-tree-sample.md',
+      premortem: 'pre-mortem-sample.md',
+      strategy: 'strategy-one-pager-sample.md',
     };
     if (!name) {
       console.log('可用示例：' + Object.keys(map).join(', '));
@@ -201,6 +208,19 @@ program
     fs.copyFileSync(path.join(assetsDir, map[name]), dest);
     console.log(`已导出：${dest}`);
     console.log('浏览器打开，替换其中示例内容即可使用。');
+  });
+
+program
+  .command('manifest')
+  .description('导出机器可读清单 manifest.json（模块、分类、链路，给工具和脚本用）')
+  .action(() => {
+    const src = path.join(skillSourceDir, 'manifest.json');
+    const dest = path.join(process.cwd(), 'manifest.json');
+    fs.copyFileSync(src, dest);
+    const m = JSON.parse(fs.readFileSync(src, 'utf8'));
+    console.log(`已导出：${dest}`);
+    console.log(`${m.totalModules} 个模块，${m.categories.length} 个分类，${m.chains.length} 条链路，版本 ${m.version}`);
+    console.log('字段：id / category / title / definition，可以直接给检索、网站或自己的脚本用。');
   });
 
 program

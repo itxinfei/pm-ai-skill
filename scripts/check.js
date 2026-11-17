@@ -23,9 +23,10 @@ const required = [
   'install.ps1', 'install.sh', 'bin/index.js',
   'skill-source/skill.json', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
   'docs/capability.md', 'docs/prompt-reference.md', 'docs/workflow-guide.md',
-  'docs/faq.md', 'docs/tools.md',
+  'docs/faq.md', 'docs/tools.md', 'docs/awesome-pm-skills.md',
   'assets/report.html', 'assets/review.html',
   'evals/cases.json',
+  'skill-source/manifest.json',
   '.github/ISSUE_TEMPLATE/bug_report.md',
   '.github/ISSUE_TEMPLATE/feature_request.md',
   '.github/PULL_REQUEST_TEMPLATE.md',
@@ -35,7 +36,7 @@ for (const f of required) {
 }
 
 // 2. JSON 合法性
-for (const f of ['package.json', 'skill-source/skill.json', 'evals/cases.json']) {
+for (const f of ['package.json', 'skill-source/skill.json', 'evals/cases.json', 'skill-source/manifest.json']) {
   if (!exists(f)) continue;
   try {
     JSON.parse(read(f));
@@ -125,7 +126,26 @@ if (trigCount < 70) warn(`triggers.md 触发条数 ${trigCount}，偏少`);
 const tpl = fs.readdirSync(path.join(root, 'templates')).filter(f => f.endsWith('.md'));
 const ex = fs.readdirSync(path.join(root, 'examples')).filter(f => f.endsWith('.md'));
 if (tpl.length !== 13) warn(`templates 有 ${tpl.length} 个，预期 13`);
-if (ex.length !== 4) warn(`examples 有 ${ex.length} 个，预期 4`);
+if (ex.length !== 10) warn(`examples 有 ${ex.length} 个，预期 10`);
+
+// 5.1 manifest 要能和 prompt 对上
+if (exists('skill-source/manifest.json')) {
+  const mf = JSON.parse(read('skill-source/manifest.json'));
+  const mods = Array.isArray(mf.modules) ? mf.modules : [];
+  if (mods.length !== 76) fail(`manifest.json 模块数 ${mods.length}，预期 76`);
+  if ((mf.categories || []).length !== 10) fail(`manifest.json 分类数 ${(mf.categories || []).length}，预期 10`);
+  if ((mf.chains || []).length !== 6) fail(`manifest.json 链路数 ${(mf.chains || []).length}，预期 6`);
+  let seqBad = null;
+  for (let i = 0; i < mods.length; i++) {
+    if (mods[i].id !== i + 1) { seqBad = `第 ${i + 1} 条是 ${mods[i].id}`; break; }
+  }
+  if (seqBad) fail(`manifest.json 模块编号不连续：${seqBad}`);
+  for (const m of mods) {
+    if (!m.title || !m.category) fail(`manifest.json 模块 ${m.id} 缺 title 或 category`);
+  }
+  const skillMeta = JSON.parse(read('skill-source/skill.json'));
+  if (mf.version !== skillMeta.version) fail(`manifest 版本 ${mf.version} 与 skill.json 版本 ${skillMeta.version} 不一致`);
+}
 
 // 6. template 命令里的每个 key 都要能对应到真实模板文件
 const binSrc = read('bin/index.js');

@@ -1,0 +1,535 @@
+{
+  "id": "pm-ai-skill",
+  "name": "PM-AI-Skill 产品经理全链路助手",
+  "version": "1.2.0",
+  "author": "itxinfei（心飞为你飞）",
+  "repo": "https://github.com/itxinfei/pm-ai-skill",
+  "license": "MIT",
+  "totalModules": 76,
+  "categories": [
+    {
+      "name": "需求发现与优先级",
+      "count": 8
+    },
+    {
+      "name": "用户调研",
+      "count": 11
+    },
+    {
+      "name": "竞品与市场",
+      "count": 9
+    },
+    {
+      "name": "策略与规划",
+      "count": 8
+    },
+    {
+      "name": "方案与设计",
+      "count": 7
+    },
+    {
+      "name": "文档输出",
+      "count": 5
+    },
+    {
+      "name": "协作与沟通",
+      "count": 9
+    },
+    {
+      "name": "数据与度量",
+      "count": 7
+    },
+    {
+      "name": "商用与增长",
+      "count": 7
+    },
+    {
+      "name": "自我迭代与成长",
+      "count": 5
+    }
+  ],
+  "modules": [
+    {
+      "id": 1,
+      "category": "需求发现与优先级",
+      "title": "RICE 优先级",
+      "definition": "Reach × Impact × Confidence ÷ Effort"
+    },
+    {
+      "id": 2,
+      "category": "需求发现与优先级",
+      "title": "MoSCoW 优先级",
+      "definition": "Must / Should / Could / Won't"
+    },
+    {
+      "id": 3,
+      "category": "需求发现与优先级",
+      "title": "Kano 模型",
+      "definition": "基本型 / 期望型 / 兴奋型 / 无差异型 / 反向型"
+    },
+    {
+      "id": 4,
+      "category": "需求发现与优先级",
+      "title": "Impact-Effort 矩阵",
+      "definition": "四象限快速排序"
+    },
+    {
+      "id": 5,
+      "category": "需求发现与优先级",
+      "title": "JTBD（Jobs-to-be-Done）",
+      "definition": "用户\"雇佣\"产品来完成什么任务"
+    },
+    {
+      "id": 6,
+      "category": "需求发现与优先级",
+      "title": "Working Backwards（逆向工作法）",
+      "definition": "从新闻稿倒推产品"
+    },
+    {
+      "id": 7,
+      "category": "需求发现与优先级",
+      "title": "用户访谈解析",
+      "definition": "提取痛点 / 爽点 / 痒点，做主题聚类"
+    },
+    {
+      "id": 8,
+      "category": "需求发现与优先级",
+      "title": "需求澄清 5 问",
+      "definition": "用户说一个需求时，先问这 5 个问题"
+    },
+    {
+      "id": 9,
+      "category": "用户调研",
+      "title": "用户分层（User Stratification）",
+      "definition": "按什么分？新用户 vs 老用户？付费 vs 免费？高频 vs 低频？"
+    },
+    {
+      "id": 10,
+      "category": "用户调研",
+      "title": "问卷设计",
+      "definition": "设计问卷，规避引导性、双重提问、选项不穷尽"
+    },
+    {
+      "id": 11,
+      "category": "用户调研",
+      "title": "深度访谈脚本",
+      "definition": "探索 / 验证两种模式"
+    },
+    {
+      "id": 12,
+      "category": "用户调研",
+      "title": "可用性测试",
+      "definition": "设计测试任务、观察指标"
+    },
+    {
+      "id": 13,
+      "category": "用户调研",
+      "title": "A/B 测试设计",
+      "definition": "假设、变量、样本量、统计显著性"
+    },
+    {
+      "id": 14,
+      "category": "用户调研",
+      "title": "NPS / CSAT / CES",
+      "definition": "设计问卷、解读分数"
+    },
+    {
+      "id": 15,
+      "category": "用户调研",
+      "title": "焦点小组",
+      "definition": "招募、提纲、讨论规则"
+    },
+    {
+      "id": 16,
+      "category": "用户调研",
+      "title": "日记研究",
+      "definition": "让用户连续记录行为和感受"
+    },
+    {
+      "id": 17,
+      "category": "用户调研",
+      "title": "卡片分类",
+      "definition": "信息架构验证"
+    },
+    {
+      "id": 18,
+      "category": "用户调研",
+      "title": "反馈聚类与情感分析",
+      "definition": "用户反馈分组、情感倾向"
+    },
+    {
+      "id": 19,
+      "category": "用户调研",
+      "title": "行为数据分析",
+      "definition": "埋点、漏斗、留存、路径"
+    },
+    {
+      "id": 20,
+      "category": "竞品与市场",
+      "title": "竞品分析",
+      "definition": "直接 / 间接竞品，定位矩阵、功能差异"
+    },
+    {
+      "id": 21,
+      "category": "竞品与市场",
+      "title": "市场空白识别",
+      "definition": "未被满足的细分人群和场景"
+    },
+    {
+      "id": 22,
+      "category": "竞品与市场",
+      "title": "切换动力分析",
+      "definition": "用户为什么从竞品切过来"
+    },
+    {
+      "id": 23,
+      "category": "竞品与市场",
+      "title": "市场规模估算（TAM/SAM/SOM）",
+      "definition": "自上而下 / 自下而上"
+    },
+    {
+      "id": 24,
+      "category": "竞品与市场",
+      "title": "竞品功能拆解",
+      "definition": "标配 / 差异化 / 过度设计"
+    },
+    {
+      "id": 25,
+      "category": "竞品与市场",
+      "title": "产品定位",
+      "definition": "一句话定位声明"
+    },
+    {
+      "id": 26,
+      "category": "竞品与市场",
+      "title": "机会解决方案树（OST）",
+      "definition": "结构：业务结果 → 用户机会 → 解决方案 → 实验验证"
+    },
+    {
+      "id": 27,
+      "category": "竞品与市场",
+      "title": "战略分析三件套",
+      "definition": "SWOT：优势（内部）、劣势（内部）、机会（外部）、威胁（外部）。用来做整体盘点"
+    },
+    {
+      "id": 28,
+      "category": "竞品与市场",
+      "title": "厂商/供应商调研",
+      "definition": "完整步骤"
+    },
+    {
+      "id": 29,
+      "category": "策略与规划",
+      "title": "产品愿景",
+      "definition": "长期方向声明"
+    },
+    {
+      "id": 30,
+      "category": "策略与规划",
+      "title": "项目立项完整流程",
+      "definition": "1. 问题定义：我们要解决什么问题？不是\"我们要做什么产品\"，是\"我们要解决什么用户的什么问题\""
+    },
+    {
+      "id": 31,
+      "category": "策略与规划",
+      "title": "OKR 制定",
+      "definition": "Objective + Key Results"
+    },
+    {
+      "id": 32,
+      "category": "策略与规划",
+      "title": "路线图规划",
+      "definition": "Now / Next / Later"
+    },
+    {
+      "id": 33,
+      "category": "策略与规划",
+      "title": "Sprint / 迭代规划",
+      "definition": "双周迭代"
+    },
+    {
+      "id": 34,
+      "category": "策略与规划",
+      "title": "赌注评估",
+      "definition": "预期回报、成功概率、失败代价"
+    },
+    {
+      "id": 35,
+      "category": "策略与规划",
+      "title": "苏格拉底商业模式画布",
+      "definition": "层层追问"
+    },
+    {
+      "id": 36,
+      "category": "策略与规划",
+      "title": "北极星指标",
+      "definition": "一个指标代表产品给用户带来的核心价值"
+    },
+    {
+      "id": 37,
+      "category": "方案与设计",
+      "title": "产品架构",
+      "definition": "业务分层、核心能力、MVP 规划"
+    },
+    {
+      "id": 38,
+      "category": "方案与设计",
+      "title": "User Story 拆分",
+      "definition": "As a... I want... So that..."
+    },
+    {
+      "id": 39,
+      "category": "方案与设计",
+      "title": "用户旅程地图（User Journey Map）",
+      "definition": "用户从接触产品到成为忠诚用户的完整旅程"
+    },
+    {
+      "id": 40,
+      "category": "方案与设计",
+      "title": "故事板（Storyboard）",
+      "definition": "6 格叙事"
+    },
+    {
+      "id": 41,
+      "category": "方案与设计",
+      "title": "思维导图",
+      "definition": "逻辑梳理"
+    },
+    {
+      "id": 42,
+      "category": "方案与设计",
+      "title": "画图实操指南",
+      "definition": "流程图：主流程 + 异常流程。用泳道图区分谁做什么。主流程用实线，异常流程用虚线"
+    },
+    {
+      "id": 43,
+      "category": "方案与设计",
+      "title": "Excalidraw 可视化输出",
+      "definition": "根据上面的画图指南，输出可直接复制到 Excalidraw 的文字描述，用户粘进去就能用"
+    },
+    {
+      "id": 44,
+      "category": "文档输出",
+      "title": "PRD 结构化教练",
+      "definition": "实战经验：好 PRD 的结构"
+    },
+    {
+      "id": 45,
+      "category": "文档输出",
+      "title": "业务案例一页纸",
+      "definition": "给高管看的"
+    },
+    {
+      "id": 46,
+      "category": "文档输出",
+      "title": "发布说明",
+      "definition": "用户视角的更新文案"
+    },
+    {
+      "id": 47,
+      "category": "文档输出",
+      "title": "功能规格说明",
+      "definition": "前置条件、主流程、异常流程"
+    },
+    {
+      "id": 48,
+      "category": "文档输出",
+      "title": "需求评审准备",
+      "definition": "评审前：自己先过一遍，有没有逻辑漏洞？有没有遗漏的异常流程？"
+    },
+    {
+      "id": 49,
+      "category": "协作与沟通",
+      "title": "会议纪要",
+      "definition": "实战经验：会议纪要不是逐字稿，是决策记录。必须有：决策是什么？谁负责？什么时候做完？下次会议时间？"
+    },
+    {
+      "id": 50,
+      "category": "协作与沟通",
+      "title": "风险与延期沟通",
+      "definition": "实战经验：坏消息要早说，不要等到最后。说清楚：原因是什么？影响多大？有什么补救方案？需要什么支持？"
+    },
+    {
+      "id": 51,
+      "category": "协作与沟通",
+      "title": "问题追踪与升级",
+      "definition": "实战经验：升级问题时，不要只说\"这个问题很严重\"，要说清楚：问题是什么？影响多少用户？你已经做了什么？需要谁帮什么？"
+    },
+    {
+      "id": 52,
+      "category": "协作与沟通",
+      "title": "销售赋能",
+      "definition": "实战经验：销售最需要的不是产品功能列表，是\"客户问竞品怎么办\"的话术。准备 10 个最常见的客户异议和回答"
+    },
+    {
+      "id": 53,
+      "category": "协作与沟通",
+      "title": "干系人地图",
+      "definition": "四象限：影响力（高/低）× 关注度（高/低）"
+    },
+    {
+      "id": 54,
+      "category": "协作与沟通",
+      "title": "Pre-mortem 预先分析",
+      "definition": "假设项目上线后失败了，倒推：为什么会失败？"
+    },
+    {
+      "id": 55,
+      "category": "协作与沟通",
+      "title": "增长飞轮（Growth Loops）",
+      "definition": "不是线性漏斗，是循环：用户获取 → 用户使用 → 产生价值 → 带来新用户"
+    },
+    {
+      "id": 56,
+      "category": "协作与沟通",
+      "title": "用户画像（Personas）",
+      "definition": "不是\"25-35 岁女性\"这种人口统计，是具体的人"
+    },
+    {
+      "id": 57,
+      "category": "协作与沟通",
+      "title": "和开发吵架的艺术",
+      "definition": "不要说\"这个功能很简单，为什么做不完\"，要说\"这个功能对业务目标的影响是什么，我们一起看看怎么调整范围\""
+    },
+    {
+      "id": 58,
+      "category": "数据与度量",
+      "title": "数据分析",
+      "definition": "CSV 清洗、统计、趋势、异常"
+    },
+    {
+      "id": 59,
+      "category": "数据与度量",
+      "title": "指标层级（Metrics Hierarchy）",
+      "definition": "北极星指标：一个指标代表产品核心价值"
+    },
+    {
+      "id": 60,
+      "category": "数据与度量",
+      "title": "HEART 框架",
+      "definition": "Happiness（满意度）：NPS、CSAT"
+    },
+    {
+      "id": 61,
+      "category": "数据与度量",
+      "title": "AI 产品度量",
+      "definition": "准确率、人工接管率、用户满意度、成本/次"
+    },
+    {
+      "id": 62,
+      "category": "数据与度量",
+      "title": "RICE 复盘",
+      "definition": "上线后回看当初的估算"
+    },
+    {
+      "id": 63,
+      "category": "数据与度量",
+      "title": "PMF（产品市场契合度）",
+      "definition": "判断产品是否找到了市场"
+    },
+    {
+      "id": 64,
+      "category": "数据与度量",
+      "title": "延迟成本（Cost of Delay）",
+      "definition": "这个需求晚做一个月，会损失多少钱/用户/市场份额？"
+    },
+    {
+      "id": 65,
+      "category": "商用与增长",
+      "title": "定价策略",
+      "definition": "Freemium / 订阅 / 按量 / 分层 / 渗透 / 撇脂"
+    },
+    {
+      "id": 66,
+      "category": "商用与增长",
+      "title": "AARRR 增长漏斗",
+      "definition": "获取 → 激活 → 留存 → 变现 → 推荐"
+    },
+    {
+      "id": 67,
+      "category": "商用与增长",
+      "title": "RARRA 留存优先",
+      "definition": "从留存反推优先级"
+    },
+    {
+      "id": 68,
+      "category": "商用与增长",
+      "title": "单位经济模型",
+      "definition": "LTV、CAC、回本周期、毛利率"
+    },
+    {
+      "id": 69,
+      "category": "商用与增长",
+      "title": "GTM 上市策略",
+      "definition": "目标人群、渠道、定价、冷启动"
+    },
+    {
+      "id": 70,
+      "category": "商用与增长",
+      "title": "客户成功与续费",
+      "definition": "健康分、流失预警、续费话术"
+    },
+    {
+      "id": 71,
+      "category": "商用与增长",
+      "title": "项目复盘六段法",
+      "definition": "背景、角色、决策、推演、结果、方法论"
+    },
+    {
+      "id": 72,
+      "category": "自我迭代与成长",
+      "title": "使用反馈学习",
+      "definition": "每次输出结束后，必须主动问 3 个问题"
+    },
+    {
+      "id": 73,
+      "category": "自我迭代与成长",
+      "title": "个人案例库积累",
+      "definition": "每次用户讲完一个项目，主动问：\"要不要把这个项目沉淀成案例卡？\""
+    },
+    {
+      "id": 74,
+      "category": "自我迭代与成长",
+      "title": "能力成长追踪",
+      "definition": "记录用户每个模块的使用次数"
+    },
+    {
+      "id": 75,
+      "category": "自我迭代与成长",
+      "title": "错误复盘与修正",
+      "definition": "用户说\"这个输出不行\"时，不要只改这一次，要做完整复盘"
+    },
+    {
+      "id": 76,
+      "category": "自我迭代与成长",
+      "title": "提示词自我优化",
+      "definition": "根据用户反馈，主动建议调整 system-prompt"
+    }
+  ],
+  "chains": [
+    {
+      "id": "A",
+      "title": "从想法到能开发"
+    },
+    {
+      "id": "B",
+      "title": "版本规划"
+    },
+    {
+      "id": "C",
+      "title": "数据掉了"
+    },
+    {
+      "id": "D",
+      "title": "做一轮调研"
+    },
+    {
+      "id": "E",
+      "title": "竞品驱动立项"
+    },
+    {
+      "id": "F",
+      "title": "上线前自查"
+    }
+  ]
+}
