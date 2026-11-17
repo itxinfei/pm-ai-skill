@@ -258,11 +258,12 @@ Sample: `pm-ai-skill example grade`
 
 ## HTML output
 
-Two single-file HTML report templates. Double-click to view, print straight to PDF.
+Three single-file HTML report templates. Double-click to view, print straight to PDF.
 
 ```
 pm-ai-skill asset report     # Status report: verdict, metrics, progress, risks
 pm-ai-skill asset review     # Review report: six-role scores, graded issues, disagreements
+pm-ai-skill asset grade      # Scorecard: verdict, dimension scores, must-fix items
 ```
 
 ---
@@ -281,7 +282,7 @@ pm-ai-skill/
 ├── templates/             # 13 templates
 ├── docs/                  # capability, prompts, workflow, tools, ecosystem, FAQ
 ├── examples/              # 10 real output samples, the quality bar
-├── assets/                # 2 HTML report templates
+├── assets/                # 3 HTML report templates
 ├── evals/                 # Behavior regression cases
 └── bin/index.js           # install / template / example / doc / asset / manifest / info
 ```

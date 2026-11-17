@@ -193,11 +193,12 @@ program
 
 program
   .command('asset [name]')
-  .description('导出 HTML 报告模板：report / review')
+  .description('导出 HTML 报告模板：report / review / grade')
   .action((name) => {
     const map = {
       report: 'report.html',
       review: 'review.html',
+      grade: 'grade.html',
     };
     if (!name || !map[name]) {
       console.log('可用 HTML 模板：' + Object.keys(map).join(', '));

@@ -339,11 +339,12 @@ RICE、MoSCoW、Impact-Effort 三个不冲突，看场景选：要算分用 RICE
 
 ## 输出不只有 Markdown
 
-两个 HTML 报告模板，单文件、内联样式，双击就能看，也能直接打印成 PDF。
+三个 HTML 报告模板，单文件、内联样式，双击就能看，也能直接打印成 PDF。
 
 ```
 pm-ai-skill asset report     # 通用汇报页：结论、指标、进度、风险表
 pm-ai-skill asset review     # 评审报告页：六视角评分、问题分级、分歧点
+pm-ai-skill asset grade      # 打分页：结论三档、维度分数、必须补的几处
 ```
 
 导出到当前目录，替换示例内容就能用。给老板看的周报、评审会的材料，比 Markdown 表格体面得多。
@@ -408,7 +409,7 @@ pm-ai-skill/
 │   └── faq.md                # 安装、工具适配、常见坑
 ├── templates/            # 13 个模板（PRD、立项、OKR、A/B 测试、Pre-mortem、画像、指标树等）
 ├── examples/             # 10 份真实输出样例，看"做成什么样算合格"
-├── assets/               # 2 个 HTML 报告模板，浏览器直接打开或打印
+├── assets/               # 3 个 HTML 报告模板，浏览器直接打开或打印
 ├── evals/                # 行为回归用例，改完拿它验有没有改坏
 └── bin/index.js          # CLI：install / template / example / doc / asset / manifest / info
 ```

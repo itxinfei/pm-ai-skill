@@ -24,7 +24,7 @@ const required = [
   'skill-source/skill.json', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
   'docs/capability.md', 'docs/prompt-reference.md', 'docs/workflow-guide.md',
   'docs/faq.md', 'docs/tools.md', 'docs/awesome-pm-skills.md',
-  'assets/report.html', 'assets/review.html',
+  'assets/report.html', 'assets/review.html', 'assets/grade.html',
   'evals/cases.json',
   'skill-source/manifest.json',
   '.github/ISSUE_TEMPLATE/bug_report.md',
