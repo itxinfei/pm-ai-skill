@@ -24,6 +24,8 @@ const required = [
   'skill-source/skill.json', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
   'docs/capability.md', 'docs/prompt-reference.md', 'docs/workflow-guide.md',
   'docs/faq.md', 'docs/tools.md',
+  'assets/report.html', 'assets/review.html',
+  'evals/cases.json',
   '.github/ISSUE_TEMPLATE/bug_report.md',
   '.github/ISSUE_TEMPLATE/feature_request.md',
   '.github/PULL_REQUEST_TEMPLATE.md',
@@ -33,11 +35,33 @@ for (const f of required) {
 }
 
 // 2. JSON 合法性
-for (const f of ['package.json', 'skill-source/skill.json']) {
+for (const f of ['package.json', 'skill-source/skill.json', 'evals/cases.json']) {
+  if (!exists(f)) continue;
   try {
     JSON.parse(read(f));
   } catch (e) {
     fail(`${f} 不是合法 JSON：${e.message}`);
+  }
+}
+
+// 2.1 评测用例字段完整性
+if (exists('evals/cases.json')) {
+  const ev = JSON.parse(read('evals/cases.json'));
+  if (!Array.isArray(ev.cases) || ev.cases.length === 0) {
+    fail('evals/cases.json 的 cases 必须是非空数组');
+  } else {
+    const ids = new Set();
+    for (const c of ev.cases) {
+      for (const key of ['id', 'category', 'input', 'expected', 'checks']) {
+        if (!c[key] || (Array.isArray(c[key]) && c[key].length === 0)) {
+          fail(`评测用例 ${c.id || '(缺 id)'} 缺少字段：${key}`);
+        }
+      }
+      if (c.id) {
+        if (ids.has(c.id)) fail(`评测用例 id 重复：${c.id}`);
+        ids.add(c.id);
+      }
+    }
   }
 }
 
@@ -121,6 +145,11 @@ const exBlock = binSrc.split("command('example [name]')")[1] || '';
 for (const m of exBlock.split('program\n')[0].matchAll(/(\w+):\s*'([a-z\-]+\.md)'/g)) {
   const file = m[2];
   if (!exists(`examples/${file}`)) fail(`bin/index.js 的 example 命令引用了不存在的示例：${file}`);
+}
+const assetBlock = binSrc.split("command('asset [name]')")[1] || '';
+for (const m of assetBlock.split("command('info')")[0].matchAll(/(\w+):\s*'([a-z\-]+\.html)'/g)) {
+  const file = m[2];
+  if (!exists(`assets/${file}`)) fail(`bin/index.js 的 asset 命令引用了不存在的模板：${file}`);
 }
 
 // 7. 明显不该出现的残留

@@ -10,6 +10,8 @@ What actually blocks you: should this feature ship at all, where do you start on
 
 These 76 modules are those positions, one by one. Just describe what you're stuck on — it recognizes the shape of the problem.
 
+There are two things beyond the modules. A triage rule: it decides whether you want a judgment, a deliverable, or a whole chain, before it answers. And a six-role review: product, engineering, QA, design, ops, legal each walk through your plan, so the problems surface before the meeting does.
+
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat-square)](LICENSE)
 [![Author](https://img.shields.io/badge/Author-itxinfei-orange.svg?style=flat-square)](https://github.com/itxinfei)
 [![npm version](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
@@ -149,6 +151,78 @@ Walk me through the project initiation process for a new product
 
 ---
 
+## How it takes work
+
+Modules are parts. This is how they get assembled.
+
+| Type | Looks like | Gets you |
+|---|---|---|
+| Judgment | "should we build this", "is this a real need" | A verdict and the reasoning. No document. |
+| Deliverable | "write a PRD", "rank these", "draft a roadmap" | The thing itself |
+| Chain | "take it from idea to buildable" | Step by step, with handoffs |
+
+Quick test when unsure: do they want a conclusion, or something they can hand to someone else?
+
+### Six chains
+
+| Chain | When | Steps |
+|---|---|---|
+| A Idea to buildable | New idea needs landing | Health check → PRD → review → revise → tracking spec |
+| B Release planning | Too many requests, no order | Backlog → rank → roadmap |
+| C Metric dropped | Retention or conversion sliding | Read data → hypothesize → experiment → track → retro |
+| D Research round | Need to know what users actually think | Goal → fix questions → survey/interview → analyze → turn into requests |
+| E Competitor-driven | A competitor shipped something | Teardown → decide whether to follow → join A |
+| F Pre-launch check | Shipping tomorrow | Pre-mortem → walkthrough → tracking check → rollout plan |
+
+One rule holds every chain together: the output of each step must be a legal input to the next. If it doesn't fit, that step isn't done.
+
+### Four rules for running a chain
+
+1. **Quote before starting** — how many steps, what each delivers, which ones need your call. You can cut steps.
+2. **Handoff summary under 10 lines** — this step's conclusion plus what the next step needs.
+3. **Every step stands alone** — stop anytime, what you have is usable.
+4. **Never push** — one step when one step is all that's needed.
+
+### Three strictness levels
+
+| Level | When | How |
+|---|---|---|
+| Quick screen | Still diverging | Blockers and structural issues only |
+| Standard (default) | Before the review meeting | Full pass |
+| Final gate | Shipping tomorrow | Any compliance, rollback, or acceptance-criteria issue escalates to blocker |
+
+---
+
+## Multi-role review
+
+Six perspectives, each asking only what it should.
+
+| Role | Watches for |
+|---|---|
+| Product | Clear goal, scope creep, worth doing |
+| Engineering | Feasibility, interface definitions, effort |
+| QA | Acceptance criteria, exception paths, boundaries |
+| Design | Consistency, empty states, feedback |
+| Ops | Tracking, rollout, rollback |
+| Legal | Privacy, compliance, content moderation |
+
+Output is graded blocker / important / suggestion, closing with one verdict: ships, ships with conditions, or doesn't ship.
+
+The value isn't the verdict — it's the **disagreements**. Where two roles reach opposite conclusions, that gets pulled out separately. That's what the meeting is actually for.
+
+---
+
+## HTML output
+
+Two single-file HTML report templates. Double-click to view, print straight to PDF.
+
+```
+pm-ai-skill asset report     # Status report: verdict, metrics, progress, risks
+pm-ai-skill asset review     # Review report: six-role scores, graded issues, disagreements
+```
+
+---
+
 ## Project structure
 
 ```
@@ -157,14 +231,31 @@ pm-ai-skill/
 ├── install.sh
 ├── skill-source/
 │   ├── skill.json
-│   ├── system-prompt.md
+│   ├── system-prompt.md   # 76 modules + triage + multi-role review
 │   └── triggers.md
-├── templates/
-├── docs/
-└── examples/
+├── templates/             # 13 templates
+├── docs/                  # capability, prompts, workflow, tools, FAQ
+├── examples/              # 4 anonymized examples
+├── assets/                # 2 HTML report templates
+├── evals/                 # Behavior regression cases
+└── bin/index.js           # install / template / example / doc / asset / info
 ```
 
 13 ready-to-use templates and 4 anonymized examples are included.
+
+---
+
+## What it can't do
+
+Better to know now.
+
+- **No numeric verdicts.** Market size, growth rates, conversion lift — you calculate or look them up. It gives you the method.
+- **Doesn't decide for you.** It gives reasoning and a risk list. You make the call.
+- **Doesn't guarantee correctness.** AI can build a very plausible answer on a wrong premise. Anything touching money, legal, or safety needs human review.
+- **Can't replace first-hand information.** How users feel, what customers actually said — it can't guess. Feed it interviews, or it marks things as assumptions.
+- **Doesn't know your company.** Org politics, legacy baggage, who dislikes whom. If a plan won't land, consider those first.
+- **Doesn't write production code.** Prototypes and interface contracts, yes. Code, no.
+- **Out of scope:** pricing model implementation, ad buying, algorithm selection, China-specific regulatory compliance, complex B2B sales cycles.
 
 ---
 

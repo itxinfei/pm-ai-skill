@@ -11,7 +11,9 @@
     "skill-source/",
     "templates/",
     "docs/",
-    "examples/"
+    "examples/",
+    "assets/",
+    "evals/"
   ],
   "scripts": {
     "start": "node bin/index.js",

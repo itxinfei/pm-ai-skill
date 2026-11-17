@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PM 汇报模板</title>
+<style>
+  :root {
+    --ink: #14171a;
+    --ink-2: #4a5056;
+    --ink-3: #7b8288;
+    --line: #e3e6e9;
+    --bg: #f6f7f8;
+    --card: #ffffff;
+    --brand: #0f766e;
+    --brand-soft: #e6f2f0;
+    --warn: #b45309;
+    --warn-soft: #fdf3e7;
+    --danger: #b91c1c;
+    --danger-soft: #fdeceb;
+    --ok: #15803d;
+    --ok-soft: #eaf5ed;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, "PingFang SC", "Microsoft YaHei", "Segoe UI", sans-serif;
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+  }
+  .page { max-width: 940px; margin: 0 auto; padding: 48px 32px 72px; }
+
+  /* 头部 */
+  .head { border-bottom: 2px solid var(--ink); padding-bottom: 20px; margin-bottom: 32px; }
+  .kicker {
+    display: inline-block;
+    font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+    color: var(--brand); font-weight: 600; margin-bottom: 10px;
+  }
+  h1 { font-size: 30px; line-height: 1.3; font-weight: 700; letter-spacing: -.01em; }
+  .meta { display: flex; flex-wrap: wrap; gap: 20px; margin-top: 14px; font-size: 13px; color: var(--ink-3); }
+  .meta span strong { color: var(--ink-2); font-weight: 600; }
+
+  /* 一句话结论 */
+  .verdict {
+    background: var(--card);
+    border-left: 4px solid var(--brand);
+    border-radius: 10px;
+    padding: 22px 26px;
+    margin-bottom: 32px;
+    box-shadow: 0 1px 2px rgba(20,23,26,.04);
+  }
+  .verdict-label { font-size: 12px; color: var(--ink-3); letter-spacing: .08em; margin-bottom: 6px; }
+  .verdict p { font-size: 17px; font-weight: 500; line-height: 1.65; }
+
+  /* 指标 */
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px; margin-bottom: 36px; }
+  .metric {
+    background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+    padding: 18px 20px;
+  }
+  .metric .name { font-size: 12px; color: var(--ink-3); margin-bottom: 8px; }
+  .metric .value { font-size: 26px; font-weight: 700; letter-spacing: -.02em; }
+  .metric .delta { font-size: 12px; margin-top: 6px; }
+  .up { color: var(--ok); }
+  .down { color: var(--danger); }
+  .flat { color: var(--ink-3); }
+
+  /* 分区 */
+  section { margin-bottom: 36px; }
+  h2 {
+    font-size: 15px; font-weight: 700; letter-spacing: .04em;
+    padding-bottom: 10px; border-bottom: 1px solid var(--line); margin-bottom: 16px;
+    display: flex; align-items: center; gap: 8px;
+  }
+  h2::before { content: ""; width: 3px; height: 14px; background: var(--brand); border-radius: 2px; }
+  h3 { font-size: 14px; font-weight: 600; margin: 18px 0 8px; color: var(--ink-2); }
+  p { font-size: 14px; color: var(--ink-2); margin-bottom: 10px; }
+  ul { padding-left: 18px; margin-bottom: 10px; }
+  li { font-size: 14px; color: var(--ink-2); margin-bottom: 6px; }
+
+  /* 表格 */
+  table { width: 100%; border-collapse: collapse; background: var(--card); border-radius: 10px; overflow: hidden; font-size: 13px; }
+  th, td { padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { background: #fafbfb; font-weight: 600; color: var(--ink-2); font-size: 12px; letter-spacing: .03em; }
+  tr:last-child td { border-bottom: none; }
+
+  /* 标签 */
+  .tag {
+    display: inline-block; font-size: 11px; font-weight: 600;
+    padding: 2px 8px; border-radius: 4px; white-space: nowrap;
+  }
+  .tag-danger { background: var(--danger-soft); color: var(--danger); }
+  .tag-warn { background: var(--warn-soft); color: var(--warn); }
+  .tag-ok { background: var(--ok-soft); color: var(--ok); }
+  .tag-brand { background: var(--brand-soft); color: var(--brand); }
+
+  /* 进度 */
+  .progress-list { display: flex; flex-direction: column; gap: 12px; }
+  .progress-item { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 14px 18px; }
+  .progress-head { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px; }
+  .progress-head .label { font-size: 13px; font-weight: 600; }
+  .progress-head .pct { font-size: 12px; color: var(--ink-3); font-variant-numeric: tabular-nums; }
+  .bar { height: 6px; background: #eef0f1; border-radius: 3px; overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--brand); border-radius: 3px; }
+  .bar i.late { background: var(--danger); }
+
+  /* 页脚 */
+  footer {
+    margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line);
+    font-size: 12px; color: var(--ink-3); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px;
+  }
+
+  @media print {
+    body { background: #fff; }
+    .page { padding: 0; max-width: 100%; }
+    .metric, table, .verdict, .progress-item { box-shadow: none; }
+    section { break-inside: avoid; }
+  }
+  @media (max-width: 640px) {
+    .page { padding: 28px 18px 48px; }
+    h1 { font-size: 24px; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <header class="head">
+    <span class="kicker">项目汇报</span>
+    <h1>会员体系改版 · 第一阶段进展</h1>
+    <div class="meta">
+      <span><strong>汇报人</strong> 心飞</span>
+      <span><strong>周期</strong> 2026-11-01 至 11-15</span>
+      <span><strong>版本</strong> v1</span>
+      <span><strong>状态</strong> 进行中</span>
+    </div>
+  </header>
+
+  <!-- 结论放最前，别让人读三屏才看到判断 -->
+  <div class="verdict">
+    <div class="verdict-label">一句话结论</div>
+    <p>进度按计划，核心链路已通。但支付回调的异常分支还没定，会影响 12 月初的上线窗口，需要本周拍板。</p>
+  </div>
+
+  <!-- 关键数字，3-4 个就够，多了没人看 -->
+  <div class="metrics">
+    <div class="metric">
+      <div class="name">需求交付率</div>
+      <div class="value">86%</div>
+      <div class="delta up">高于目标 80%</div>
+    </div>
+    <div class="metric">
+      <div class="name">本期上线功能</div>
+      <div class="value">7 / 8</div>
+      <div class="delta flat">1 项延至下期</div>
+    </div>
+    <div class="metric">
+      <div class="name">会员开通转化</div>
+      <div class="value">12.4%</div>
+      <div class="delta up">较上期 +1.8pt</div>
+    </div>
+    <div class="metric">
+      <div class="name">阻塞问题</div>
+      <div class="value">2</div>
+      <div class="delta down">需本周决策</div>
+    </div>
+  </div>
+
+  <section>
+    <h2>本期做了什么</h2>
+    <ul>
+      <li>会员中心首页改版，信息架构从 5 个入口收敛到 3 个</li>
+      <li>开通链路从 5 步减到 3 步，去掉中间权益页（页面停留时长下降 41%，转化上升）</li>
+      <li>续费提醒改为到期前 7 天 + 3 天两次触达，触达成本降低</li>
+      <li>会员权益页新增「本月已省」模块，用户可感知权益价值</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>进度</h2>
+    <div class="progress-list">
+      <div class="progress-item">
+        <div class="progress-head"><span class="label">需求梳理与 PRD</span><span class="pct">100%</span></div>
+        <div class="bar"><i style="width:100%"></i></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-head"><span class="label">设计稿与评审</span><span class="pct">100%</span></div>
+        <div class="bar"><i style="width:100%"></i></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-head"><span class="label">开发联调</span><span class="pct">78%</span></div>
+        <div class="bar"><i style="width:78%"></i></div>
+      </div>
+      <div class="progress-item">
+        <div class="progress-head"><span class="label">支付回调异常分支</span><span class="pct">0%</span></div>
+        <div class="bar"><i class="late" style="width:4%"></i></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>风险与待决</h2>
+    <table>
+      <thead>
+        <tr><th style="width:90px">级别</th><th>问题</th><th style="width:180px">需要谁</th><th style="width:110px">截止</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><span class="tag tag-danger">阻断</span></td>
+          <td>支付超时后订单状态未定义，用户重复支付无法自动退款</td>
+          <td>研发负责人 + 支付</td>
+          <td>11-19</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-danger">阻断</span></td>
+          <td>续费提醒短信模板未过法务，涉及营销类短信资质</td>
+          <td>法务</td>
+          <td>11-19</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-warn">重要</span></td>
+          <td>会员权益页「本月已省」数据口径与财务不一致</td>
+          <td>数据 + 财务</td>
+          <td>11-22</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-warn">重要</span></td>
+          <td>灰度方案未定，目前只能全量发布</td>
+          <td>产品 + 研发</td>
+          <td>11-22</td>
+        </tr>
+        <tr>
+          <td><span class="tag tag-ok">建议</span></td>
+          <td>开通页文案可再压缩两行，减少滚动</td>
+          <td>设计</td>
+          <td>下期</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>下期计划</h2>
+    <table>
+      <thead>
+        <tr><th>事项</th><th style="width:120px">负责人</th><th style="width:110px">时间</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>补齐支付异常分支并回归</td><td>研发</td><td>11-19</td></tr>
+        <tr><td>法务过审短信模板</td><td>法务</td><td>11-19</td></tr>
+        <tr><td>权益数据口径对齐并上线</td><td>数据</td><td>11-22</td></tr>
+        <tr><td>灰度方案落地，支持 5% 分批</td><td>研发</td><td>11-22</td></tr>
+        <tr><td>会员等级体系设计（下阶段）</td><td>产品</td><td>11-30</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <footer>
+    <span>本页为示例数据，替换内容即可使用</span>
+    <span>生成于 2026-11-16</span>
+  </footer>
+
+</div>
+</body>
+</html>

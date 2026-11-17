@@ -9,6 +9,7 @@ const skillSourceDir = path.join(pkgRoot, 'skill-source');
 const templatesDir = path.join(pkgRoot, 'templates');
 const docsDir = path.join(pkgRoot, 'docs');
 const examplesDir = path.join(pkgRoot, 'examples');
+const assetsDir = path.join(pkgRoot, 'assets');
 
 function copyDirSync(src, dest) {
   if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
@@ -181,6 +182,25 @@ program
       return;
     }
     console.log(fs.readFileSync(path.join(examplesDir, f), 'utf8'));
+  });
+
+program
+  .command('asset [name]')
+  .description('导出 HTML 报告模板：report / review')
+  .action((name) => {
+    const map = {
+      report: 'report.html',
+      review: 'review.html',
+    };
+    if (!name || !map[name]) {
+      console.log('可用 HTML 模板：' + Object.keys(map).join(', '));
+      console.log('导出后会放在当前目录，浏览器直接打开，也可以打印成 PDF。');
+      return;
+    }
+    const dest = path.join(process.cwd(), map[name]);
+    fs.copyFileSync(path.join(assetsDir, map[name]), dest);
+    console.log(`已导出：${dest}`);
+    console.log('浏览器打开，替换其中示例内容即可使用。');
   });
 
 program
