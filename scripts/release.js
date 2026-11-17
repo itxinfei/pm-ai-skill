@@ -93,7 +93,7 @@ const stage = path.join(distDir, 'pm-ai-skill');
 fs.rmSync(stage, { recursive: true, force: true });
 fs.mkdirSync(stage, { recursive: true });
 const include = [
-  'bin', 'docs', 'examples', 'templates', 'skill-source', 'scripts',
+  'bin', 'docs', 'examples', 'templates', 'assets', 'evals', 'skill-source', 'scripts',
   'README.md', 'README_EN.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md',
   'CODE_OF_CONDUCT.md', 'SECURITY.md', 'package.json', 'package-lock.json',
   'install.ps1', 'install.sh',

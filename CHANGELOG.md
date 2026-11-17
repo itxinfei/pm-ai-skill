@@ -2,7 +2,7 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
-## [Unreleased]
+## [1.1.0] - 2026-11-17
 
 把另一套 PM skill 里值得学的东西吸收进来：它会判断问题类型再路由，把模块串成链路，用六个角色模拟评审，还输出可打印的 HTML。76 个模块本身没动。
 
