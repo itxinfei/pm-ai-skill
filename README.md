@@ -2,9 +2,11 @@
 
 # pm-ai-skill
 
-产品经理干活用的 AI 助手 · 76 个模块 · 支持 13 种 AI 工具
+产品经理干活用的 AI 助手 · 76 个模块 · 13 种工具 · 中文
 
-不是教你什么是 RICE，是帮你把手上这堆东西变成能交出去的结果
+GitHub 上做 PM skill 的，有拿 28k 星的，也有堆到 95 个的。
+
+这个走另一条路：76 个模块塞进一个 skill，一条命令，13 个工具都能用。你手上已经攥着东西的时候，它先读再问，还能量你那份产出够不够发。
 
 [![npm](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
@@ -52,6 +54,27 @@
 | 16 | **27 条回归用例** | 改完跑一遍，知道有没有把原来的行为改坏 |
 | 17 | **机器可读清单** | `manifest.json` 导出 76 个模块的 id/分类/定义，给自己的小工具用 |
 | 18 | **中文原生** | 不是翻译搬运，是按国内研发节奏写的：双周迭代、需求评审会、老板一句话要东西 |
+
+---
+
+## 和同类比
+
+GitHub 上几个热门的 PM skill，盘点在 [docs/awesome-pm-skills.md](docs/awesome-pm-skills.md)。挑最常被拿来比的几项：
+
+| 维度 | 这个 | 头部那几个 |
+|---|---|---|
+| 模块 | 76，单个 skill | 72 - 95，多数拆成插件包 |
+| 语言 | 中文原生 | 英文为主 |
+| 安装 | 一条命令，自动扫本机 | 手动挑着装 |
+| 工具 | 13 种，含国产 4 个 | 主要 Claude Code |
+| 给产出打分 | 六类材料，0-3 分，0 分否决 | 少数有 |
+| HTML 报告 | 3 个模板，能打印 | 少见 |
+| 回归用例 | 27 条 | 少见 |
+| 真实样例 | 10 份 | 200+（product-on-purpose） |
+
+输的地方说明白：模块数比不过 95 个的，样例数比不过 200 份的，star 数更比不了，那几家做了两年。
+
+强在两件别家不做的：**装一次全都有**，不用挑着装九个包；**对着你写好的东西给判断**，不是重写一遍。
 
 ---
 
