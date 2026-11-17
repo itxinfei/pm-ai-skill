@@ -4,9 +4,11 @@
 
 A working AI assistant for product managers · 76 modules · 13 tools · Chinese-native
 
-On GitHub there are PM skill projects with 28k stars, and ones stacked to 95 separate skills.
+On GitHub there are PM skills with 28k stars, and ones that stack 95 of them.
 
-This takes a different route: 76 modules in a single skill, one command, works in 13 AI tools. When you already have something in hand, it reads first and asks second — and it can grade whether what you wrote is ready to ship.
+This does something else: 76 modules in a single skill, install once, works in 13 AI tools.
+
+When you already have something in hand, it does not start by interrogating you. It reads first, then asks what you want. Then it grades what you wrote: shippable now, or two things to fix first.
 
 [![npm](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
