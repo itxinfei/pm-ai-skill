@@ -4,7 +4,7 @@
   "description": "An all-in-one AI skill for product managers — 76 modules covering discovery, research, strategy, PRDs, metrics, growth, and self-improvement.",
   "main": "bin/index.js",
   "bin": {
-    "pm-ai-skill": "./bin/index.js"
+    "pm-ai-skill": "bin/index.js"
   },
   "files": [
     "bin/",
