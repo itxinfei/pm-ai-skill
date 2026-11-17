@@ -270,15 +270,6 @@ assets/         3 个 HTML 报告     evals/      27 条回归用例
 - GitHub：[github.com/itxinfei](https://github.com/itxinfei)
 - Gitee：[gitee.com/itxinfei](https://gitee.com/itxinfei)
 
-其他开源项目：
-
-| 项目 | 是什么 |
-|---|---|
-| [pm-ai-skill](https://github.com/itxinfei/pm-ai-skill) | 本项目，PM 全链路 AI skill |
-| [xinfei-tms](https://github.com/itxinfei/xinfei-tms) | 运输管理系统，四端协同，JDK 21 + Spring Boot 3.5 + Vue 3 |
-| [tanhua](https://github.com/itxinfei/tanhua) | 交友应用，Vue |
-| [hub](https://github.com/itxinfei/hub) | 仓库索引，几十个练手项目归在一处 |
-
 ---
 
 <div align="center">

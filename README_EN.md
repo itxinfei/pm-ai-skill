@@ -273,15 +273,6 @@ assets/         3 HTML reports      evals/      27 regression cases
 - GitHub: [github.com/itxinfei](https://github.com/itxinfei)
 - Gitee: [gitee.com/itxinfei](https://gitee.com/itxinfei)
 
-Other open-source work:
-
-| Project | What it is |
-|---|---|
-| [pm-ai-skill](https://github.com/itxinfei/pm-ai-skill) | This project |
-| [xinfei-tms](https://github.com/itxinfei/xinfei-tms) | Transportation management system, four clients, JDK 21 + Spring Boot 3.5 + Vue 3 |
-| [tanhua](https://github.com/itxinfei/tanhua) | Social app, Vue |
-| [hub](https://github.com/itxinfei/hub) | Repository index for the practice projects |
-
 ---
 
 <div align="center">
