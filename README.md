@@ -4,11 +4,11 @@
 
 产品经理干活用的 AI 助手 · 76 个模块 · 13 种工具 · 中文
 
-GitHub 上有 28k 星的 PM skill，也有一口气堆到 95 个的。
+76 个模块装进一个 skill，装一次，13 个 AI 工具都能用。
 
-这份换个做法：76 个模块装进一个 skill，装一次，13 个 AI 工具都能用。
+产品经理一年里会卡住的地方都在这：接需求、做调研、看竞品、定策略、写文档、对数据、谈增长。
 
-手里已经有东西的时候，它不从头盘问，先读一遍，再问你要什么。读完给这份产出打分：现在能发，还是得先补哪两处。
+手上有材料就直接给。它先读再问，不从头盘问；读完给产出打分，能发还是得补哪两处，一句话说清。
 
 [![npm](https://img.shields.io/npm/v/@itxinfei/pm-ai-skill.svg?style=flat-square)](https://www.npmjs.com/package/@itxinfei/pm-ai-skill)
 [![Release](https://img.shields.io/github/v/release/itxinfei/pm-ai-skill?style=flat-square&label=Release)](https://github.com/itxinfei/pm-ai-skill/releases)
