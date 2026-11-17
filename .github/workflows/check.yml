@@ -28,3 +28,11 @@ jobs:
           node bin/index.js template
           node bin/index.js doc
           node bin/index.js example
+          node bin/index.js asset
+          node bin/index.js eval
+
+      - name: 安装脚本语法
+        run: bash -n install.sh
+
+      - name: 打包体积
+        run: npm pack --dry-run 2>&1 | tail -5

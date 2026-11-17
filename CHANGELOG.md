@@ -2,6 +2,27 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.2.3] - 2026-11-17
+
+审查时发现一个对不上的地方：对外一直说支持 13 个工具，代码里只有 12 个。
+
+### 修：豆包从来没被检测过
+
+README、`skill.json`、安装脚本的说明都写着支持 13 个工具，包括豆包。但 `getAllToolPaths()` 的清单里没有豆包的路径，装的时候根本不会往豆包目录里放东西。
+
+补了三个候选位置：
+
+- Windows：`~/Doubao/skills`、`~/.doubao/skills`
+- macOS：`~/Library/Application Support/Doubao/skills`、`~/.doubao/skills`
+- Linux：`~/.config/Doubao/skills`、`~/.doubao/skills`
+
+CLI 和 `install.ps1`、`install.sh` 三处同步。自测：在模拟 home 下建两个豆包目录，install 识别成 2 个目标，各装一份。
+
+### 顺带
+
+- `docs/prompt-reference.md` 的 `### MoSCoW` 补成 `### MoSCoW 优先级`，跟 manifest 和 capability 表统一
+- CI 加了 `bash -n install.sh` 和 `npm pack --dry-run`，安装脚本语法和包内容每次提交都验
+
 ## [1.2.2] - 2026-11-17
 
 这一版没加功能，全在修"别人装完能不能用"。装不上，内容再好也没人看得到。

@@ -71,6 +71,8 @@ $toolPaths = @(
     @{ Tool = 'WorkBuddy';      Path = (Join-Path $homeDir '.workbuddy\skills') },
     @{ Tool = 'TraeCode CN';    Path = (Join-Path $homeDir '.trae-cn\skills') },
     @{ Tool = 'Trae';           Path = (Join-Path $homeDir '.trae\skills') },
+    @{ Tool = '豆包';           Path = (Join-Path $homeDir 'Doubao\skills') },
+    @{ Tool = '豆包';           Path = (Join-Path $homeDir '.doubao\skills') },
     # 国外
     @{ Tool = 'Claude Code';    Path = (Join-Path $homeDir '.claude\skills') },
     @{ Tool = 'Codex';          Path = (Join-Path $homeDir '.codex\skills') },

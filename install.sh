@@ -67,6 +67,8 @@ TOOL_PATHS=(
     "WorkBuddy:$HOME/.workbuddy/skills"
     "TraeCode CN:$HOME/.trae-cn/skills"
     "Trae:$HOME/.trae/skills"
+    "豆包:$HOME/Doubao/skills"
+    "豆包:$HOME/.doubao/skills"
     # 国外
     "Claude Code:$HOME/.claude/skills"
     "Codex:$HOME/.codex/skills"

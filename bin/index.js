@@ -38,6 +38,12 @@ function getAllToolPaths() {
     },
     { name: 'TraeCode CN', paths: [path.join(home, '.trae-cn', 'skills')] },
     { name: 'Trae', paths: [path.join(home, '.trae', 'skills')] },
+    { name: '豆包', paths: isWin
+      ? [path.join(home, 'Doubao', 'skills'), path.join(home, '.doubao', 'skills')]
+      : isMac
+        ? [path.join(home, 'Library', 'Application Support', 'Doubao', 'skills'), path.join(home, '.doubao', 'skills')]
+        : [path.join(home, '.config', 'Doubao', 'skills'), path.join(home, '.doubao', 'skills')]
+    },
     // 国外
     { name: 'Claude Code', paths: [path.join(home, '.claude', 'skills')] },
     { name: 'Codex', paths: [path.join(home, '.codex', 'skills')] },
