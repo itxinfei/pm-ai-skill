@@ -6,17 +6,45 @@
 set -e
 
 SKILL_NAME="pm-ai-skill"
-ZIP_URL="https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip"
 
 echo "=== PM-AI-Skill 一键安装 ==="
 echo ""
 
-# 1. 下载并解压
+if ! command -v unzip >/dev/null 2>&1; then
+    echo "需要 unzip 才能解压，请先装：apt install unzip / brew install unzip"
+    exit 1
+fi
+
 TMP_DIR=$(mktemp -d)
+trap 'rm -rf "$TMP_DIR"' EXIT
 TMP_ZIP="$TMP_DIR/pm-ai-skill.zip"
 
+# 1. 下载。Gitee 的 archive 链接有时返回网页不是 zip，所以下回来先验一遍能不能解压
 echo "[1/4] 下载中..."
-curl -fsSL "$ZIP_URL" -o "$TMP_ZIP"
+SOURCES=(
+    "https://github.com/itxinfei/pm-ai-skill/archive/refs/heads/main.zip"
+    "https://gitee.com/itxinfei/pm-ai-skill/repository/archive/main.zip"
+)
+OK=0
+for url in "${SOURCES[@]}"; do
+    host=$(echo "$url" | awk -F/ '{print $3}')
+    if curl -fsSL "$url" -o "$TMP_ZIP" 2>/dev/null; then
+        if unzip -qt "$TMP_ZIP" >/dev/null 2>&1; then
+            echo "  来源：$host"
+            OK=1
+            break
+        fi
+        echo "  $host 返回的不是有效 zip，换下一个源"
+    else
+        echo "  $host 连不上，换下一个源"
+    fi
+done
+
+if [ "$OK" -eq 0 ]; then
+    echo "两个源都没取到。手动下载后解压，运行 node bin/index.js install："
+    echo "  https://github.com/itxinfei/pm-ai-skill/releases/latest"
+    exit 1
+fi
 
 echo "[2/4] 解压中..."
 unzip -q "$TMP_ZIP" -d "$TMP_DIR"
@@ -26,6 +54,11 @@ SKILL_SOURCE="$EXTRACTED_ROOT/skill-source"
 
 if [ ! -d "$SKILL_SOURCE" ]; then
     SKILL_SOURCE=$(find "$TMP_DIR" -name "skill.json" -type f | head -1 | xargs dirname)
+fi
+
+if [ ! -d "$SKILL_SOURCE" ]; then
+    echo "压缩包里没找到 skill-source，先别装了，去提个 issue"
+    exit 1
 fi
 
 # 2. 所有支持的工具目录
@@ -76,12 +109,16 @@ if [ "$COUNT" -eq 0 ]; then
     echo "  -> 通用目录: $dest"
     echo ""
     echo "没检测到已安装的工具，文件已放到 $DEFAULT_DIR"
-fi
 
-# 清理
-rm -rf "$TMP_DIR"
+    # 当前目录里要是已经是这份内容，就别再拷一份
+    if [ ! -f "./skill-source/system-prompt.md" ]; then
+        cp -r "$SKILL_SOURCE" "./$SKILL_NAME"
+        echo "  -> 当前目录: ./$SKILL_NAME"
+    fi
+fi
 
 echo ""
 echo "[4/4] 安装完成"
 echo ""
 echo "重启工具后直接说：用 RICE 模型评估一下这些需求"
+echo "想用 HTML 报告模板和命令行，装 npm 版：npm i -g @itxinfei/pm-ai-skill"

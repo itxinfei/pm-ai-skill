@@ -2,6 +2,37 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.2.2] - 2026-11-17
+
+这一版没加功能，全在修"别人装完能不能用"。装不上，内容再好也没人看得到。
+
+### 修：一键安装脚本根本装不上
+
+`install.ps1` 和 `install.sh` 的下载地址指向 Gitee 的归档链接。实测这个链接返回的是一张 HTML 网页，不是 zip（46KB，文件头 `<!DOCTYPE html>`），解压直接报 `End of Central Directory record could not be found`。
+
+现在改成两个源依次试：先 GitHub，再 Gitee。下回来先验文件头是不是 `PK`，是网页就换下一个源。两边都不通就明确报错，附手动下载地址，不再报一句看不懂的异常。
+
+### 修：install 会往当前目录塞一份副本
+
+在仓库目录里跑 `pm-ai-skill install`，兜底分支会把 `pm-ai-skill/` 复制到当前目录，把仓库弄脏。现在先判断当前目录是不是已经是这份内容，是就跳过，提示一句"不再复制一份"。
+
+顺手给覆盖旧版本的地方加了标记：装了已经存在的目录会显示`（已覆盖旧版本）`，不再假装是全新安装。
+
+### 新增：eval 命令 + 用例说明
+
+27 条行为回归用例原来只有一份 JSON，不知道怎么用。
+
+- `pm-ai-skill eval` 按类别列出全部，`pm-ai-skill eval route-001` 看单条
+- `evals/README.md` 写清怎么跑、怎么判定、接模型批量评测的裁判模板
+- 说明它和 `scripts/check.js` 的分工：check 管结构，这 27 条管行为
+
+### 文档
+
+- `docs/capability.md` 开头补一句，模块表之外的"带东西来 / 评审 / 打分"三件事在哪
+- `docs/prompt-reference.md` 开头改成 92 条，不再写 76 条
+- 中英文 README 命令表加 `eval`
+- 安装脚本补了文件头校验和失败提示，`install.ps1` 加 UTF-8 BOM，Windows PowerShell 5.1 下中文不乱码
+
 ## [1.2.1] - 2026-11-17
 
 1.2.0 加了两件事，但只加了一半：提示词库里没有配套的提问模板，打分结果也没法交出去。

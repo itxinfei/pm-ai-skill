@@ -203,6 +203,7 @@ npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
 | `pm-ai-skill example grade` | 看样例（10 份，看"做成什么样算合格"） |
 | `pm-ai-skill doc prompt` | 查文档（能力 / 提示词 / 工作流 / FAQ / 工具 / 盘点） |
 | `pm-ai-skill asset report` | 导 HTML（report / review / grade） |
+| `pm-ai-skill eval` | 看 27 条行为回归用例，带 id 看单条 |
 | `pm-ai-skill manifest` | 导机器可读清单，给脚本和自己的小工具用 |
 | `pm-ai-skill info` | 看版本和装了哪些工具 |
 

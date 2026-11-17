@@ -205,6 +205,7 @@ Better for a weekly update to your boss or a review pack than a Markdown table.
 | `pm-ai-skill example grade` | Read a sample (10 available) |
 | `pm-ai-skill doc prompt` | Read docs (capability / prompt / workflow / FAQ / tools / survey) |
 | `pm-ai-skill asset report` | Export HTML (report / review / grade) |
+| `pm-ai-skill eval` | List the 27 behavior cases; pass an id for one |
 | `pm-ai-skill manifest` | Export the machine-readable manifest |
 | `pm-ai-skill info` | Show version and installed tools |
 

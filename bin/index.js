@@ -10,6 +10,7 @@ const templatesDir = path.join(pkgRoot, 'templates');
 const docsDir = path.join(pkgRoot, 'docs');
 const examplesDir = path.join(pkgRoot, 'examples');
 const assetsDir = path.join(pkgRoot, 'assets');
+const evalsFile = path.join(pkgRoot, 'evals', 'cases.json');
 
 function copyDirSync(src, dest) {
   if (!fs.existsSync(dest)) fs.mkdirSync(dest, { recursive: true });
@@ -80,15 +81,21 @@ program
       copyDirSync(skillSourceDir, dest);
       console.log(`未检测到已安装的工具，已安装到：${dest}`);
       const local = path.join(process.cwd(), 'pm-ai-skill');
-      copyDirSync(skillSourceDir, local);
-      console.log(`同时释放到当前目录：${local}`);
+      const alreadyHere = fs.existsSync(path.join(process.cwd(), 'skill-source', 'system-prompt.md'));
+      if (alreadyHere || fs.existsSync(local)) {
+        console.log('当前目录里已经是这份内容，不再复制一份。');
+      } else {
+        copyDirSync(skillSourceDir, local);
+        console.log(`同时释放到当前目录：${local}`);
+      }
       return;
     }
     console.log(`检测到 ${targets.length} 个工具：`);
     for (const t of targets) {
       const dest = path.join(t.path, 'pm-ai-skill');
+      const existed = fs.existsSync(dest);
       copyDirSync(skillSourceDir, dest);
-      console.log(`  -> ${t.name}: ${dest}`);
+      console.log(`  -> ${t.name}: ${dest}${existed ? '（已覆盖旧版本）' : ''}`);
     }
     console.log('安装完成，重启对应工具即可使用。');
   });
@@ -209,6 +216,39 @@ program
     fs.copyFileSync(path.join(assetsDir, map[name]), dest);
     console.log(`已导出：${dest}`);
     console.log('浏览器打开，替换其中示例内容即可使用。');
+  });
+
+program
+  .command('eval [id]')
+  .description('查看行为回归用例：不带参数列全部，带 id 看单条')
+  .action((id) => {
+    const data = JSON.parse(fs.readFileSync(evalsFile, 'utf8'));
+    const cases = data.cases || [];
+    if (!id) {
+      console.log(`共 ${cases.length} 条行为回归用例。用法：pm-ai-skill eval <id>`);
+      const groups = {};
+      for (const c of cases) {
+        (groups[c.category] = groups[c.category] || []).push(c.id);
+      }
+      for (const [cat, ids] of Object.entries(groups)) {
+        console.log(`\n${cat}`);
+        for (const cid of ids) {
+          const c = cases.find((x) => x.id === cid);
+          console.log(`  ${cid}  ${c.input.slice(0, 40)}`);
+        }
+      }
+      console.log('\n怎么跑：把 input 发给装了 skill 的 AI，对照 checks 逐条判断，见 evals/README.md');
+      return;
+    }
+    const c = cases.find((x) => x.id === id);
+    if (!c) {
+      console.log(`没有这条用例：${id}。不带参数可以看全部 id。`);
+      return;
+    }
+    console.log(`id：${c.id}\n类别：${c.category}`);
+    console.log(`\n输入给 AI 的话：\n${c.input}`);
+    console.log(`\n应当出现的行为：\n${c.expected}`);
+    console.log(`\n逐条比对：\n${c.checks.map((x, i) => `${i + 1}. ${x}`).join('\n')}`);
   });
 
 program
