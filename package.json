@@ -13,7 +13,8 @@
     "docs/",
     "examples/",
     "assets/",
-    "evals/"
+    "evals/",
+    "!evals/baseline/"
   ],
   "scripts": {
     "start": "node bin/index.js",
