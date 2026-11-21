@@ -24,6 +24,25 @@
 
 ---
 
+## 从哪开始
+
+不用记模块名。对着一行找就行。
+
+| 你手上是什么情况 | 直接说这句 |
+|---|---|
+| 老板丢来一句需求，不知道能不能做 | 「这个需求帮我体检一下，该不该做」 |
+| 一堆访谈记录或差评，要提炼 | 「这些材料帮我抽出机会点，还有我该问没问到的」 |
+| 竞品上了个新功能，跟不跟 | 「拆一下这个功能，跟不跟给结论」 |
+| 要交 PRD / 路线图 / OKR | 「按模板写一份，写完告诉我够不够发」 |
+| 东西写完了，想过一遍 | 「六个视角评审，只说会出事的地方」 |
+| 明天上线 | 「上线前自查，列阻断项和兜底」 |
+| 留存掉了，要归因 | 「数据掉了，按指标树往下查」 |
+| 想涨价、想推上市 | 「定价方案 / 上市计划，先给判断再给东西」 |
+
+不知道归哪类就直接说事。它会先分诊，再决定给你结论还是给东西。
+
+---
+
 ## 它和普通 AI 助手差在哪
 
 |  | 普通 AI 帮你 | 这个 |
@@ -53,7 +72,7 @@
 | 12 | **HTML 报告** | 三个单文件模板，双击能看，直接打印成 PDF，比 Markdown 表格体面 |
 | 13 | **一键装 13 种工具** | 国产 4 个、国外 8 个、通用 `.agents/skills`，脚本自动扫你装了什么 |
 | 14 | **装一次全都有** | 单个 skill，不用像别的项目那样挑着装九个插件包 |
-| 15 | **13 个模板 + 10 份样例** | 模板告诉你填什么，样例告诉你填成什么样算合格，都能直接抄 |
+| 15 | **14 个模板 + 15 份样例** | 模板告诉你填什么，样例告诉你填成什么样算合格，每份样例末尾写了"为什么算合格"。都能直接抄 |
 | 16 | **27 条回归用例** | 改完跑一遍，知道有没有把原来的行为改坏 |
 | 17 | **机器可读清单** | `manifest.json` 导出 76 个模块的 id/分类/定义，给自己的小工具用 |
 | 18 | **中文原生** | 不是翻译搬运，是按国内研发节奏写的：双周迭代、需求评审会、老板一句话要东西 |
@@ -73,7 +92,7 @@ GitHub 上几个热门的 PM skill，盘点在 [docs/awesome-pm-skills.md](docs/
 | 给产出打分 | 六类材料，0-3 分，0 分否决 | 少数有 |
 | HTML 报告 | 3 个模板，能打印 | 少见 |
 | 回归用例 | 27 条 | 少见 |
-| 真实样例 | 10 份 | 200+（product-on-purpose） |
+| 真实样例 | 15 份，每份带"为什么算合格" | 200+（product-on-purpose） |
 
 输的地方说明白：模块数比不过 95 个的，样例数比不过 200 份的，star 数更比不了，那几家做了两年。
 
@@ -85,6 +104,12 @@ GitHub 上几个热门的 PM skill，盘点在 [docs/awesome-pm-skills.md](docs/
 
 ```bash
 npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
+```
+
+不想全局装，用 npx 跑一次：
+
+```bash
+npx @itxinfei/pm-ai-skill install
 ```
 
 装不上，换一种：
@@ -201,8 +226,8 @@ npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
 | 命令 | 干什么 |
 |---|---|
 | `pm-ai-skill install` | 装到本机检测到的所有 AI 工具 |
-| `pm-ai-skill template prd` | 取模板（13 个） |
-| `pm-ai-skill example grade` | 看样例（10 份，看"做成什么样算合格"） |
+| `pm-ai-skill template prd` | 取模板（14 个） |
+| `pm-ai-skill example grade` | 看样例（15 份，看"做成什么样算合格"） |
 | `pm-ai-skill doc prompt` | 查文档（能力 / 提示词 / 工作流 / FAQ / 工具 / 盘点） |
 | `pm-ai-skill asset report` | 导 HTML（report / review / grade） |
 | `pm-ai-skill eval` | 看 27 条行为回归用例，带 id 看单条 |
@@ -237,9 +262,33 @@ npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
 | 商用与增长 | 7 | 定价策略 · AARRR · RARRA · 单位经济模型 · GTM · 客户成功 · 项目复盘 |
 | 自我迭代与成长 | 5 | 反馈学习 · 个人案例库 · 成长追踪 · 错误复盘 · 提示词自我优化 |
 
-每个模块的适用场景见 [能力清单](docs/capability.md)，配套提问见 [提示词库](docs/prompt-reference.md)（92 条）。
+每个模块的适用场景见 [能力清单](docs/capability.md)，配套提问见 [提示词库](docs/prompt-reference.md)（92 条），各阶段该练什么见 [成长路线](docs/growth-path.md)。
 
 </details>
+
+---
+
+## 模板和样例
+
+模板给骨架，样例给标准。十五份样例都写了"这份为什么算合格"，照着对照自己那份。
+
+| 样例 | 是什么 |
+|---|---|
+| `example review` | 六角色评审报告：2 阻断 / 4 重要 / 3 建议 / 6 可以不改 |
+| `example okr` | 季度 OKR：为什么不用结果指标当 KR，写了不做什么 |
+| `example roadmap` | 季度路线图：优先级算法、砍掉的三个、剩余工时怎么留 |
+| `example persona` | B 端画像：写他一天怎么过和被谁考核，不写性格爱好 |
+| `example gtm` | 小工具上市：定价理由、渠道排序、止损线 |
+| `example grade` | 给 PRD 打分：五项分数、扣分挂原文、两处必须补 |
+| `example prd` | PRD 全文：从问题定义到埋点 |
+| `example rice` | RICE 排序：算分过程和砍单名单 |
+| `example competitor` | 竞品分析：对比表 + 跟不跟的结论 |
+| `example discovery` | 访谈综合：原声、聚类、机会点 |
+| `example strategy` | 战略一页纸 |
+| `example launch` | 上线计划 |
+| `example metrics` | 指标树 |
+| `example premortem` | 事前验尸 |
+| `example mindmap` | 思维导图 |
 
 ---
 
@@ -247,8 +296,8 @@ npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
 
 ```
 skill-source/   system-prompt.md（核心）+ manifest.json + triggers.md
-docs/           能力清单 · 92 条提示词 · 工作流 · 工具速查 · 同类盘点 · FAQ
-templates/      13 个模板         examples/   10 份样例
+docs/           能力清单 · 92 条提示词 · 工作流 · 工具速查 · 同类盘点 · 成长路线 · FAQ
+templates/      14 个模板         examples/   15 份样例
 assets/         3 个 HTML 报告     evals/      27 条回归用例
 ```
 

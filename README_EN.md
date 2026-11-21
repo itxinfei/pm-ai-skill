@@ -26,6 +26,25 @@ By itxinfei (心飞为你飞) · [中文](README.md)
 
 ---
 
+## Where to start
+
+You do not need to know module names. Find your situation and say that sentence.
+
+| Your situation | Just say this |
+|---|---|
+| The boss dropped a one-line request | "Should we build this? Stress-test it" |
+| A pile of interview notes or complaints | "Pull the opportunities out, and tell me what I failed to ask" |
+| A competitor shipped a feature | "Break it down and tell me whether to follow" |
+| You owe a PRD / roadmap / OKR | "Draft it from the template, then tell me if it ships" |
+| Something is written and needs a pass | "Six-role review, only the things that will actually break" |
+| Launching tomorrow | "Pre-launch check: blockers and fallbacks" |
+| Retention is dropping | "Walk the metric tree and find where it broke" |
+| Repricing, or taking a product to market | "Pricing plan / GTM plan — verdict first, then the doc" |
+
+Not sure which one? Just describe the problem. It triages first, then decides whether to hand you a verdict or a deliverable.
+
+---
+
 ## How it differs from a plain AI assistant
 
 | | A plain assistant | This |
@@ -55,7 +74,7 @@ By itxinfei (心飞为你飞) · [中文](README.md)
 | 12 | **HTML reports** | Three single-file templates, double-click to view, print straight to PDF |
 | 13 | **One command, 13 tools** | Four Chinese tools, eight international, plus a generic `.agents/skills` path |
 | 14 | **Install once, get everything** | One skill, not nine plugin packs to pick from |
-| 15 | **13 templates, 10 samples** | Templates say what to fill in; samples show what good looks like |
+| 15 | **14 templates, 15 samples** | Templates say what to fill in; samples show what good looks like, and each ends with why it qualifies |
 | 16 | **27 regression cases** | Run them after a change and see whether behavior broke |
 | 17 | **Machine-readable manifest** | 76 module ids, categories and definitions, for your own scripts |
 | 18 | **Written in Chinese, for Chinese teams** | Not a translation. Biweekly sprints, review meetings, a boss who wants something by Friday |
@@ -75,7 +94,7 @@ A survey of the popular PM skill repos lives in [docs/awesome-pm-skills.md](docs
 | Grading | Six doc types, 0–3, zero blocks | A few have it |
 | HTML reports | 3 templates, printable | Rare |
 | Regression cases | 27 | Rare |
-| Real samples | 10 | 200+ (product-on-purpose) |
+| Real samples | 15, each with a note on why it qualifies | 200+ (product-on-purpose) |
 
 Where this loses, plainly: fewer modules than the 95-skill project, far fewer samples than the 200-sample one, and nowhere near their stars — those projects have been running for two years.
 
@@ -87,6 +106,12 @@ Where it wins, on two things the others skip: **install once and you have all of
 
 ```bash
 npm i -g @itxinfei/pm-ai-skill && pm-ai-skill install
+```
+
+No global install? Run it once with npx:
+
+```bash
+npx @itxinfei/pm-ai-skill install
 ```
 
 If that does not work, pick another route:
@@ -203,8 +228,8 @@ Better for a weekly update to your boss or a review pack than a Markdown table.
 | Command | Does |
 |---|---|
 | `pm-ai-skill install` | Install into every AI tool detected |
-| `pm-ai-skill template prd` | Fetch a template (13 available) |
-| `pm-ai-skill example grade` | Read a sample (10 available) |
+| `pm-ai-skill template prd` | Fetch a template (14 available) |
+| `pm-ai-skill example grade` | Read a sample (15 available) |
 | `pm-ai-skill doc prompt` | Read docs (capability / prompt / workflow / FAQ / tools / survey) |
 | `pm-ai-skill asset report` | Export HTML (report / review / grade) |
 | `pm-ai-skill eval` | List the 27 behavior cases; pass an id for one |
@@ -239,9 +264,33 @@ Rank these with RICE, then cut the MVP with MoSCoW
 | Monetization & growth | 7 | Pricing strategy · AARRR · RARRA · Unit economics · GTM · Customer success · Project retro |
 | Self-improvement | 5 | Feedback learning · Personal case library · Growth tracking · Error retro · Prompt self-tuning |
 
-When to use each module: [capability list](docs/capability.md). Ready-to-copy prompts: [prompt library](docs/prompt-reference.md) (92 entries).
+When to use each module: [capability list](docs/capability.md). Ready-to-copy prompts: [prompt library](docs/prompt-reference.md) (92 entries). What to practice at each career stage: [growth path](docs/growth-path.md).
 
 </details>
+
+---
+
+## Templates and samples
+
+Templates give the skeleton; samples set the bar. Every sample ends with a short note on why it qualifies — read it against your own draft.
+
+| Sample | What it is |
+|---|---|
+| `example review` | Six-role review: 2 blocking, 4 important, 3 suggestions, 6 things you can leave alone |
+| `example okr` | Quarterly OKR: why process KRs beat outcome KRs, and what is explicitly not being done |
+| `example roadmap` | Quarterly roadmap: scoring, the three things cut, and slack left for surprises |
+| `example persona` | B2B persona: his day and who appraises him, not hobbies |
+| `example gtm` | Small-tool launch: pricing rationale, channel order, kill criteria |
+| `example grade` | Grading a PRD: five scores, deductions quoted from the text, two must-fix items |
+| `example prd` | Full PRD, problem statement through instrumentation |
+| `example rice` | RICE ranking with the arithmetic and the cut list |
+| `example competitor` | Competitor analysis: comparison table and a follow-or-not verdict |
+| `example discovery` | Interview synthesis: quotes, clusters, opportunities |
+| `example strategy` | One-page strategy |
+| `example launch` | Launch plan |
+| `example metrics` | Metric tree |
+| `example premortem` | Pre-mortem |
+| `example mindmap` | Mindmap |
 
 ---
 
@@ -250,7 +299,7 @@ When to use each module: [capability list](docs/capability.md). Ready-to-copy pr
 ```
 skill-source/   system-prompt.md (core) + manifest.json + triggers.md
 docs/           capabilities · 92 prompts · workflows · tools · survey · FAQ
-templates/      13 templates        examples/   10 samples
+templates/      14 templates        examples/   15 samples
 assets/         3 HTML reports      evals/      27 regression cases
 ```
 

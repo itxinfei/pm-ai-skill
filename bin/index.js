@@ -123,10 +123,11 @@ program
 
 program
   .command('template [name]')
-  .description('查看模板：prd / meeting / interview / bmc / competitor / roadmap / retrospective / initiation / okr / abtest / premortem / persona / metrics')
+  .description('查看模板：prd / prd-b2b / meeting / interview / bmc / competitor / roadmap / retrospective / initiation / okr / abtest / premortem / persona / metrics')
   .action((name) => {
     const map = {
       prd: 'prd-template.md',
+      'prd-b2b': 'prd-b2b-template.md',
       meeting: 'meeting-minutes-template.md',
       interview: 'interview-script-sample.md',
       bmc: 'business-model-checklist.md',
@@ -154,7 +155,7 @@ program
 
 program
   .command('doc [name]')
-  .description('查看文档：capability / prompt / workflow / faq / tools / awesome')
+  .description('查看文档：capability / prompt / workflow / faq / tools / awesome / growth')
   .action((name) => {
     const map = {
       capability: 'capability.md',
@@ -163,6 +164,7 @@ program
       faq: 'faq.md',
       tools: 'tools.md',
       awesome: 'awesome-pm-skills.md',
+      growth: 'growth-path.md',
     };
     if (!name) {
       console.log('可用文档：' + Object.keys(map).join(', '));
@@ -178,7 +180,7 @@ program
 
 program
   .command('example [name]')
-  .description('查看示例：prd / rice / competitor / mindmap / discovery / grade / launch / metrics / premortem / strategy')
+  .description('查看示例：prd / rice / competitor / mindmap / discovery / grade / launch / metrics / premortem / strategy / review / okr / roadmap / persona / gtm')
   .action((name) => {
     const map = {
       prd: 'prd-example.md',
@@ -191,6 +193,11 @@ program
       metrics: 'metric-tree-sample.md',
       premortem: 'pre-mortem-sample.md',
       strategy: 'strategy-one-pager-sample.md',
+      review: 'review-sample.md',
+      okr: 'okr-sample.md',
+      roadmap: 'roadmap-sample.md',
+      persona: 'persona-sample.md',
+      gtm: 'gtm-sample.md',
     };
     if (!name) {
       console.log('可用示例：' + Object.keys(map).join(', '));

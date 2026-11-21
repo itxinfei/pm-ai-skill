@@ -24,8 +24,10 @@ const required = [
   'skill-source/skill.json', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
   'docs/capability.md', 'docs/prompt-reference.md', 'docs/workflow-guide.md',
   'docs/faq.md', 'docs/tools.md', 'docs/awesome-pm-skills.md',
+  'docs/growth-path.md',
   'assets/report.html', 'assets/review.html', 'assets/grade.html',
-  'evals/cases.json',
+  'templates/prd-b2b-template.md',
+  'evals/cases.json', 'evals/README.md',
   'skill-source/manifest.json',
   '.github/ISSUE_TEMPLATE/bug_report.md',
   '.github/ISSUE_TEMPLATE/feature_request.md',
@@ -125,8 +127,8 @@ if (trigCount < 70) warn(`triggers.md 触发条数 ${trigCount}，偏少`);
 // 5. templates / examples
 const tpl = fs.readdirSync(path.join(root, 'templates')).filter(f => f.endsWith('.md'));
 const ex = fs.readdirSync(path.join(root, 'examples')).filter(f => f.endsWith('.md'));
-if (tpl.length !== 13) warn(`templates 有 ${tpl.length} 个，预期 13`);
-if (ex.length !== 10) warn(`examples 有 ${ex.length} 个，预期 10`);
+if (tpl.length < 14) fail(`templates 只有 ${tpl.length} 个，少于 14`);
+if (ex.length < 15) fail(`examples 只有 ${ex.length} 个，少于 15`);
 
 // 5.1 manifest 要能和 prompt 对上
 if (exists('skill-source/manifest.json')) {

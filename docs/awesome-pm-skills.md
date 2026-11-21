@@ -1,95 +1,66 @@
 # GitHub 上的 PM Skill 生态
 
-2026-11-17 用 GitHub API 抓的，star 按仓库当前值，不是历史峰值。star 只说明有多少人点过，不代表质量 —— 真正要看的是它解决什么问题、怎么组织。
+2026-11-21 用 GitHub API 抓的，star 是当时的值。star 说明有多少人点过，不说明质量。
 
-看这份清单的用途有两个：找同类做对标，找能直接抄的做法。
+看这份清单有两个用途：找同类对标，找能直接抄的做法。
 
 ---
 
-## 第一梯队（万星以上）
+## 前十
 
 | 仓库 | star | 规模 | 它做对了什么 |
 |---|---|---|---|
-| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | 28.0k | 72 skills + 42 chained workflows，9 个 plugin | 按职能分 plugin（discovery / strategy / execution / market-research / growth / go-to-market / analytics / ai-shipping / toolkit），一条命令装一个职能包。README 第一屏是「你现在要干什么→用哪条命令」，`/discover` `/strategy` `/write-prd` `/plan-launch` `/north-star` |
-| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | 8.0k | 95 skills + 6 command workflows | 一个 skill 只干一件事，粒度极细。有 `catalog/` 目录页、starter pack zip、自动发版。开场问的是「这周桌上摆着什么活」，不是让你报模块名 |
-
-## 千星级
-
-| 仓库 | star | 特点 |
-|---|---|---|
-| [mohitagw15856/pm-claude-skills](https://github.com/mohitagw15856/pm-claude-skills) | 1.5k | 1310 个 skill，纯数量打法。覆盖面广到能当字典查，但不好记也不好选 |
-| [deanpeters/product-manager-prompts](https://github.com/deanpeters/product-manager-prompts) | 1.2k | 上一个作者的提示词版，比 skill 版更早。适合直接复制粘贴 |
-| [SpaceZephyr/pm-skills](https://github.com/SpaceZephyr/pm-skills) | 1.1k | 本项目 v1.1.0 的吸收对象：三层架构（总控 / 执行 / 顾问团）+ 6 角色评审 + HTML 输出 |
-| [borghei/Claude-Skills](https://github.com/borghei/Claude-Skills) | 1.1k | 403 skills + 76 expert agents + 973 个 Python 工具。跨职能，不只 PM |
-
-## 百星级，各有侧重
-
-| 仓库 | star | 值得看的地方 |
-|---|---|---|
-| [product-on-purpose/pm-skills](https://github.com/product-on-purpose/pm-skills) | 813 | 68 skills，但配了 **200+ 真实样例输出**。它卖的不是模板，是"做出来应该长什么样"这条质量线 |
-| [zamesin/Next-Move-Theory-Canon-and-Skills](https://github.com/zamesin/Next-Move-Theory-Canon-and-Skills) | 472 | 市场调研、价值主张、PRD、GTM 串成一条线，理论书 + skills 双份 |
-| [menkesu/awesome-pm-skills](https://github.com/menkesu/awesome-pm-skills) | 460 | 25 个 workflow，内容来自 340 期 Lenny's Podcast。README 用「带什么来 → 用哪个 → 要什么」三列表，比按模块分类直观 |
-| [peterfei/ai-agent-team](https://github.com/peterfei/ai-agent-team) | 452 | 中文。把 PM 放进一个虚拟团队（前端/后端/测试/DevOps），PM 只负责需求 |
-| [pmYangKun/create-prd-skill](https://github.com/pmYangKun/create-prd-skill) | 378 | 中文。B 端 PRD，基于《决胜B端》方法论，固定 14 章结构 |
-| [fleurytian/awesome-claude-skills](https://github.com/fleurytian/awesome-claude-skills) | 330 | 面向脑力工作者，作者是前麦肯锡 + AI 产品经理 |
-| [nurettincoban/ai-prd-workflow](https://github.com/nurettincoban/ai-prd-workflow) | 311 | RFC 驱动：想法或已有代码 → 验证过的 PRD → 功能实现。偏工程侧 |
-| [smallnest/goal-workflow](https://github.com/smallnest/goal-workflow) | 302 | `/prd` `/goal` `/review-it` `/ship-it` 四个命令把开发闭环跑完，中文作者 |
-| [nicepkg/ai-workflow](https://github.com/nicepkg/ai-workflow) | 293 | 170+ skills，覆盖 14 个 AI 工具。装法统一是它的卖点 |
-| [Fokkyp/claude-skills](https://github.com/Fokkyp/claude-skills) | 235 | 中文。作者称都在商业环境下测过，竞品分析、需求文档为主 |
-| [Digidai/product-manager-skills](https://github.com/Digidai/product-manager-skills) | 205 | 强项是 **critique**：诊断 SaaS 指标、给 PRD 挑毛病、排优先级 |
-| [wuwu119/lenny-pm-skills](https://github.com/wuwu119/lenny-pm-skills) | 198 | 中文。Lenny 那套的 86 技能翻译版 |
-| [killvxk/pm-skills-zh](https://github.com/killvxk/pm-skills-zh) | 186 | 中文。phuryn 那 28k 星仓库的翻译版，65 技能 + 36 工作流 |
-| [beautfulmt/PM-K12--skills](https://github.com/beautfulmt/PM-K12--skills) | 166 | 中文。从调研到 PRD、原型、验收、数据，一条完整链路 |
-| [amplitude/builder-skills](https://github.com/amplitude/builder-skills) | 164 | Amplitude 官方出品。按职能分 9 个 plugin（含 sales、design、engineering），README 里每个 skill 一句话说清干什么 |
-| [aakashg/pm-claude-code-setup](https://github.com/aakashg/pm-claude-code-setup) | 163 | 一份 CLAUDE.md + 起步 skill，教 PM 怎么配环境，不是给 skill 的 |
-| [konglong87/superPM](https://github.com/konglong87/superPM) | 94 | 中文。全生命周期工作流，主打一键 |
-| [Mehdibargach/claude-code-pm-skills](https://github.com/Mehdibargach/claude-code-pm-skills) | 99 | 20 个 skill，按 discovery / build / measure / communicate 分 |
-| [assimovt/productskills](https://github.com/assimovt/productskills) | 74 | 小但干净，只做 discovery、strategy、prioritization、PRD 四件事 |
-| [xuqiang97/pm-ai-toolkit](https://github.com/xuqiang97/pm-ai-toolkit) | 17 | 中文，和本项目定位最像：需求澄清、PRD、原型、评审、数据、复盘 |
+| [phuryn/pm-skills](https://github.com/phuryn/pm-skills) | 28.2k | 100+ skills，42 条 workfolw，9 个 plugin | README 第一屏就是「你现在要干什么 → 用哪条命令」，`/discover` `/write-prd` `/plan-launch`。按职能拆包，装一个包解决一类事 |
+| [deanpeters/Product-Manager-Skills](https://github.com/deanpeters/Product-Manager-Skills) | 8.1k | 95 skills | 一个 skill 只干一件事，细到「写竞品对比表」单独成一个。有 catalog 目录页，有 starter pack，发版自动化 |
+| [mohitagw15856/pm-claude-skills](https://github.com/mohitagw15856/pm-claude-skills) | 1.6k | 1310 skills | 数量打法天花板。真正值得看的是 `npx pm-claude-skills add`，一行装完，不用全局安装 |
+| [RefoundAI/lenny-skills](https://github.com/RefoundAI/lenny-skills) | 1.5k | 86 skills | 内容全部出自 Lenny's Podcast 的真实访谈，每条能追溯到哪一期。别人给框架，它给有出处的经验 |
+| [deanpeters/product-manager-prompts](https://github.com/deanpeters/product-manager-prompts) | 1.2k | 提示词集 | 同一作者更早的版本。不装 skill，直接复制粘贴，门槛低到零 |
+| [SpaceZephyr/pm-skills](https://github.com/SpaceZephyr/pm-skills) | 1.2k | 三层架构 | 总控 / 执行 / 顾问团三层 + 6 角色评审 + HTML 输出。本项目 1.1.0 吸收的就是它 |
+| [product-on-purpose/pm-skills](https://github.com/product-on-purpose/pm-skills) | 831 | 68 skills + 200+ 样例 + 6 sub-agents | 卖的不是模板是样例：200+ 份真实产出，告诉你合格长什么样。再加 CI 强制契约，提交就校验 |
+| [jackispm/ProductManager](https://github.com/jackispm/ProductManager) | 567 | 中文资源集 | 面向产品工程师和独立开发者，不只大厂 PM。视角不一样 |
+| [archlizheng/AIPM-Wiki](https://github.com/archlizheng/AIPM-Wiki) | 530 | 中文知识库 | 面试题库 + 学习路线 + 案例拆解。AI PM 转行的人从这儿进门 |
+| [menkesu/awesome-pm-skills](https://github.com/menkesu/awesome-pm-skills) | 460 | 25 workflows | README 用「带什么来 → 用哪个 → 要什么」三列，不按模块名分类。内容来自 340 期播客 |
 
 ---
 
-## 中文生态，单独说
+## 值得抄的，和抄了没
 
-上面标"中文"的加起来超过 1800 星，说明这块有真实需求，但做法分三类：
-
-1. **翻译搬运**（killvxk、wuwu119）：把英文仓库翻过来，省事，但方法论还是别人的语境。
-2. **垂直深耕**（pmYangKun 的 B 端 PRD 14 章、beautfulmt 的 K12）：吃透一个场景，不贪全。
-3. **团队化**（peterfei/ai-agent-team）：不把 PM 当主角，当成团队里的一个角色。
-
-这三条路都能走，但说明一件事：**只做"中文版英文 skill"没有护城河**，翻译谁都能做。
-
----
-
-## 值得学的六件事
-
-对着上面这些仓库，能提出来、也确实能落地的做法：
-
-| 做法 | 出自 | 为什么值得学 |
+| 做法 | 出自 | 本项目 |
 |---|---|---|
-| **按"你带了什么"分诊**，不按模块名 | menkesu | 用户是拿着一份定价页/访谈记录来的，不是拿着"我要用 RICE"来的 |
-| **给已有产出打分** | menkesu、Digidai | 大多数人不是从零写，是来让你挑毛病的。挑得准比写得多有用 |
-| **真实样例库**，不是模板库 | product-on-purpose（200+ outputs） | 模板告诉你填什么，样例告诉你填成什么样算合格 |
-| **机器可读清单** | product-on-purpose（library.json、skill-manifest.json） | 别人做工具、做检索、做市场页都要读它 |
-| **命令快捷入口** | phuryn、smallnest | `/write-prd` 比"帮我写个 PRD"少打字，也更好记 |
-| **发布前自动校验** | phuryn（validate_plugins.py）、product-on-purpose（release-please） | 上百个 skill 靠人眼看不住 |
+| 首屏「你要干什么 → 用哪条命令」 | phuryn | 1.2.4 加了，README 第一屏就是这张表 |
+| 按职能拆 plugin 包 | phuryn | **不抄**。单 skill 装一次全都有，少一步选择 |
+| 一个 skill 一件事 | deanpeters | 半抄。模块粒度一样细，但打在一个 skill 里 |
+| catalog 目录页 | deanpeters | 有，`docs/capability.md` 76 行 |
+| `npx` 一行装 | mohitagw | 1.2.4 加了，不用全局安装也能跑 |
+| 内容能追溯出处 | lenny-skills | **不抄**。这份的是自己干活攒的，编个出处反而假 |
+| 真实样例库，不是模板库 | product-on-purpose | 200+ 份，每份带用法说明；本项目 15 份，每份带"为什么算合格"，还得继续补 |
+| 机器可读清单 | product-on-purpose | 有，`manifest.json` 76 模块 / 10 分类 / 6 链路 |
+| CI 强制契约 | product-on-purpose | 有，`check.js` + GitHub Actions，提交就查 |
+| 固定章节结构的 PRD | pmYangKun（B 端 14 章） | 1.2.4 加了 `prd-b2b` 模板 |
+| 给已有产出挑毛病 | Digidai | 有，六视角评审 + 0-3 分打分 |
+| 成长路线，不只是工具 | AIPM-Wiki | 1.2.4 加了 `docs/growth-path.md` |
+| 「带什么来」三列分诊 | menkesu | 有，十种材料的分诊表 |
 
-## 不值得学的
+## 不抄的
 
-- **拼数量**。1310 个 skill 的仓库，用户照样不知道选哪个。数量和可用性是两回事。
-- **只做翻译**。前面说过，没有护城河。
-- **用 star 当目标**。28k 星那个仓库的 README 里有一句"If this project helps you, ⭐ the repo"，位置放得很聪明 —— 但那是运营手段，不是产品能力。
+- **拼数量**。1310 个 skill，用户还是不知道选哪个。数量不解决选择困难。
+- **只做翻译**。中文版英文 skill 谁都能做，没有护城河。
+- **拿 star 当目标**。28k 那个仓库 README 里有句"If this project helps you, ⭐ the repo"，位置很聪明，但那是运营，不是能力。
 
 ---
 
 ## 本项目在哪
 
-76 个模块、中文原生、单 skill、13 个 AI 工具一键装、带 CLI、有 HTML 输出和评测用例。
+76 个模块 · 92 条提示词 · 15 份样例 · 3 个 HTML 模板 · 27 条回归用例 · manifest · 13 个 AI 工具
 
-差异化不在模块数量（比不过 1310），在三点：
+不比模块数（比不过 1310），比这三样：
 
-1. **中文原生**。不是翻译腔，模板和例子都是国内团队在用的东西（周报、立项、双周迭代）。
-2. **能落地**。`npm i -g` 装完就有命令，不依赖某个特定工具的市场。
-3. **给判断，不只给文档**。分诊、链路、多角色评审这三层是这一版加的，目标是让它在"该不该做"这种问题上能拦你一下。
+1. **中文原生**。不是翻译腔。周报、立项、双周迭代、老板周五要东西，这些都是国内团队的日常。
+2. **装完就能用**。一条命令，13 个工具都装上，不依赖某个工具的市场生态。
+3. **给判断，不只给文档**。分诊决定要不要写，评审挑毛病，打分判能不能发。这三层是为了在"这东西到底该不该做"上拦你一下。
 
-短板也清楚：**样例库太薄**（4 个）、**没有打分能力**、**清单不是机器可读的**。这三样是下一步该补的。
+## 还差什么
+
+- **样例不够**。15 份对 200+，差距在那摆着。样例是最难补的，每份都得真写。
+- **英文不原生**。有 README_EN，但文档主体是中文，海外用户进不来。
+- **没人替你验证效果**。27 条用例靠人跑，接不了自动化评测。
