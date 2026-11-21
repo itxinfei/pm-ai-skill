@@ -232,7 +232,8 @@ Better for a weekly update to your boss or a review pack than a Markdown table.
 | `pm-ai-skill install` | Install into every AI tool detected |
 | `pm-ai-skill template prd` | Fetch a template (14 available) |
 | `pm-ai-skill example grade` | Read a sample (15 available) |
-| `pm-ai-skill doc prompt` | Read docs (capability / prompt / workflow / FAQ / tools / survey) |
+| `pm-ai-skill doc prompt` | Read docs (capability / prompt / workflow / FAQ / tools / survey / delivery) |
+| `pm-ai-skill deliver feishu your.md` | Convert to a Lark-importable draft and flag tables, heading jumps and nested lists that would break |
 | `pm-ai-skill asset report` | Export HTML (report / review / grade) |
 | `pm-ai-skill eval` | List the 27 behavior cases; pass an id for one |
 | `pm-ai-skill manifest` | Export the machine-readable manifest |

@@ -176,7 +176,7 @@ program
 
 program
   .command('doc [name]')
-  .description('查看文档：capability / prompt / workflow / faq / tools / awesome / growth')
+  .description('查看文档：capability / prompt / workflow / faq / tools / awesome / growth / deliver')
   .action((name) => {
     const map = {
       capability: 'capability.md',
@@ -186,6 +186,7 @@ program
       tools: 'tools.md',
       awesome: 'awesome-pm-skills.md',
       growth: 'growth-path.md',
+      deliver: 'deliver.md',
     };
     if (!name) {
       console.log('可用文档：' + Object.keys(map).join(', '));
@@ -283,6 +284,49 @@ program
     console.log(`\n输入给 AI 的话：\n${c.input}`);
     console.log(`\n应当出现的行为：\n${c.expected}`);
     console.log(`\n逐条比对：\n${c.checks.map((x, i) => `${i + 1}. ${x}`).join('\n')}`);
+  });
+
+program
+  .command('deliver [target] [input]')
+  .description('交付成指定载体的形状：deliver feishu <file.md>（转成飞书能直接导入的稿子，并列出会踩的坑）')
+  .option('--title <title>', '文档标题，不填取文内第一个一级标题')
+  .option('--doc-version <v>', '文档版本号，如 v1.0（不要用 --version，那是 CLI 自己的版本）')
+  .option('--status <s>', '状态，如 草稿 / 评审中 / 已确认')
+  .option('--author <a>', '作者')
+  .option('--out <path>', '输出路径')
+  .action((target, input, opts) => {
+    if (!target || target !== 'feishu') {
+      console.log('目前支持：pm-ai-skill deliver feishu <file.md>');
+      console.log('它把 Markdown 改成飞书导入能吃的结构：表格列数对齐、标题不跳级、本地图片标出来。');
+      return;
+    }
+    if (!input) {
+      console.log('用法：pm-ai-skill deliver feishu <file.md> [--title 标题] [--version v1.0] [--status 草稿] [--author 你]');
+      return;
+    }
+    const { buildDeliver } = require('./feishu');
+    let r;
+    try {
+      r = buildDeliver(input, {
+        title: opts.title,
+        version: opts.docVersion,
+        status: opts.status,
+        author: opts.author,
+        out: opts.out,
+      });
+    } catch (e) {
+      console.log(e.message);
+      return;
+    }
+    console.log(`已生成：${r.outPath}`);
+    console.log(`${r.stats.words} 字 · ${r.stats.tables} 张表 · ${r.stats.headings} 个标题 · ${r.stats.todo} 条待办`);
+    if (r.issues.length) {
+      console.log(`\n导入前处理这 ${r.issues.length} 处，否则飞书里会变形：`);
+      r.issues.forEach((x, i) => console.log(`  ${i + 1}. ${x}`));
+    } else {
+      console.log('\n没有查到会变形的结构，可以直接导入。');
+    }
+    console.log('\n导入方式：飞书云文档 → 新建 → 导入文档 → 选这份 .md。导入后检查表格和标题层级。');
   });
 
 program
