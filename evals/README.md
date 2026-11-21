@@ -19,6 +19,18 @@ pm-ai-skill eval route-001  # 看单条全文
 2. 对着 `checks` 逐条看输出。满足几条算几条，不要用"整体感觉还行"代替。
 3. 记下哪条没满足，回到 `system-prompt.md` 找对应规则，看是规则没写清还是模型没执行。
 
+## 自动评分
+
+`checks` 是给人看的判据，`auto` 是同一批判据的可机检版本。把回答存成 `<case-id>.md` 后：
+
+```bash
+pm-ai-skill score chain-001 chain-001.md   # 一条，逐项给证据
+pm-ai-skill score all ./answers            # 整目录，出通过率
+pm-ai-skill score all ./answers --json     # 出 JSON，两版对比
+```
+
+规则类型只有七种（`has` / `hasAny` / `not` / `first` / `maxChars` / `minChars` / `maxCount`），写在 `cases.json` 的 `auto` 字段。改完跑 `node scripts/check.js`：它会编译每条正则，并拿一坨套话试一遍，规则太松的用例会被拦下。
+
 ## 判定
 
 | 结果 | 标准 |

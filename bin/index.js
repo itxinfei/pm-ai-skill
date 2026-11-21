@@ -176,7 +176,7 @@ program
 
 program
   .command('doc [name]')
-  .description('查看文档：capability / prompt / workflow / faq / tools / awesome / growth / deliver')
+  .description('查看文档：capability / prompt / workflow / faq / tools / awesome / growth / deliver / flow / score')
   .action((name) => {
     const map = {
       capability: 'capability.md',
@@ -187,6 +187,8 @@ program
       awesome: 'awesome-pm-skills.md',
       growth: 'growth-path.md',
       deliver: 'deliver.md',
+      flow: 'flow.md',
+      score: 'score.md',
     };
     if (!name) {
       console.log('可用文档：' + Object.keys(map).join(', '));
@@ -327,6 +329,88 @@ program
       console.log('\n没有查到会变形的结构，可以直接导入。');
     }
     console.log('\n导入方式：飞书云文档 → 新建 → 导入文档 → 选这份 .md。导入后检查表格和标题层级。');
+  });
+
+program
+  .command('flow <subject>')
+  .description('一条命令跑完半条链路：需求体检 → PRD 骨架 → 飞书导入稿（内容仍由你填）')
+  .option('--out <dir>', '输出目录，默认当前目录下 flow-<需求名>')
+  .option('--type <t>', 'PRD 类型：b2b（默认）或 light')
+  .option('--author <a>', '作者')
+  .action((subject, opts) => {
+    const { buildFlow, TYPES } = require('./flow');
+    let r;
+    try {
+      r = buildFlow(subject, opts);
+    } catch (e) {
+      console.log(e.message);
+      if (!opts.type || !TYPES[opts.type]) {
+        console.log('可用类型：' + Object.keys(TYPES).join(' / '));
+      }
+      return;
+    }
+    console.log(`已生成三份文件到：${r.dir}`);
+    for (const f of r.files) {
+      console.log(`  ${f.step}. ${f.name}：${path.basename(f.path)}`);
+    }
+    console.log(`\nPRD 骨架按「${r.type}」出，${r.chapters} 个待填章节。`);
+    if (r.issues.length) {
+      console.log(`飞书稿还有 ${r.issues.length} 处要处理：`);
+      r.issues.forEach((x, i) => console.log(`  ${i + 1}. ${x}`));
+    } else {
+      console.log('飞书稿可以直接导入，不会变形。');
+    }
+    console.log('\n接着做：');
+    console.log('  1. 把需求发给你装了 skill 的 AI，让它按 01-intake.md 逐条追问，答不上来的留着');
+    console.log('  2. 结论写「做」之后，再让它按 02-prd.md 的章节填，填完勾掉进度');
+    console.log('  3. 交出去前重跑一次：pm-ai-skill deliver feishu 02-prd.md');
+  });
+
+program
+  .command('score [id] [output]')
+  .description('给 AI 输出打分：score <case-id> <输出文件> 打一条，score all <目录> 批量打（目录内按 <case-id>.md 命名）')
+  .option('--json', '输出 JSON，方便两次结果对比')
+  .action((id, output, opts) => {
+    const { loadCases, scoreCase, scoreDir, renderOne, renderBatch, readOutput } = require('./score');
+    const data = loadCases();
+
+    if (!id) {
+      console.log('用法：');
+      console.log('  pm-ai-skill score route-001 我的输出.md   打一条，看逐条证据');
+      console.log('  pm-ai-skill score all 输出目录            批量打，出通过率');
+      console.log('  pm-ai-skill score all 输出目录 --json     出 JSON，和上一版对比');
+      console.log(`\n共 ${data.cases.length} 条用例，机检规则 ${data.cases.reduce((a, c) => a + (c.auto || []).length, 0)} 条。`);
+      console.log('先把用例的 input 发给装了 skill 的 AI，把回答存成 <case-id>.md。');
+      return;
+    }
+
+    if (id === 'all') {
+      if (!output) { console.log('批量评分需要给个目录：pm-ai-skill score all <目录>'); return; }
+      let r;
+      try { r = scoreDir(output); } catch (e) { console.log(e.message); return; }
+      if (opts.json) {
+        console.log(JSON.stringify({ generatedAt: new Date().toISOString(), ...r }, null, 2));
+      } else {
+        console.log(renderBatch(r));
+      }
+      return;
+    }
+
+    const c = data.cases.find((x) => x.id === id);
+    if (!c) { console.log(`没有这条用例：${id}。pm-ai-skill eval 可以看全部 id。`); return; }
+    if (!output) {
+      console.log(`用法：pm-ai-skill score ${id} <输出文件>`);
+      console.log(`把这句话发给装了 skill 的 AI，回答存下来再打分：\n${c.input}`);
+      return;
+    }
+    let text;
+    try { text = readOutput(output); } catch (e) { console.log(e.message); return; }
+    const r = scoreCase(c, text);
+    if (opts.json) {
+      console.log(JSON.stringify({ generatedAt: new Date().toISOString(), case: r }, null, 2));
+    } else {
+      console.log(renderOne(r, c));
+    }
   });
 
 program

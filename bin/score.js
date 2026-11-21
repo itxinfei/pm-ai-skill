@@ -1,0 +1,212 @@
+/**
+ * 可复现的行为评分。
+ *
+ * 27 条用例原本只有自然语言 checks，只能人看，不同人看不同结论。
+ * 这里把能机检的部分固定成规则（evals/cases.json 的 auto 字段），
+ * 同一份输出跑两次分数一样，换一版 skill 跑，分数可比。
+ *
+ * 规则覆盖不到的检查项不会假装覆盖：输出里会写明"机检覆盖 3/3 项"或"2/3 项"。
+ */
+
+const fs = require('fs');
+const path = require('path');
+
+const ROOT = path.resolve(__dirname, '..');
+const CASES_FILE = path.join(ROOT, 'evals', 'cases.json');
+
+const loadCases = () => JSON.parse(fs.readFileSync(CASES_FILE, 'utf8'));
+
+const uniq = (arr) => Array.from(new Set(arr));
+
+/** 首段：跳过纯标题块和纯元信息块，取第一块真正在说事的内容 */
+function firstBlock(text) {
+  const blocks = text.trim().split(/\n\s*\n/);
+  for (const raw of blocks) {
+    const t = raw.trim();
+    if (!t) continue;
+    const lines = t.split('\n');
+    if (lines.length <= 2 && /^(#{1,6}\s|>)/.test(t)) continue;
+    return t;
+  }
+  return (blocks[0] || '').trim();
+}
+
+/** 命中时回一段上下文当证据，别只说"中了" */
+function evidence(text, needle) {
+  const i = text.indexOf(needle);
+  if (i < 0) return '';
+  const s = Math.max(0, i - 24);
+  const e = Math.min(text.length, i + needle.length + 24);
+  return '…' + text.slice(s, e).replace(/\s+/g, ' ') + '…';
+}
+
+function checkRule(rule, text) {
+  const label = rule.label || rule.t;
+  switch (rule.t) {
+    case 'has': {
+      const hit = text.includes(rule.v);
+      return {
+        ok: hit,
+        label,
+        note: hit ? evidence(text, rule.v) : `没出现：${rule.v}`,
+      };
+    }
+    case 'hasAny': {
+      const hit = rule.v.find((x) => text.includes(x));
+      return {
+        ok: !!hit,
+        label,
+        note: hit ? evidence(text, hit) : `一个都没有：${rule.v.join(' / ')}`,
+      };
+    }
+    case 'not': {
+      const re = new RegExp(rule.v, 'm');
+      const m = text.match(re);
+      return {
+        ok: !m,
+        label,
+        note: m ? `出现了不该有的：${(m[0] || '').trim().slice(0, 40)}` : '没出现',
+      };
+    }
+    case 'first': {
+      const head = firstBlock(text);
+      const hit = rule.v.find((x) => head.includes(x));
+      return {
+        ok: !!hit,
+        label,
+        note: hit ? `首段含「${hit}」` : `首段没有：${rule.v.join(' / ')}`,
+      };
+    }
+    case 'maxChars': {
+      const n = [...text].length;
+      return { ok: n <= rule.n, label, note: `实际 ${n} 字，上限 ${rule.n}` };
+    }
+    case 'minChars': {
+      const n = [...text].length;
+      return { ok: n >= rule.n, label, note: `实际 ${n} 字，下限 ${rule.n}` };
+    }
+    case 'maxCount': {
+      const m = text.match(new RegExp(rule.v, 'g')) || [];
+      return { ok: m.length <= rule.n, label, note: `出现 ${m.length} 次，上限 ${rule.n}` };
+    }
+    default:
+      return { ok: false, label, note: `未知规则类型：${rule.t}` };
+  }
+}
+
+function verdict(ratio) {
+  if (ratio >= 1) return '通过';
+  if (ratio >= 0.7) return '勉强';
+  return '不过';
+}
+
+function scoreCase(caseObj, output) {
+  const rules = caseObj.auto || [];
+  const results = rules.map((r) => checkRule(r, output));
+  const passed = results.filter((r) => r.ok).length;
+  const total = results.length;
+  const ratio = total ? passed / total : 0;
+  const checksCovered = uniq(results.map((r) => r.label)).length;
+  return {
+    id: caseObj.id,
+    category: caseObj.category,
+    passed,
+    total,
+    ratio: Math.round(ratio * 100) / 100,
+    verdict: verdict(ratio),
+    checksTotal: (caseObj.checks || []).length,
+    checksCovered,
+    results,
+  };
+}
+
+function renderOne(r, caseObj) {
+  const lines = [];
+  lines.push(`${r.id}  ${r.passed}/${r.total}  ${Math.round(r.ratio * 100)}%  ${r.verdict}`);
+  lines.push(`类别：${r.category}`);
+  lines.push(`输入：${caseObj.input}`);
+  if (r.checksCovered < r.checksTotal) {
+    lines.push(`机检覆盖 ${r.checksCovered}/${r.checksTotal} 项人工判据，剩下 ${r.checksTotal - r.checksCovered} 项还得人看`);
+  } else {
+    lines.push(`机检覆盖全部 ${r.checksTotal} 项人工判据`);
+  }
+  lines.push('');
+  for (const x of r.results) {
+    lines.push(`  ${x.ok ? '✓' : '✗'} ${x.label}  —— ${x.note}`);
+  }
+  return lines.join('\n');
+}
+
+function readOutput(p) {
+  if (p === '-') return fs.readFileSync(0, 'utf8');
+  const abs = path.resolve(p);
+  if (!fs.existsSync(abs)) throw new Error(`找不到输出文件：${p}`);
+  return fs.readFileSync(abs, 'utf8');
+}
+
+/** 批量：目录里按 <case-id>.md / .txt 命名，没跑到的用例单独列出 */
+function scoreDir(dir) {
+  const abs = path.resolve(dir);
+  if (!fs.existsSync(abs)) throw new Error(`找不到目录：${dir}`);
+  const data = loadCases();
+  const files = fs.readdirSync(abs);
+  const byBase = new Map();
+  for (const f of files) {
+    const m = f.match(/^(.+)\.(md|txt)$/i);
+    if (m) byBase.set(m[1], path.join(abs, f));
+  }
+  const scored = [];
+  const missing = [];
+  for (const c of data.cases) {
+    const f = byBase.get(c.id);
+    if (!f) { missing.push(c.id); continue; }
+    scored.push(scoreCase(c, fs.readFileSync(f, 'utf8')));
+  }
+  const sum = scored.reduce((a, x) => a + x.ratio, 0);
+  const avg = scored.length ? Math.round((sum / scored.length) * 100) / 100 : 0;
+  const byCategory = {};
+  for (const x of scored) {
+    const g = (byCategory[x.category] = byCategory[x.category] || { n: 0, sum: 0 });
+    g.n += 1;
+    g.sum += x.ratio;
+  }
+  const summary = {
+    scored: scored.length,
+    total: data.cases.length,
+    missing,
+    avg,
+    pass: scored.filter((x) => x.verdict === '通过').length,
+    soSo: scored.filter((x) => x.verdict === '勉强').length,
+    fail: scored.filter((x) => x.verdict === '不过').length,
+    byCategory: Object.fromEntries(
+      Object.entries(byCategory).map(([k, g]) => [k, { n: g.n, avg: Math.round((g.sum / g.n) * 100) / 100 }])
+    ),
+  };
+  return { scored, summary };
+}
+
+function renderBatch({ scored, summary }) {
+  const lines = [];
+  lines.push(`跑了 ${summary.scored}/${summary.total} 条，平均 ${Math.round(summary.avg * 100)}%`);
+  lines.push(`通过 ${summary.pass} · 勉强 ${summary.soSo} · 不过 ${summary.fail}`);
+  lines.push('');
+  for (const x of scored) {
+    const bar = '█'.repeat(Math.round(x.ratio * 10)).padEnd(10, '·');
+    lines.push(`${x.id.padEnd(14)} ${bar} ${String(Math.round(x.ratio * 100)).padStart(3)}%  ${x.verdict}`);
+    const fails = x.results.filter((r) => !r.ok);
+    for (const f of fails) lines.push(`               ✗ ${f.label} —— ${f.note}`);
+  }
+  if (summary.missing.length) {
+    lines.push('');
+    lines.push(`没跑到的 ${summary.missing.length} 条：${summary.missing.join(', ')}`);
+    lines.push('目录里按 <case-id>.md 命名输出文件即可参与批量评分。');
+  }
+  lines.push('');
+  lines.push('按类别：');
+  for (const [k, g] of Object.entries(summary.byCategory)) {
+    lines.push(`  ${k.padEnd(10)} ${g.n} 条，平均 ${Math.round(g.avg * 100)}%`);
+  }
+  return lines.join('\n');
+}
+
+module.exports = { loadCases, scoreCase, scoreDir, renderOne, renderBatch, readOutput, firstBlock };

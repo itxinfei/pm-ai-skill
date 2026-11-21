@@ -24,10 +24,10 @@ const required = [
   'skill-source/skill.json', 'skill-source/SKILL.md', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
   'docs/capability.md', 'docs/prompt-reference.md', 'docs/workflow-guide.md',
   'docs/faq.md', 'docs/tools.md', 'docs/awesome-pm-skills.md',
-  'docs/growth-path.md', 'docs/deliver.md',
+  'docs/growth-path.md', 'docs/deliver.md', 'docs/flow.md', 'docs/score.md',
   'assets/report.html', 'assets/review.html', 'assets/grade.html',
-  'templates/prd-b2b-template.md',
-  'bin/feishu.js',
+  'templates/prd-b2b-template.md', 'templates/intake-template.md',
+  'bin/feishu.js', 'bin/flow.js', 'bin/score.js',
   'evals/cases.json', 'evals/README.md',
   'skill-source/manifest.json',
   '.github/ISSUE_TEMPLATE/bug_report.md',
@@ -66,6 +66,42 @@ if (exists('evals/cases.json')) {
         ids.add(c.id);
       }
     }
+  }
+}
+
+// 2.2 机检规则必须能跑
+// 规则写错不会立刻报，要等到有人真跑那条用例才炸，所以在这儿先编译一遍
+if (exists('evals/cases.json')) {
+  const ev = JSON.parse(read('evals/cases.json'));
+  const ruleTypes = new Set(['has', 'hasAny', 'not', 'first', 'maxChars', 'minChars', 'maxCount']);
+  const garbage = '我们赋能业务，形成业务闭环，抓住关键抓手，提升用户体验，打造生态位。';
+  for (const c of ev.cases || []) {
+    const auto = c.auto;
+    if (!Array.isArray(auto) || auto.length === 0) {
+      fail(`用例 ${c.id} 没有 auto 机检规则，只能人看`);
+      continue;
+    }
+    for (const r of auto) {
+      if (!ruleTypes.has(r.t)) fail(`用例 ${c.id} 的规则类型不认识：${r.t}`);
+      if (!r.label) fail(`用例 ${c.id} 有一条规则没写 label`);
+      if (r.t === 'has' || r.t === 'not' || r.t === 'maxCount') {
+        if (!r.v) fail(`用例 ${c.id} 的 ${r.t} 规则缺 v`);
+        else {
+          try { new RegExp(r.v, r.t === 'not' ? 'm' : 'g'); }
+          catch (e) { fail(`用例 ${c.id} 的正则写不通：${r.v}（${e.message}）`); }
+        }
+      }
+      if (r.t === 'hasAny' || r.t === 'first') {
+        if (!Array.isArray(r.v) || r.v.length === 0) fail(`用例 ${c.id} 的 ${r.t} 规则 v 必须是非空数组`);
+      }
+      if ((r.t === 'maxChars' || r.t === 'minChars' || r.t === 'maxCount') && typeof r.n !== 'number') {
+        fail(`用例 ${c.id} 的 ${r.t} 规则缺数字 n`);
+      }
+    }
+    // 一坨套话必须至少触发一条失败，否则这条用例等于没设防
+    const { scoreCase } = require('../bin/score');
+    const r = scoreCase(c, garbage);
+    if (r.passed === r.total) fail(`用例 ${c.id} 对一坨套话也全过，规则太松`);
   }
 }
 

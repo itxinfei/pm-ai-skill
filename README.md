@@ -230,8 +230,10 @@ npx @itxinfei/pm-ai-skill install
 | `pm-ai-skill install` | 装到本机检测到的所有 AI 工具 |
 | `pm-ai-skill template prd` | 取模板（14 个） |
 | `pm-ai-skill example grade` | 看样例（15 份，看"做成什么样算合格"） |
-| `pm-ai-skill doc prompt` | 查文档（能力 / 提示词 / 工作流 / FAQ / 工具 / 盘点 / 交付） |
+| `pm-ai-skill doc prompt` | 查文档（能力 / 提示词 / 工作流 / FAQ / 工具 / 盘点 / 交付 / 链路 / 打分） |
+| `pm-ai-skill flow "一句话需求"` | 一次出三份：需求体检卡、PRD 骨架、飞书导入稿 |
 | `pm-ai-skill deliver feishu 你的.md` | 转成飞书能直接导入的稿子，并把会变形的表格、跳级标题、三层列表挑出来 |
+| `pm-ai-skill score all 输出目录` | 27 条用例打分，同一批输出跑两次分数一样 |
 | `pm-ai-skill asset report` | 导 HTML（report / review / grade） |
 | `pm-ai-skill eval` | 看 27 条行为回归用例，带 id 看单条 |
 | `pm-ai-skill manifest` | 导机器可读清单，给脚本和自己的小工具用 |
