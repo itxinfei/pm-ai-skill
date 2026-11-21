@@ -16,6 +16,16 @@ const CASES_FILE = path.join(ROOT, 'evals', 'cases.json');
 
 const loadCases = () => JSON.parse(fs.readFileSync(CASES_FILE, 'utf8'));
 
+/**
+ * 规则指纹：用例 id + 每条 auto 规则的原文。
+ * 分数能比的前提是尺子没变，尺子一变分数就没意义了，所以要比指纹。
+ */
+function fingerprint(cases) {
+  const crypto = require('crypto');
+  const payload = JSON.stringify(cases.map((c) => ({ id: c.id, auto: c.auto || [] })));
+  return crypto.createHash('sha256').update(payload, 'utf8').digest('hex').slice(0, 16);
+}
+
 const uniq = (arr) => Array.from(new Set(arr));
 
 /** 首段：跳过纯标题、引用块、署名/状态这类元信息行，取第一块真正在说事的内容 */
@@ -194,7 +204,7 @@ function scoreDir(dir) {
       Object.entries(byCategory).map(([k, g]) => [k, { n: g.n, avg: Math.round((g.sum / g.n) * 100) / 100 }])
     ),
   };
-  return { scored, summary };
+  return { scored, summary, fingerprint: fingerprint(data.cases) };
 }
 
 function renderBatch({ scored, summary }) {
@@ -221,4 +231,151 @@ function renderBatch({ scored, summary }) {
   return lines.join('\n');
 }
 
-module.exports = { loadCases, scoreCase, scoreDir, renderOne, renderBatch, readOutput, firstBlock };
+/**
+ * 和基线比：掉分的、规则变过的一条条列出来。
+ *
+ * 不比分高多少，只比有没有退。放宽规则能让分数涨，那不算进步，算改尺子。
+ */
+function compareBaseline(result, baseline, opts = {}) {
+  const tol = opts.tolerance == null ? 0 : Number(opts.tolerance) / 100;
+  const base = baseline.scored || [];
+  const nowById = new Map((result.scored || []).map((x) => [x.id, x]));
+  const baseIds = new Set(base.map((x) => x.id));
+
+  const regressions = [];
+  const improved = [];
+  const rulesChanged = [];
+  const lost = [];
+
+  for (const b of base) {
+    const n = nowById.get(b.id);
+    if (!n) { lost.push(b.id); continue; }
+    if (n.total !== b.total) {
+      rulesChanged.push({ id: b.id, baseTotal: b.total, nowTotal: n.total, baseRatio: b.ratio, nowRatio: n.ratio });
+      continue;
+    }
+    const d = Math.round((n.ratio - b.ratio) * 100) / 100;
+    if (d < -tol) {
+      regressions.push({
+        id: b.id,
+        base: b.ratio,
+        now: n.ratio,
+        delta: d,
+        failed: n.results.filter((x) => !x.ok).map((x) => x.label),
+      });
+    } else if (d > tol) {
+      improved.push({ id: b.id, base: b.ratio, now: n.ratio, delta: d });
+    }
+  }
+
+  const added = (result.scored || []).filter((x) => !baseIds.has(x.id)).map((x) => x.id);
+  const baseFp = baseline.fingerprint;
+  const nowFp = opts.fingerprint || result.fingerprint;
+  const fpMismatch = !!(baseFp && nowFp && baseFp !== nowFp);
+
+  // 少跑几条不算退步（本地针对性复跑很常见），但门禁要全量时必须算，用 strict
+  const missingFail = !!(opts.strict && lost.length);
+
+  const ok = regressions.length === 0 && rulesChanged.length === 0 && !fpMismatch && !missingFail;
+
+  return {
+    ok,
+    tolerance: tol,
+    baselineAvg: baseline.summary ? baseline.summary.avg : null,
+    basePass: baseline.summary ? baseline.summary.pass : null,
+    baseSoSo: baseline.summary ? baseline.summary.soSo : null,
+    baseFail: baseline.summary ? baseline.summary.fail : null,
+    baseCount: base.length,
+    nowAvg: result.summary ? result.summary.avg : null,
+    nowPass: result.summary ? result.summary.pass : null,
+    nowSoSo: result.summary ? result.summary.soSo : null,
+    nowFail: result.summary ? result.summary.fail : null,
+    nowCount: (result.scored || []).length,
+    baseFingerprint: baseFp || null,
+    nowFingerprint: nowFp || null,
+    fpMismatch,
+    regressions,
+    improved,
+    rulesChanged,
+    lost,
+    missingFail,
+    added,
+  };
+}
+
+const pct = (n) => `${Math.round((n || 0) * 100)}%`;
+
+function renderCompare(cmp, baselinePath) {
+  const lines = [];
+  lines.push('');
+  lines.push(`与基线对比  ${baselinePath}`);
+  lines.push(
+    `基线 ${cmp.baseCount} 条 · 平均 ${pct(cmp.baselineAvg)} · 通过 ${cmp.basePass}/勉强 ${cmp.baseSoSo}/不过 ${cmp.baseFail}` +
+      `   →   本次 ${cmp.nowCount} 条 · 平均 ${pct(cmp.nowAvg)} · 通过 ${cmp.nowPass}/勉强 ${cmp.nowSoSo}/不过 ${cmp.nowFail}`
+  );
+
+  if (cmp.fpMismatch) {
+    lines.push('');
+    lines.push('规则指纹对不上：用例或 auto 规则被改过，分数不能直接比。');
+    lines.push('  要么是修了规则（那就重跑一遍答案、重新出基线），要么是为了让分好看改的标准（那就改回去）。');
+    lines.push(`  基线指纹 ${cmp.baseFingerprint || '(无)'} · 当前指纹 ${cmp.nowFingerprint || '(无)'}`);
+  }
+
+  if (cmp.regressions.length) {
+    lines.push('');
+    lines.push(`掉分 ${cmp.regressions.length} 条：`);
+    for (const x of cmp.regressions) {
+      lines.push(`  ${x.id.padEnd(14)} ${pct(x.base)} → ${pct(x.now)}  ${Math.round(x.delta * 100)}`);
+      for (const f of x.failed) lines.push(`                 ✗ ${f}`);
+    }
+  }
+
+  if (cmp.rulesChanged.length) {
+    lines.push('');
+    lines.push(`规则条数变过 ${cmp.rulesChanged.length} 条（分数不能直接比）：`);
+    for (const x of cmp.rulesChanged) {
+      lines.push(`  ${x.id.padEnd(14)} 规则 ${x.baseTotal} 条 → ${x.nowTotal} 条，${pct(x.baseRatio)} → ${pct(x.nowRatio)}`);
+    }
+  }
+
+  if (cmp.lost.length) {
+    lines.push('');
+    lines.push(`比基线少跑 ${cmp.lost.length} 条：${cmp.lost.join(', ')}`);
+    lines.push(cmp.missingFail ? '  门禁按全量算，少跑就算没通过。' : '  这几条这次没验证到，不算退步，但别忘了它们还没跑。');
+  }
+
+  if (cmp.improved.length) {
+    lines.push('');
+    lines.push(`变好 ${cmp.improved.length} 条：${cmp.improved.map((x) => `${x.id} ${Math.round(x.delta * 100)}`).join(' · ')}`);
+  }
+
+  if (cmp.added.length) {
+    lines.push('');
+    lines.push(`比基线多 ${cmp.added.length} 条（基线里没有，不计入对比）：${cmp.added.join(', ')}`);
+  }
+
+  lines.push('');
+  if (cmp.ok) {
+    lines.push('结论：没有退步。');
+  } else if (cmp.regressions.length) {
+    lines.push('结论：有退步，别急着发。');
+  } else if (cmp.fpMismatch || cmp.rulesChanged.length) {
+    lines.push('结论：尺子动过，分数不能直接比。');
+  } else {
+    lines.push('结论：没跑全，门禁不算过。');
+  }
+  return lines.join('\n');
+}
+
+module.exports = {
+  loadCases,
+  scoreCase,
+  scoreDir,
+  renderOne,
+  renderBatch,
+  readOutput,
+  firstBlock,
+  fingerprint,
+  compareBaseline,
+  renderCompare,
+};

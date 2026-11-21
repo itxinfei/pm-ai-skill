@@ -370,8 +370,11 @@ program
   .command('score [id] [output]')
   .description('给 AI 输出打分：score <case-id> <输出文件> 打一条，score all <目录> 批量打（目录内按 <case-id>.md 命名）')
   .option('--json', '输出 JSON，方便两次结果对比')
+  .option('--baseline [file]', '和基线比，掉分就以非零码退出（省略路径则用 evals/baseline/claude/score.json）')
+  .option('--tolerance <pct>', '允许掉几个百分点不算退步，默认 0', '0')
+  .option('--strict', '门禁按全量算，比基线少跑也算没通过')
   .action((id, output, opts) => {
-    const { loadCases, scoreCase, scoreDir, renderOne, renderBatch, readOutput } = require('./score');
+    const { loadCases, scoreCase, scoreDir, renderOne, renderBatch, readOutput, compareBaseline, renderCompare } = require('./score');
     const data = loadCases();
 
     if (!id) {
@@ -379,6 +382,7 @@ program
       console.log('  pm-ai-skill score route-001 我的输出.md   打一条，看逐条证据');
       console.log('  pm-ai-skill score all 输出目录            批量打，出通过率');
       console.log('  pm-ai-skill score all 输出目录 --json     出 JSON，和上一版对比');
+      console.log('  pm-ai-skill score all 输出目录 --baseline 和基线比，掉分就非零退出（可挂 CI）');
       console.log(`\n共 ${data.cases.length} 条用例，机检规则 ${data.cases.reduce((a, c) => a + (c.auto || []).length, 0)} 条。`);
       console.log('先把用例的 input 发给装了 skill 的 AI，把回答存成 <case-id>.md。');
       return;
@@ -388,11 +392,38 @@ program
       if (!output) { console.log('批量评分需要给个目录：pm-ai-skill score all <目录>'); return; }
       let r;
       try { r = scoreDir(output); } catch (e) { console.log(e.message); return; }
+
+      const basePath = opts.baseline === undefined
+        ? null
+        : (opts.baseline === true ? path.join(__dirname, '..', 'evals', 'baseline', 'claude', 'score.json') : opts.baseline);
+
+      let cmp = null;
+      if (basePath) {
+        if (!fs.existsSync(basePath)) {
+          console.log(`找不到基线文件：${basePath}`);
+          process.exitCode = 1;
+          return;
+        }
+        let baseline;
+        try {
+          baseline = JSON.parse(fs.readFileSync(basePath, 'utf8'));
+        } catch (e) {
+          console.log(`基线不是合法 JSON：${e.message}`);
+          process.exitCode = 1;
+          return;
+        }
+        cmp = compareBaseline(r, baseline, { tolerance: opts.tolerance, fingerprint: r.fingerprint, strict: opts.strict });
+      }
+
       if (opts.json) {
-        console.log(JSON.stringify({ generatedAt: new Date().toISOString(), ...r }, null, 2));
+        const out = { generatedAt: new Date().toISOString(), ...r };
+        if (cmp) out.baseline = { path: basePath, ...cmp };
+        console.log(JSON.stringify(out, null, 2));
       } else {
         console.log(renderBatch(r));
+        if (cmp) console.log(renderCompare(cmp, basePath));
       }
+      if (cmp && !cmp.ok) process.exitCode = 1;
       return;
     }
 

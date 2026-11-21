@@ -42,3 +42,11 @@ node bin/index.js score all evals/baseline/claude
 ```
 
 只跑几条用 `-Only checkup-002,style-001 -Force`，两分钟出结果。
+
+跑完加上门禁再比一次：
+
+```powershell
+node bin/index.js score all evals/baseline/claude --baseline
+```
+
+没有掉分退出码是 0，掉分是 1。改过 `cases.json` 的规则会先报「指纹对不上」，那时候先想清楚是修规则还是让分好看，再决定要不要重出基线。
