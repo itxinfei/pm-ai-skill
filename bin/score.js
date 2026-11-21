@@ -18,7 +18,7 @@ const loadCases = () => JSON.parse(fs.readFileSync(CASES_FILE, 'utf8'));
 
 const uniq = (arr) => Array.from(new Set(arr));
 
-/** 首段：跳过纯标题块和纯元信息块，取第一块真正在说事的内容 */
+/** 首段：跳过纯标题、引用块、署名/状态这类元信息行，取第一块真正在说事的内容 */
 function firstBlock(text) {
   const blocks = text.trim().split(/\n\s*\n/);
   for (const raw of blocks) {
@@ -26,6 +26,8 @@ function firstBlock(text) {
     if (!t) continue;
     const lines = t.split('\n');
     if (lines.length <= 2 && /^(#{1,6}\s|>)/.test(t)) continue;
+    // 单行、加粗开头、没有句末标点 —— 署名行、状态行、汇报人行
+    if (lines.length === 1 && /^\*\*/.test(t) && !/[。！？.!?]/.test(t)) continue;
     return t;
   }
   return (blocks[0] || '').trim();
@@ -75,6 +77,16 @@ function checkRule(rule, text) {
         ok: !!hit,
         label,
         note: hit ? `首段含「${hit}」` : `首段没有：${rule.v.join(' / ')}`,
+      };
+    }
+    case 'firstRe': {
+      const head = firstBlock(text);
+      const re = new RegExp(rule.v, 'm');
+      const m = head.match(re);
+      return {
+        ok: !!m,
+        label,
+        note: m ? `首段命中「${m[0]}」` : `首段没命中 ${rule.v}`,
       };
     }
     case 'maxChars': {

@@ -1,0 +1,808 @@
+{
+  "generatedAt": "2026-11-21T13:28:33.694Z",
+  "scored": [
+    {
+      "id": "route-001",
+      "category": "分诊路由",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "第一段给出明确表态",
+          "note": "首段含「判断不了」"
+        },
+        {
+          "ok": true,
+          "label": "给出判断依据",
+          "note": "…判断：**做 / 不做 / 先小成本验证**，附依据和风险，不是一份 PRD。 如果手头还有这些，…"
+        },
+        {
+          "ok": true,
+          "label": "不产出 PRD 章节结构",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "route-002",
+      "category": "分诊路由",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "先问业务背景或目标用户",
+          "note": "…填空，评审会第一轮就会被打回来。 现在我手上零背景，需要你先答这几组问题，知道多少说多少，答不上来…"
+        },
+        {
+          "ok": true,
+          "label": "不直接输出空模板",
+          "note": "没出现"
+        },
+        {
+          "ok": true,
+          "label": "顶层追问不超过 4 个",
+          "note": "出现 0 次，上限 4"
+        }
+      ]
+    },
+    {
+      "id": "route-003",
+      "category": "分诊路由",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "列出步骤",
+          "note": "…有就说没有） ## 整条链路报价（你可以随时砍步骤、随时喊停） | 步骤 | 我交什么 | 需要…"
+        },
+        {
+          "ok": true,
+          "label": "标出每步产出物",
+          "note": "…就不往下走——这是这条链路最值钱的地方。每一步的产出都独立可用，你随时停。 把那句话发我吧。 -…"
+        },
+        {
+          "ok": true,
+          "label": "写明要用户确认的点",
+          "note": "…收标准）、主流程+异常流程、埋点事件表、风险与待确认项 | 目标指标、范围边界（MVP 做什么、不做…"
+        }
+      ]
+    },
+    {
+      "id": "route-004",
+      "category": "分诊路由",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "说明不做收入预测",
+          "note": "…算不了具体数字——你没给任何业务数据，我编一个出来就是…"
+        },
+        {
+          "ok": true,
+          "label": "给替代做法",
+          "note": "…费的用户换到更便宜的档？要从增量里扣掉 - **口径**：算的是流水（GMV）、确认收入还是利润，三…"
+        },
+        {
+          "ok": true,
+          "label": "不编造收入数字",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "chain-001",
+      "category": "链路编排",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "PRD 含待确认项",
+          "note": "…存从 30% 到 35%\"。说不出指标也行，标成待确认项，但不能没有这一栏。 3. **手上有什么材料…"
+        },
+        {
+          "ok": true,
+          "label": "PRD 后接评审",
+          "note": "…务信息。这种情况下硬写，出来的只是一份填空模板，评审会上第一个被问倒。 先补三件事，一句话回答都行…"
+        },
+        {
+          "ok": true,
+          "label": "不重复索取已给材料",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "chain-002",
+      "category": "链路编排",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "排序说明用了哪个模型",
+          "note": "…的，按未知处理 ## 一、需求排序 评分用 ICE（影响/信心/易做，1–5 分），锚点是老板的年…"
+        },
+        {
+          "ok": true,
+          "label": "标出模型间分歧",
+          "note": "…调研界定范围** | ### 两个必须摊开讲的分歧点 1. **老板提的移动端排在最后，和老板的…"
+        },
+        {
+          "ok": true,
+          "label": "产出路线图",
+          "note": "…# 两步交付：先排序，后排季度路线图 先说缺的信息，免得拿假设当结论： - **…"
+        }
+      ]
+    },
+    {
+      "id": "chain-003",
+      "category": "链路编排",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 2,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "输出排序结果",
+          "note": "…RICE 的 Effort 一项算不出来，下面是优先级顺序，具体哪个迭代塞几个，要等开发估完点才能锁。…"
+        },
+        {
+          "ok": true,
+          "label": "不追加路线图",
+          "note": "没出现"
+        },
+        {
+          "ok": true,
+          "label": "不追加 PRD",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "review-001",
+      "category": "多角色评审",
+      "passed": 5,
+      "total": 5,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 5,
+      "results": [
+        {
+          "ok": true,
+          "label": "覆盖研发视角",
+          "note": "…事→功能→埋点→风险都有），但关键章节存在空白，研发无法直接开工、测试无法签字。另：背景里\"行业平均…"
+        },
+        {
+          "ok": true,
+          "label": "覆盖测试视角",
+          "note": "…险都有），但关键章节存在空白，研发无法直接开工、测试无法签字。另：背景里\"行业平均 40%\"是外部数…"
+        },
+        {
+          "ok": true,
+          "label": "覆盖法务视角",
+          "note": "…公示、user_id 打点的隐私政策告知，过一遍法务。 - 漏签补签机制（看广告/分享补签）建议放二…"
+        },
+        {
+          "ok": true,
+          "label": "问题分三级",
+          "note": "…# 评审结论：不能上会，补完 4 个阻断项后重新评审 框架是完整的（背景→目标→故事→…"
+        },
+        {
+          "ok": true,
+          "label": "有明确结论句",
+          "note": "…# 评审结论：不能上会，补完 4 个阻断项后重新评审 框架…"
+        }
+      ]
+    },
+    {
+      "id": "review-002",
+      "category": "多角色评审",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "识别上线压力并声明档位",
+          "note": "…# 终审结论：现状不能上，今晚补完 5 个阻断项可以明天…"
+        },
+        {
+          "ok": true,
+          "label": "有阻断级别",
+          "note": "…# 终审结论：现状不能上，今晚补完 5 个阻断项可以明天上 \"明天上线\"按终审核。合规、回滚…"
+        },
+        {
+          "ok": true,
+          "label": "给出能不能上的结论",
+          "note": "…# 终审结论：现状不能上，今晚补完 5 个阻断项可以明天上 \"明天上线…"
+        }
+      ]
+    },
+    {
+      "id": "review-003",
+      "category": "多角色评审",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "指出材料不足",
+          "note": "…你只说了\"帮我看看这个\"，但\"这个\"没贴出来——没有文档、截图、PRD 原文或具体那句话，我…"
+        },
+        {
+          "ok": true,
+          "label": "列出要补的信息",
+          "note": "…文或具体那句话，我这边没有可看的材料。 把东西补上即可，任选一种： 1. 直接把原文/PRD/方…"
+        },
+        {
+          "ok": true,
+          "label": "不硬出评审意见",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "review-004",
+      "category": "多角色评审",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "单独列出分歧点",
+          "note": "…文案，否则用户不知道自己拿到了什么 ## 视角分歧（需要会上拍板，别抹平） **产品视角**倾向…"
+        },
+        {
+          "ok": true,
+          "label": "写明各方立场",
+          "note": "…向每天强弹窗，保证触达率；**设计和运营视角**认为强制弹窗是打扰，可能推高卸载和关推送。两个判断都…"
+        },
+        {
+          "ok": true,
+          "label": "给出处理建议",
+          "note": "…侧证据待补，上线后用实验数据验证。 ## 三、建议项（有空再说） - 弹窗交互细节：关闭按钮样式…"
+        }
+      ]
+    },
+    {
+      "id": "checkup-001",
+      "category": "需求体检",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "指出缺少用户证据",
+          "note": "…他们今天靠什么办法绕过去。说不出旧方案，大概率是伪需求。 **顺手给了能少返工的** 4. **形…"
+        },
+        {
+          "ok": true,
+          "label": "给出验证建议",
+          "note": "…），结论是\"做\"才进入 PRD；结论是\"不做或先验证\"，你拿着体检卡回去跟老板对齐，比拿一份 PRD…"
+        },
+        {
+          "ok": true,
+          "label": "风险进待确认",
+          "note": "…答不上来的标\"不知道\"，我会把它放进 PRD 的待确认项： **必答（没有这三项不动笔）** 1.…"
+        }
+      ]
+    },
+    {
+      "id": "checkup-002",
+      "category": "需求体检",
+      "passed": 2,
+      "total": 3,
+      "ratio": 0.67,
+      "verdict": "不过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": false,
+          "label": "问到现有替代方案",
+          "note": "一个都没有：现在怎么 / 目前怎么 / 替代 / 土办法"
+        },
+        {
+          "ok": true,
+          "label": "问到成功指标",
+          "note": "…接写出来的 PRD 里背景、目标、奖励规则、验收指标全是我编的，这种文档评审会上一问就穿。 动笔前…"
+        },
+        {
+          "ok": true,
+          "label": "没追问就直接动笔",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "boundary-001",
+      "category": "边界与诚实",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "给区间不给单点",
+          "note": "…给不了，连区间都给不了——你没说是什么市场，我手上也没有任何材…"
+        },
+        {
+          "ok": true,
+          "label": "标注假设",
+          "note": "…据源。 补完之后我能做的是给你**拆解算法和带假设的区间**（比如自下而上：目标客户数 × 渗透率…"
+        },
+        {
+          "ok": true,
+          "label": "提示需人工核验",
+          "note": "…需要你用行业报告、企查查/财报、第三方平台数据去核验，那些平台的数字本身也都是估算。 把市场定义发…"
+        }
+      ]
+    },
+    {
+      "id": "boundary-002",
+      "category": "边界与诚实",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "拒绝承诺具体效果",
+          "note": "…不能保证，谁跟你保证这个数都别信。 原因很直接： 1…"
+        },
+        {
+          "ok": true,
+          "label": "说明能给的是风险清单和验证方案",
+          "note": "…\"保证\"。 能负责任地做的是把它变成一个**可验证的假设**，而不是一句承诺： - 先给判断依据…"
+        },
+        {
+          "ok": true,
+          "label": "不给效果承诺",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "boundary-003",
+      "category": "边界与诚实",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "说明超出范围",
+          "note": "…# 先说边界 股权激励不在产品经理 76 个能力模块里，它本质是**法律 …"
+        },
+        {
+          "ok": true,
+          "label": "建议找专业顾问",
+          "note": "…治理**方案。我能给你决策框架和避坑清单，让你跟律师、税务师对话时不被绕；但具备法律效力的协议文本、…"
+        },
+        {
+          "ok": true,
+          "label": "不编造法律条款",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "style-001",
+      "category": "表达",
+      "passed": 2,
+      "total": 3,
+      "ratio": 0.67,
+      "verdict": "不过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": false,
+          "label": "不含套话词",
+          "note": "出现了不该有的：闭环"
+        },
+        {
+          "ok": true,
+          "label": "结论或进展在前",
+          "note": "首段命中「签下」"
+        },
+        {
+          "ok": true,
+          "label": "有具体事项",
+          "note": "…两周压缩为一周，确定方案：首周放量 20% - 周五晚已上线 20%，截至目前无报错 - 注意：\"暂…"
+        }
+      ]
+    },
+    {
+      "id": "style-002",
+      "category": "表达",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "去掉套话",
+          "note": "没出现"
+        },
+        {
+          "ok": true,
+          "label": "没有大段扩写",
+          "note": "实际 107 字，上限 800"
+        },
+        {
+          "ok": true,
+          "label": "有实际内容",
+          "note": "实际 107 字，下限 30"
+        }
+      ]
+    },
+    {
+      "id": "data-001",
+      "category": "数据与度量",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "列出拆分维度",
+          "note": "…。数据掉了的正确顺序是**先确认是不是真跌，再拆维度，最后提假设验证**。下面按这个走，你把能给的数…"
+        },
+        {
+          "ok": true,
+          "label": "给出多个可能原因",
+          "note": "… 或崩溃 | | 地域 | 集中在个别省市 → 可能是当地网络、监管、运营商问题 | | 登录态/核…"
+        },
+        {
+          "ok": true,
+          "label": "说明怎么验证",
+          "note": "…顺序是**先确认是不是真跌，再拆维度，最后提假设验证**。下面按这个走，你把能给的数据补上。 ##…"
+        }
+      ]
+    },
+    {
+      "id": "data-002",
+      "category": "数据与度量",
+      "passed": 4,
+      "total": 4,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 4,
+      "checksCovered": 4,
+      "results": [
+        {
+          "ok": true,
+          "label": "有明确假设",
+          "note": "… A/B 实验方案（骨架版） ## 1. 实验假设 - **背景假设**：用户在旧首页【待填：哪…"
+        },
+        {
+          "ok": true,
+          "label": "有样本量估算",
+          "note": "… **流量盘子**——首页日均 UV 多少，决定样本量够不够、实验要跑多久。 4. **实验对象**—…"
+        },
+        {
+          "ok": true,
+          "label": "判定标准前置",
+          "note": "… 16 × σ² ÷ Δ² （系数 16 对应显著性水平 α=0.05、统计功效 80% 的双侧检验…"
+        },
+        {
+          "ok": true,
+          "label": "有止损条件",
+          "note": "…视为探索性发现，需另行实验验证。 ## 8. 止损条件（硬规则，必须有） 出现以下任一情况，**…"
+        }
+      ]
+    },
+    {
+      "id": "research-001",
+      "category": "用户调研",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "指出诱导性问题",
+          "note": "…方，你改哪？ ## 两条执行提醒 - 全程禁用诱导性问法：别说\"是不是觉得很方便？\"，改成\"用下来…"
+        },
+        {
+          "ok": true,
+          "label": "改成问过去行为",
+          "note": "…无效答案。访谈要问行为、问场景，不问态度——\"你上次用它是什么时候、当时在干嘛、怎么操作的\"，比\"你…"
+        },
+        {
+          "ok": true,
+          "label": "不预设立场",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "competitor-001",
+      "category": "竞品与市场",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "按维度拆解",
+          "note": "…# 结论先行 三家正好代表签到功能的三个段位：**A 是合格的单点签到，B 是反面教材，C …"
+        },
+        {
+          "ok": true,
+          "label": "区分表面与底层",
+          "note": "…图，后台规则和效果数据都缺，下面所有判断都是界面层面的，落地前要补料（清单在最后）。 ## 一、可…"
+        },
+        {
+          "ok": true,
+          "label": "给差异化建议",
+          "note": "…用户评价/投诉**：三家用户分别在骂什么，这是找差异化机会的关键输入，目前完全缺失。 5. **我们自…"
+        }
+      ]
+    },
+    {
+      "id": "self-001",
+      "category": "自我迭代",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "指出具体决策问题",
+          "note": "…个项目脱敏沉淀成案例卡（按项目名称/背景/选择/决策/结果/复用与避坑的格式）？以后遇到类似场景我可…"
+        },
+        {
+          "ok": true,
+          "label": "给出下次的具体改法",
+          "note": "…这是可训练的，比\"脑子不行\"好治得多。 ## 下次动手前的三个固定动作 1. **先交一页归因纸…"
+        },
+        {
+          "ok": true,
+          "label": "不堆人格化标签",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "material-001",
+      "category": "带材料分诊",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "先说看到什么",
+          "note": "…## 一句话结论 三段话指向同一个病根：**这套签到积分体系，积分\"发得…"
+        },
+        {
+          "ok": true,
+          "label": "有原声摘录",
+          "note": "…三类，信号方向高度一致，值得立项验证。 ## 原声 → 主题聚类 | 主题 | 原声证据 | 谁…"
+        },
+        {
+          "ok": true,
+          "label": "指出样本局限",
+          "note": "…、花不出去\"，触达还在一刀切地打扰人**。3 人样本不能下统计结论，但恰好覆盖老用户、新用户、高频用…"
+        }
+      ]
+    },
+    {
+      "id": "material-002",
+      "category": "带材料分诊",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "列出材料缺口",
+          "note": "…落差距。 ## 三家竞品对比（仅基于截图转录，未截到的标\"未截到\"） | 维度 | 竞品 A | …"
+        },
+        {
+          "ok": true,
+          "label": "给可做的对比",
+          "note": "…补上自家现状，直接就能落差距。 ## 三家竞品对比（仅基于截图转录，未截到的标\"未截到\"） | …"
+        },
+        {
+          "ok": true,
+          "label": "不编造截图里没有的数据",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "grade-001",
+      "category": "给产出打分",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "第一段给三档结论",
+          "note": "首段命中「不能直接进评审」"
+        },
+        {
+          "ok": true,
+          "label": "扣分挂到原文",
+          "note": "…# 打分（7/15） | 维度 | 分数 | 扣在哪 | |---|---|---| | 问题定…"
+        },
+        {
+          "ok": true,
+          "label": "不重写 PRD",
+          "note": "没出现"
+        }
+      ]
+    },
+    {
+      "id": "grade-002",
+      "category": "给产出打分",
+      "passed": 3,
+      "total": 3,
+      "ratio": 1,
+      "verdict": "通过",
+      "checksTotal": 3,
+      "checksCovered": 3,
+      "results": [
+        {
+          "ok": true,
+          "label": "结论为能发",
+          "note": "首段含「能发」"
+        },
+        {
+          "ok": true,
+          "label": "不要求重写",
+          "note": "没出现"
+        },
+        {
+          "ok": true,
+          "label": "加分项不超过两条",
+          "note": "出现 0 次，上限 2"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "scored": 27,
+    "total": 27,
+    "missing": [],
+    "avg": 0.98,
+    "pass": 25,
+    "soSo": 0,
+    "fail": 2,
+    "byCategory": {
+      "分诊路由": {
+        "n": 4,
+        "avg": 1
+      },
+      "链路编排": {
+        "n": 3,
+        "avg": 1
+      },
+      "多角色评审": {
+        "n": 4,
+        "avg": 1
+      },
+      "需求体检": {
+        "n": 2,
+        "avg": 0.84
+      },
+      "边界与诚实": {
+        "n": 3,
+        "avg": 1
+      },
+      "表达": {
+        "n": 2,
+        "avg": 0.84
+      },
+      "数据与度量": {
+        "n": 2,
+        "avg": 1
+      },
+      "用户调研": {
+        "n": 1,
+        "avg": 1
+      },
+      "竞品与市场": {
+        "n": 1,
+        "avg": 1
+      },
+      "自我迭代": {
+        "n": 1,
+        "avg": 1
+      },
+      "带材料分诊": {
+        "n": 2,
+        "avg": 1
+      },
+      "给产出打分": {
+        "n": 2,
+        "avg": 1
+      }
+    }
+  }
+}

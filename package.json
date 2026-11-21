@@ -1,6 +1,6 @@
 {
   "name": "@itxinfei/pm-ai-skill",
-  "version": "1.2.5",
+  "version": "1.2.6",
   "description": "An all-in-one AI skill for product managers — 76 modules covering discovery, research, strategy, PRDs, metrics, growth, and self-improvement.",
   "main": "bin/index.js",
   "bin": {

@@ -73,7 +73,7 @@ if (exists('evals/cases.json')) {
 // 规则写错不会立刻报，要等到有人真跑那条用例才炸，所以在这儿先编译一遍
 if (exists('evals/cases.json')) {
   const ev = JSON.parse(read('evals/cases.json'));
-  const ruleTypes = new Set(['has', 'hasAny', 'not', 'first', 'maxChars', 'minChars', 'maxCount']);
+  const ruleTypes = new Set(['has', 'hasAny', 'not', 'first', 'firstRe', 'maxChars', 'minChars', 'maxCount']);
   const garbage = '我们赋能业务，形成业务闭环，抓住关键抓手，提升用户体验，打造生态位。';
   for (const c of ev.cases || []) {
     const auto = c.auto;
@@ -84,10 +84,10 @@ if (exists('evals/cases.json')) {
     for (const r of auto) {
       if (!ruleTypes.has(r.t)) fail(`用例 ${c.id} 的规则类型不认识：${r.t}`);
       if (!r.label) fail(`用例 ${c.id} 有一条规则没写 label`);
-      if (r.t === 'has' || r.t === 'not' || r.t === 'maxCount') {
+      if (r.t === 'has' || r.t === 'not' || r.t === 'maxCount' || r.t === 'firstRe') {
         if (!r.v) fail(`用例 ${c.id} 的 ${r.t} 规则缺 v`);
         else {
-          try { new RegExp(r.v, r.t === 'not' ? 'm' : 'g'); }
+          try { new RegExp(r.v, r.t === 'not' || r.t === 'firstRe' ? 'm' : 'g'); }
           catch (e) { fail(`用例 ${c.id} 的正则写不通：${r.v}（${e.message}）`); }
         }
       }

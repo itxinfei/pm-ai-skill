@@ -5,6 +5,7 @@ yarn-error.log*
 pnpm-debug.log*
 .idea/
 .vscode/
+.serena/
 dist/
 *.zip
 *.tgz
