@@ -60,6 +60,9 @@ if (-not (Test-Path -LiteralPath $skillSource)) {
     Write-Host "压缩包里没找到 skill-source，先别装了，去提个 issue" -ForegroundColor Red
     return
 }
+# 模板、文档、样例、HTML 报告要一起装。system-prompt 里写着有多少个，文件不在就只能靠编。
+$assetRoot = $extractedRoot.FullName
+$assetNames = @('templates', 'docs', 'examples', 'assets')
 Write-Host "[2/4] 解压完成"
 
 # 3. 所有支持的工具目录
@@ -98,11 +101,21 @@ foreach ($t in $toolPaths) {
 Write-Host "[3/4] 检测到 $($targets.Count) 个工具"
 
 # 4. 安装
+function Install-Assets($dest) {
+    foreach ($a in $assetNames) {
+        $srcA = Join-Path $assetRoot $a
+        if (Test-Path -LiteralPath $srcA) {
+            Copy-Item -LiteralPath $srcA -Destination (Join-Path $dest $a) -Recurse -Force
+        }
+    }
+}
+
 if ($targets.Count -gt 0) {
     foreach ($t in $targets) {
         $dest = Join-Path $t.Path $skillName
         if (Test-Path -LiteralPath $dest) { Remove-Item -LiteralPath $dest -Recurse -Force }
         Copy-Item -LiteralPath $skillSource -Destination $dest -Recurse
+        Install-Assets $dest
         Write-Host "  -> $($t.Tool): $dest" -ForegroundColor Green
     }
 } else {
@@ -111,6 +124,7 @@ if ($targets.Count -gt 0) {
     if (-not (Test-Path -LiteralPath $defaultDir)) { New-Item -ItemType Directory -Path $defaultDir -Force | Out-Null }
     $dest = Join-Path $defaultDir $skillName
     Copy-Item -LiteralPath $skillSource -Destination $dest -Recurse
+    Install-Assets $dest
     Write-Host "  -> 通用目录: $dest" -ForegroundColor Yellow
 
     # 当前目录里要是已经是这份内容，就别再拷一份
@@ -118,6 +132,7 @@ if ($targets.Count -gt 0) {
     if (-not $cwdIsProject) {
         $localDest = Join-Path (Get-Location).Path $skillName
         Copy-Item -LiteralPath $skillSource -Destination $localDest -Recurse
+        Install-Assets $localDest
         Write-Host "  -> 当前目录: $localDest" -ForegroundColor Yellow
     }
 }

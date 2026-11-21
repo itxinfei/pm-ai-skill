@@ -86,6 +86,16 @@ TOOL_PATHS=(
 echo "[3/4] 检测已安装的工具..."
 COUNT=0
 
+# 模板、文档、样例、HTML 报告一起装。system-prompt 里写着有多少个，文件不在就只能靠编。
+ASSET_NAMES="templates docs examples assets"
+install_assets() {
+    for a in $ASSET_NAMES; do
+        if [ -d "$EXTRACTED_ROOT/$a" ]; then
+            cp -r "$EXTRACTED_ROOT/$a" "$1/$a"
+        fi
+    done
+}
+
 for entry in "${TOOL_PATHS[@]}"; do
     tool="${entry%%:*}"
     path="${entry#*:}"
@@ -94,6 +104,7 @@ for entry in "${TOOL_PATHS[@]}"; do
         dest="$path/$SKILL_NAME"
         rm -rf "$dest"
         cp -r "$SKILL_SOURCE" "$dest"
+        install_assets "$dest"
         echo "  -> $tool: $dest"
         COUNT=$((COUNT + 1))
     fi
@@ -108,6 +119,7 @@ if [ "$COUNT" -eq 0 ]; then
     mkdir -p "$DEFAULT_DIR"
     dest="$DEFAULT_DIR/$SKILL_NAME"
     cp -r "$SKILL_SOURCE" "$dest"
+    install_assets "$dest"
     echo "  -> 通用目录: $dest"
     echo ""
     echo "没检测到已安装的工具，文件已放到 $DEFAULT_DIR"
@@ -115,6 +127,7 @@ if [ "$COUNT" -eq 0 ]; then
     # 当前目录里要是已经是这份内容，就别再拷一份
     if [ ! -f "./skill-source/system-prompt.md" ]; then
         cp -r "$SKILL_SOURCE" "./$SKILL_NAME"
+        install_assets "./$SKILL_NAME"
         echo "  -> 当前目录: ./$SKILL_NAME"
     fi
 fi

@@ -2,6 +2,39 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [未发布]
+
+### 修：装完之后，skill 说自己有 14 个模板，但目标目录里一个都没有
+
+`install` 只搬 `skill-source/` 那四个文件。`templates/`、`docs/`、`examples/`、`assets/` 全部留在仓库里没跟过去。后果是：AI 在 Claude Code 里读到"手边有 14 个模板、15 份样例"，去目录里找却什么都没有，只能按记忆默写一份 —— 少几章还看不出来。
+
+三处一起补：`bin/index.js` 加 `copyAssets()`，`install.ps1` 和 `install.sh` 同步复制四个目录。`export-zip` 也打包进去。
+
+实测：模拟 home 下建一个 `.codex/skills`，装完目录里是 `SKILL.md`、`system-prompt.md`、`triggers.md`、`manifest.json`、`skill.json`，加 `templates/`（14 个）、`examples/`（15 份）、`docs/`、`assets/`。
+
+### 加：`SKILL.md`
+
+原来只有 `system-prompt.md`。国外 CLI 按 `SKILL.md` 的 frontmatter 决定要不要加载这个 skill —— 没有这个文件，等于没声明，能不能被识别全看各家实现。
+
+补了一份：frontmatter 写 name 和 description，正文压到 60 行，只做两件事 —— 说清什么时候用，和"必须先读 system-prompt.md 全文再答"。不读全文只按这 60 行回答，就退化成普通的通用建议了。
+
+### 改：system-prompt 里补一段"手里的现成东西"
+
+之前 76 个模块讲得很细，但没提模板、样例、HTML 报告、成长路线这四样已经在手边。结果就是 AI 明明能取原件，还是自己现编。
+
+补了清单和三条规矩：要模板给全文、要样例只给最贴近的一份、给样例时把"为什么算合格"那段一起给。
+
+### 改：triggers 补 B 端 PRD 和成长路线
+
+原来没有"权限、数据模型、接口依赖"这类 B 端说法，也没有"我这个阶段该练什么"。各补几条。
+
+### 改：check.js 加了四条防回退的断言
+
+- 安装必须调 `copyAssets`，否则目标目录只有 4 个文件
+- `export-zip` 必须打进四个目录
+- `SKILL.md` 必须有 `name` 和 `description`
+- `SKILL.md` 和 `system-prompt` 必须指到对方
+
 ## [1.2.4] - 2026-11-21
 
 把 GitHub 上十个热门 PM skill 仓库翻了一遍，挑能用的抄。抄的不是数量，是几个具体做法。

@@ -129,6 +129,8 @@ npx @itxinfei/pm-ai-skill install
 
 一份配置，逐份拷到各工具的目录，改一处不用改十三处。
 
+装完不只是提示词。模板、样例、文档、HTML 报告都在同一个目录下（`templates/`、`examples/`、`docs/`、`assets/`），AI 要取模板时直接读原件，不会照着记忆默写一遍。
+
 ---
 
 ## 能干什么

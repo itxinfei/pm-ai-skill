@@ -131,6 +131,8 @@ The scripts detect which tools you have and install into each one found:
 
 One config, copied into each tool's directory. Change it once, not thirteen times.
 
+The install is not just a prompt file. Templates, samples, docs and HTML reports land in the same directory (`templates/`, `examples/`, `docs/`, `assets/`), so the model reads the real template instead of reciting one from memory.
+
 ---
 
 ## What it does

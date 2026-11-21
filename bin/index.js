@@ -22,6 +22,21 @@ function copyDirSync(src, dest) {
   }
 }
 
+// 模板、文档、样例、HTML 报告不是可选的附件：system-prompt 里写着"手边有 14 个模板"，
+// 目标目录里没有这些文件，AI 就只能凭记忆编。装 skill 时必须一起带过去。
+const assetDirs = [
+  ['templates', templatesDir],
+  ['docs', docsDir],
+  ['examples', examplesDir],
+  ['assets', assetsDir],
+];
+
+function copyAssets(dest) {
+  for (const [name, src] of assetDirs) {
+    if (fs.existsSync(src)) copyDirSync(src, path.join(dest, name));
+  }
+}
+
 // 所有支持的工具及其全局 skills 目录
 function getAllToolPaths() {
   const home = os.homedir();
@@ -85,6 +100,7 @@ program
       const fallback = path.join(os.homedir(), '.agents', 'skills');
       const dest = path.join(fallback, 'pm-ai-skill');
       copyDirSync(skillSourceDir, dest);
+      copyAssets(dest);
       console.log(`未检测到已安装的工具，已安装到：${dest}`);
       const local = path.join(process.cwd(), 'pm-ai-skill');
       const alreadyHere = fs.existsSync(path.join(process.cwd(), 'skill-source', 'system-prompt.md'));
@@ -92,6 +108,7 @@ program
         console.log('当前目录里已经是这份内容，不再复制一份。');
       } else {
         copyDirSync(skillSourceDir, local);
+        copyAssets(local);
         console.log(`同时释放到当前目录：${local}`);
       }
       return;
@@ -101,6 +118,7 @@ program
       const dest = path.join(t.path, 'pm-ai-skill');
       const existed = fs.existsSync(dest);
       copyDirSync(skillSourceDir, dest);
+      copyAssets(dest);
       console.log(`  -> ${t.name}: ${dest}${existed ? '（已覆盖旧版本）' : ''}`);
     }
     console.log('安装完成，重启对应工具即可使用。');
@@ -118,6 +136,9 @@ program
     archive.on('error', (err) => { throw err; });
     archive.pipe(output);
     archive.directory(skillSourceDir, false);
+    for (const [name, src] of assetDirs) {
+      if (fs.existsSync(src)) archive.directory(src, name);
+    }
     await archive.finalize();
   });
 

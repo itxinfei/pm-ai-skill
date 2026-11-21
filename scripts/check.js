@@ -21,7 +21,7 @@ const required = [
   'README.md', 'README_EN.md', 'LICENSE', 'CHANGELOG.md', 'CONTRIBUTING.md',
   'CODE_OF_CONDUCT.md', 'SECURITY.md', 'package.json', '.gitignore', '.editorconfig',
   'install.ps1', 'install.sh', 'bin/index.js',
-  'skill-source/skill.json', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
+  'skill-source/skill.json', 'skill-source/SKILL.md', 'skill-source/system-prompt.md', 'skill-source/triggers.md',
   'docs/capability.md', 'docs/prompt-reference.md', 'docs/workflow-guide.md',
   'docs/faq.md', 'docs/tools.md', 'docs/awesome-pm-skills.md',
   'docs/growth-path.md',
@@ -173,6 +173,25 @@ for (const m of assetBlock.split("command('info')")[0].matchAll(/(\w+):\s*'([a-z
   const file = m[2];
   if (!exists(`assets/${file}`)) fail(`bin/index.js 的 asset 命令引用了不存在的模板：${file}`);
 }
+
+// 6b. 装 skill 时必须把模板、文档、样例、报告一起带过去
+// 只装 skill-source 的话，system-prompt 里"手边有 14 个模板"就是句空话，AI 只能凭记忆编
+if (!/function copyAssets\(dest\)/.test(binSrc)) fail('bin/index.js 里没有 copyAssets，安装不会带上模板和样例');
+if (!/copyAssets\(dest\)/.test(binSrc)) fail('install 命令没调用 copyAssets，装完目标目录里只有 4 个文件');
+if (!/archive\.directory\(src, name\)/.test(binSrc)) fail('export-zip 没把 templates/docs/examples/assets 打进包');
+const promptSrc = read('skill-source/system-prompt.md');
+if (!promptSrc.includes('`templates/`')) fail('system-prompt 没告诉 AI 模板在 skill 目录的 templates/ 下');
+if (!promptSrc.includes('`examples/`')) fail('system-prompt 没告诉 AI 样例在 skill 目录的 examples/ 下');
+
+// 6c. SKILL.md 是国外 CLI 的加载入口，frontmatter 缺一项就加载不了
+const skillMd = read('skill-source/SKILL.md');
+const fm = skillMd.match(/^---\n([\s\S]*?)\n---/);
+if (!fm) fail('skill-source/SKILL.md 缺 YAML frontmatter，Claude Code / Codex 之类读不到');
+else {
+  if (!/^name:\s*\S+/m.test(fm[1])) fail('SKILL.md frontmatter 缺 name');
+  if (!/^description:\s*\S+/m.test(fm[1])) fail('SKILL.md frontmatter 缺 description');
+}
+if (!skillMd.includes('system-prompt.md')) fail('SKILL.md 没指向 system-prompt.md，工具只会按这几行回答');
 
 // 7. 明显不该出现的残留
 const allMd = [];
