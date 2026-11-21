@@ -131,6 +131,14 @@ The scripts detect which tools you have and install into each one found:
 
 One config, copied into each tool's directory. Change it once, not thirteen times.
 
+Then check what actually landed:
+
+```bash
+pm-ai-skill status
+```
+
+Every location should read `1.2.6 up to date`. If you see `1.0.1 → 1.2.6 update needed`, your tools are still running the old prompt and are missing a lot — **old copies are never updated automatically**. Run `install` again. The old version is backed up to `~/.pm-ai-skill-backup/1.0.1/` before being overwritten.
+
 The install is not just a prompt file. Templates, samples, docs and HTML reports land in the same directory (`templates/`, `examples/`, `docs/`, `assets/`), so the model reads the real template instead of reciting one from memory.
 
 ---
@@ -229,7 +237,8 @@ Better for a weekly update to your boss or a review pack than a Markdown table.
 
 | Command | Does |
 |---|---|
-| `pm-ai-skill install` | Install into every AI tool detected |
+| `pm-ai-skill status` | Show which version each tool has. Old copies read `1.0.1 → 1.2.6 update needed` |
+| `pm-ai-skill install` | Install into every AI tool detected. The old copy is backed up to `~/.pm-ai-skill-backup/` first |
 | `pm-ai-skill template prd` | Fetch a template (14 available) |
 | `pm-ai-skill example grade` | Read a sample (15 available) |
 | `pm-ai-skill doc prompt` | Read docs (capability / prompt / workflow / FAQ / tools / survey / delivery / flow / scoring) |

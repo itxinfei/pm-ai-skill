@@ -38,7 +38,7 @@ function copyAssets(dest) {
 }
 
 // 所有支持的工具及其全局 skills 目录
-function getAllToolPaths() {
+function getToolDefs() {
   const home = os.homedir();
   const isWin = process.platform === 'win32';
   const isMac = process.platform === 'darwin';
@@ -72,6 +72,66 @@ function getAllToolPaths() {
     { name: '通用 .agents', paths: [path.join(home, '.agents', 'skills')] },
   ];
 
+  return tools;
+}
+
+function readSkillMeta(dir) {
+  const sj = path.join(dir, 'skill.json');
+  if (!fs.existsSync(sj)) return null;
+  try {
+    const j = JSON.parse(fs.readFileSync(sj, 'utf8'));
+    return { version: j.version || null, name: j.name || null };
+  } catch (e) {
+    return { version: null, name: null, broken: true };
+  }
+}
+
+function countFiles(dir) {
+  let n = 0;
+  const walk = (p) => {
+    for (const e of fs.readdirSync(p, { withFileTypes: true })) {
+      const full = path.join(p, e.name);
+      if (e.isDirectory()) walk(full);
+      else n += 1;
+    }
+  };
+  if (fs.existsSync(dir)) walk(dir);
+  return n;
+}
+
+const shortenPath = (p) => p.replace(os.homedir(), '~');
+
+// 覆盖前把旧版挪走一份。同一版本只备份一次，别每装一次就堆一层
+function backupInstalled(dest, version) {
+  const root = path.join(os.homedir(), '.pm-ai-skill-backup');
+  const target = path.join(root, version || 'unknown');
+  if (fs.existsSync(target)) return null;
+  fs.mkdirSync(root, { recursive: true });
+  copyDirSync(dest, target);
+  return target;
+}
+
+function sourceVersion() {
+  const m = readSkillMeta(skillSourceDir);
+  return (m && m.version) || null;
+}
+
+// SKILL.md 的 frontmatter 缺 name/description，工具会当普通文档，不加载成 skill
+function checkSkillMd(dir) {
+  const f = path.join(dir, 'SKILL.md');
+  if (!fs.existsSync(f)) return '缺 SKILL.md';
+  const t = fs.readFileSync(f, 'utf8');
+  const hasFront = /^---/.test(t.trim());
+  const hasName = /^\s*name\s*:\s*\S/m.test(t);
+  const hasDesc = /^\s*description\s*:\s*\S/m.test(t);
+  if (!hasFront) return 'SKILL.md 没有 frontmatter';
+  if (!hasName) return 'SKILL.md 缺 name';
+  if (!hasDesc) return 'SKILL.md 缺 description';
+  return null;
+}
+
+function getAllToolPaths() {
+  const tools = getToolDefs();
   const found = [];
   const seen = new Set();
   for (const tool of tools) {
@@ -91,9 +151,64 @@ program
   .version(require('../package.json').version);
 
 program
+  .command('status')
+  .alias('doctor')
+  .description('看每个 AI 工具里装的是哪一版，跟源比落后多少')
+  .action(() => {
+    const version = sourceVersion();
+    const rows = [];
+    for (const t of getToolDefs()) {
+      for (const p of t.paths) {
+        if (!fs.existsSync(p)) continue;
+        const dest = path.join(p, 'pm-ai-skill');
+        if (!fs.existsSync(dest)) {
+          rows.push({ tool: t.name, where: shortenPath(dest), state: '没装', kind: 'none' });
+          continue;
+        }
+        const m = readSkillMeta(dest) || {};
+        const mdProblem = checkSkillMd(dest);
+        if (m.broken) {
+          rows.push({ tool: t.name, where: shortenPath(dest), state: 'skill.json 读不出来', kind: 'bad' });
+        } else if (!m.version) {
+          rows.push({ tool: t.name, where: shortenPath(dest), state: '装了但没有版本号', kind: 'bad' });
+        } else if (mdProblem) {
+          rows.push({ tool: t.name, where: shortenPath(dest), state: mdProblem, kind: 'bad' });
+        } else if (m.version === version) {
+          rows.push({ tool: t.name, where: shortenPath(dest), state: `${m.version} 最新`, kind: 'ok' });
+        } else {
+          rows.push({ tool: t.name, where: shortenPath(dest), state: `${m.version} → ${version} 要更新`, kind: 'old' });
+        }
+      }
+    }
+    if (!rows.length) {
+      console.log('一个工具目录都没找到。先装 AI 工具，或者用 pm-ai-skill export-zip 手动放。');
+      return;
+    }
+    console.log(`源：${version}，skill 本体 ${countFiles(skillSourceDir)} 个文件 + 模板/文档/示例/报告资源`);
+    console.log('');
+    for (const r of rows) {
+      console.log(`  ${r.tool.padEnd(13)} ${r.where.padEnd(36)} ${r.state}`);
+    }
+    const old = rows.filter((r) => r.kind === 'old' || r.kind === 'bad');
+    const none = rows.filter((r) => r.kind === 'none');
+    console.log('');
+    if (!old.length && !none.length) {
+      console.log(`${rows.length} 个位置都是 ${version}，没落下。`);
+      return;
+    }
+    console.log(`${rows.length} 个位置：${old.length} 处旧版或损坏，${none.length} 处没装。`);
+    if (old.length) {
+      console.log('旧版不会自动更新——工具里跑的还是旧 prompt，新加的命令它不知道。');
+      process.exitCode = 1;
+    }
+    console.log('跑 pm-ai-skill install 一次全更新，旧版会先备份到 ~/.pm-ai-skill-backup/。');
+  });
+
+program
   .command('install')
   .description('安装到所有检测到的 AI 工具')
   .action(() => {
+    const version = sourceVersion();
     const targets = getAllToolPaths();
     if (targets.length === 0) {
       // 兜底：装到 .agents/skills 和当前目录
@@ -113,15 +228,53 @@ program
       }
       return;
     }
-    console.log(`检测到 ${targets.length} 个工具：`);
+    console.log(`检测到 ${targets.length} 个工具，源版本 ${version}：`);
+    const fresh = [];
+    const updated = [];
+    const same = [];
+    const errors = [];
     for (const t of targets) {
       const dest = path.join(t.path, 'pm-ai-skill');
-      const existed = fs.existsSync(dest);
+      const before = fs.existsSync(dest) ? readSkillMeta(dest) : null;
+      let note;
+      if (!before) {
+        note = `新装 ${version}`;
+        fresh.push(t.name);
+      } else if (before.version && before.version !== version) {
+        const bak = backupInstalled(dest, before.version);
+        note = `${before.version} → ${version}${bak ? '（旧版备份到 ' + shortenPath(bak) + '）' : ''}`;
+        updated.push(t.name);
+      } else if (before.version === version) {
+        note = `已是 ${version}，重写一遍保证一致`;
+        same.push(t.name);
+      } else {
+        note = `装过但读不出版本，按 ${version} 覆盖`;
+        updated.push(t.name);
+      }
       copyDirSync(skillSourceDir, dest);
       copyAssets(dest);
-      console.log(`  -> ${t.name}: ${dest}${existed ? '（已覆盖旧版本）' : ''}`);
+      // 复制不报错不等于装对了，立刻读回来校验
+      const after = readSkillMeta(dest) || {};
+      if (after.version !== version) errors.push(`${t.name}：装完版本是 ${after.version || '读不出'}`);
+      const mdProblem = checkSkillMd(dest);
+      if (mdProblem) errors.push(`${t.name}：${mdProblem}`);
+      console.log(`  ${t.name.padEnd(14)} ${shortenPath(dest)}  ${note}`);
     }
-    console.log('安装完成，重启对应工具即可使用。');
+    const bad = targets.filter((t) => {
+      const dest = path.join(t.path, 'pm-ai-skill');
+      return countFiles(dest) < countFiles(skillSourceDir);
+    });
+    for (const t of bad) errors.push(`${t.name}：文件数少于源，可能没复制全`);
+
+    console.log('');
+    console.log(`安装完成：新装 ${fresh.length} 处，更新 ${updated.length} 处，已是新版 ${same.length} 处`);
+    if (errors.length) {
+      console.log(`校验没过 ${errors.length} 处：`);
+      for (const e of errors) console.log(`  ${e}`);
+      process.exitCode = 1;
+      return;
+    }
+    console.log(`校验：${targets.length} 处 skill.json 版本都是 ${version}，文件齐了。重启对应工具后生效。`);
   });
 
 program

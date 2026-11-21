@@ -129,6 +129,14 @@ npx @itxinfei/pm-ai-skill install
 
 一份配置，逐份拷到各工具的目录，改一处不用改十三处。
 
+装完跑一次，确认装的是最新版：
+
+```bash
+pm-ai-skill status
+```
+
+每个位置都显示 `1.2.6 最新` 才算装对。看到 `1.0.1 → 1.2.6 要更新`，说明你机器上还是旧 prompt，AI 拿到的能力比文档少一大截——**旧版不会自动更新**，再跑一次 `install`。覆盖前旧版会备份到 `~/.pm-ai-skill-backup/1.0.1/`，装坏了能退回去。
+
 装完不只是提示词。模板、样例、文档、HTML 报告都在同一个目录下（`templates/`、`examples/`、`docs/`、`assets/`），AI 要取模板时直接读原件，不会照着记忆默写一遍。
 
 ---
@@ -227,7 +235,8 @@ npx @itxinfei/pm-ai-skill install
 
 | 命令 | 干什么 |
 |---|---|
-| `pm-ai-skill install` | 装到本机检测到的所有 AI 工具 |
+| `pm-ai-skill status` | 看每个工具里装的是哪一版。旧版会标 `1.0.1 → 1.2.6 要更新` |
+| `pm-ai-skill install` | 装到本机检测到的所有 AI 工具。覆盖前把旧版备份到 `~/.pm-ai-skill-backup/` |
 | `pm-ai-skill template prd` | 取模板（14 个） |
 | `pm-ai-skill example grade` | 看样例（15 份，看"做成什么样算合格"） |
 | `pm-ai-skill doc prompt` | 查文档（能力 / 提示词 / 工作流 / FAQ / 工具 / 盘点 / 交付 / 链路 / 打分） |

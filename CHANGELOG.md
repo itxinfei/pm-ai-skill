@@ -2,6 +2,30 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
+## [1.2.7] - 2026-11-21
+
+### 加：`status`，装完先验证装的是哪一版
+
+一台装了 12 个工具目录的机器上，11 个装的是 1.0.1：prompt 36 KB，没有 `deliver`、没有 `flow`、没有 `score`。文档里写着有，工具里跑的是旧逻辑。旧版不会自动更新，也没任何地方会说这件事——这是「装了没用」的真正原因。
+
+```bash
+pm-ai-skill status
+```
+
+每个位置一行：`1.2.6 最新`、`1.0.1 → 1.2.6 要更新`、`没装`。有旧版时退出码为 1，能挂进脚本和 CI。顺带查 SKILL.md 的 frontmatter 有没有 name / description——缺了工具会当普通文档读，不加载成 skill。
+
+### 改：`install` 会告诉你覆盖了什么
+
+原来只打印「已覆盖旧版本」。现在按目录报 `1.0.1 → 1.2.6（旧版备份到 ~/.pm-ai-skill-backup/1.0.1）`，覆盖前把旧版整目录存一份（同一版本只存一次），装完逐个读回 `skill.json` 的版本和文件数，不一致就报错并以非零码退出。复制不报错不等于装对了。
+
+### 加：`score --baseline`，基线当门槛
+
+`pm-ai-skill score all ./answers --baseline` 跟 `evals/baseline/claude/score.json` 比，三种情况非零退出：掉分、规则条数变了、规则指纹对不上。
+
+比的是 `id + auto` 的哈希，不是分数高低——删掉一条规则能让某条用例从 70% 涨到 100%，只比分永远看不出来。`--tolerance 5` 允许掉 5 个百分点；`--strict` 要求跑全量，CI 用这个。
+
+CI 里挂的是自比（仓库内 27 份答案按当前规则重打），抓「改尺子」，抓不到「换模型后掉分」——那个要本地重跑，见 `evals/baseline/README.md`。
+
 ## [1.2.6] - 2026-11-21
 
 ### 加：`deliver feishu`，把 Markdown 变成能直接导入的稿子

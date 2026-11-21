@@ -1,7 +1,7 @@
 {
   "id": "pm-ai-skill",
   "name": "PM-AI-Skill 产品经理全链路助手",
-  "version": "1.2.6",
+  "version": "1.2.7",
   "description": "产品经理全链路 AI 助手：76 个能力模块，十个类全覆盖；六条工作链路；六视角评审；对已有产出 0-3 分打分（一项 0 分判不能发）；14 个模板与 15 份带合格标准的样例；3 个可打印的 HTML 报告；一条命令装进 13 种 AI 工具",
   "author": "itxinfei（心飞为你飞）",
   "systemPromptFile": "system-prompt.md",
