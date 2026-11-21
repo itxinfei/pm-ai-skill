@@ -2,7 +2,7 @@
 
 本项目遵循 [Semantic Versioning](https://semver.org/lang/zh-CN/)。
 
-## [未发布]
+## [1.2.5] - 2026-11-21
 
 ### 修：装完之后，skill 说自己有 14 个模板，但目标目录里一个都没有
 
